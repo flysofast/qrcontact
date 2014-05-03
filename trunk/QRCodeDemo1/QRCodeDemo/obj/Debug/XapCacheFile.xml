@@ -1,0 +1,20 @@
+﻿<xapCache source="D:\Rin\Visual Studio projects\Windows Phone 8\QRCodeDemo\QRCodeDemo\Bin\Debug\QRCodeDemo_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="13/04/2014 3:52:49 SA">
+  <file source="D:\Rin\Visual Studio projects\Windows Phone 8\QRCodeDemo\QRCodeDemo\obj\Debug\QRCodeDemo.dll" archivePath="QRCodeDemo.dll" lastWriteTime="13/04/2014 3:52:47 SA" />
+  <file source="D:\Rin\Visual Studio projects\Windows Phone 8\QRCodeDemo\QRCodeDemo\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="13/04/2014 2:21:11 SA" />
+  <file source="D:\Rin\Visual Studio projects\Windows Phone 8\QRCodeDemo\QRCodeDemo\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="13/04/2014 2:21:11 SA" />
+  <file source="D:\Rin\Visual Studio projects\Windows Phone 8\QRCodeDemo\QRCodeDemo\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="13/04/2014 2:21:11 SA" />
+  <file source="D:\Rin\Visual Studio projects\Windows Phone 8\QRCodeDemo\QRCodeDemo\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="13/04/2014 2:21:11 SA" />
+  <file source="D:\Rin\Visual Studio projects\Windows Phone 8\QRCodeDemo\QRCodeDemo\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="13/04/2014 2:21:11 SA" />
+  <file source="D:\Rin\Visual Studio projects\Windows Phone 8\QRCodeDemo\QRCodeDemo\Toolkit.Content\ApplicationBar.Cancel.png" archivePath="Toolkit.Content\ApplicationBar.Cancel.png" lastWriteTime="13/04/2014 2:42:56 SA" />
+  <file source="D:\Rin\Visual Studio projects\Windows Phone 8\QRCodeDemo\QRCodeDemo\Toolkit.Content\ApplicationBar.Check.png" archivePath="Toolkit.Content\ApplicationBar.Check.png" lastWriteTime="13/04/2014 2:42:56 SA" />
+  <file source="D:\Rin\Visual Studio projects\Windows Phone 8\QRCodeDemo\QRCodeDemo\Toolkit.Content\ApplicationBar.Delete.png" archivePath="Toolkit.Content\ApplicationBar.Delete.png" lastWriteTime="13/04/2014 2:42:56 SA" />
+  <file source="D:\Rin\Visual Studio projects\Windows Phone 8\QRCodeDemo\QRCodeDemo\Toolkit.Content\ApplicationBar.Select.png" archivePath="Toolkit.Content\ApplicationBar.Select.png" lastWriteTime="13/04/2014 2:42:56 SA" />
+  <file source="D:\Rin\Visual Studio projects\Windows Phone 8\QRCodeDemo\QRCodeDemo\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="13/04/2014 2:52:28 SA" />
+  <file source="D:\Rin\Visual Studio projects\Windows Phone 8\QRCodeDemo\QRCodeDemo\Bin\Debug\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="13/04/2014 2:21:11 SA" />
+  <file source="D:\Rin\Visual Studio projects\Windows Phone 8\QRCodeDemo\QRCodeDemo\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="13/04/2014 2:21:11 SA" />
+  <file source="D:\Rin\Visual Studio projects\Windows Phone 8\QRCodeDemo\packages\SilverlightToolkitWP.4.2012.6.25\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll" archivePath="Microsoft.Phone.Controls.Toolkit.dll" lastWriteTime="13/04/2014 2:42:55 SA" />
+  <file source="D:\Rin\Visual Studio projects\Windows Phone 8\QRCodeDemo\packages\ZXing.Net.0.14.0.0\lib\wp8\zxing.wp8.0.dll" archivePath="zxing.wp8.0.dll" lastWriteTime="13/04/2014 2:26:38 SA" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\Libraries\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="01/01/2013 6:57:00 CH" />
+  <file source="D:\Rin\Visual Studio projects\Windows Phone 8\QRCodeDemo\packages\ZXing.Net.0.14.0.0\lib\wp8\zxing.wp8.0.xml" archivePath="zxing.wp8.0.xml" lastWriteTime="13/04/2014 2:26:38 SA" />
+  <file source="D:\Rin\Visual Studio projects\Windows Phone 8\QRCodeDemo\QRCodeDemo\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="13/04/2014 2:21:22 SA" />
+</xapCache>
