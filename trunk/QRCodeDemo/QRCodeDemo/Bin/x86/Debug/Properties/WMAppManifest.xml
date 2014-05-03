@@ -31,6 +31,9 @@
         </TemplateFlip>
       </PrimaryToken>
     </Tokens>
+    <Extensions>
+      <Extension ExtensionName="LockScreen_Background" ConsumerID="{111DFF24-AA15-4A96-8006-2BFF8122084F}" TaskID="_default" />
+    </Extensions>
     <ActivatableClasses>
       <InProcessServer>
         <Path>Nokia.Graphics.Imaging.dll</Path>

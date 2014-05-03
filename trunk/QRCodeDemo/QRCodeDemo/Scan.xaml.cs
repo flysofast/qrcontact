@@ -38,7 +38,7 @@ namespace OpticalReaderDemo
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            _task.Show();
+           
             if (_result != null && _result.TaskResult == Microsoft.Phone.Tasks.TaskResult.OK)
             {
                 ResultImage.Source = _result.Thumbnail;
@@ -97,7 +97,7 @@ namespace OpticalReaderDemo
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            _task.Show();
         }
     }
 }

@@ -109,3 +109,41 @@ D:\Developer\Windows Phone\Application WP\QRCodeDemo\QRCodeDemo\obj\ARM\Debug\Xa
 D:\Developer\Windows Phone\Application WP\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Microsoft.Expression.Drawing.dll
 D:\Developer\Windows Phone\Application WP\QRCodeDemo\QRCodeDemo\obj\ARM\Debug\QRCodeDemo.csprojResolveAssemblyReference.cache
 D:\Developer\Windows Phone\Application WP\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Properties\WMAppManifest.xml
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Assets\ApplicationIcon.png
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Assets\Tiles\FlipCycleTileLarge.png
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Assets\Tiles\FlipCycleTileMedium.png
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Assets\Tiles\FlipCycleTileSmall.png
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Assets\Tiles\IconicTileMediumLarge.png
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Assets\Tiles\IconicTileSmall.png
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\QRCodeDemo.dll
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\QRCodeDemo.pdb
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\AppManifest.xaml
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Properties\WMAppManifest.xml
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\QRCodeDemo_Debug_ARM.xap
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Microsoft.Expression.Drawing.dll
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Microsoft.Phone.Controls.Toolkit.dll
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Newtonsoft.Json.dll
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Nokia.Graphics.Imaging.Managed.dll
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Nokia.Graphics.Imaging.winmd
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Nokia.InteropServices.WindowsRuntime.winmd
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\OpticalReaderLib.dll
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\zxing.wp8.0.dll
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Microsoft.Phone.Controls.dll
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Newtonsoft.Json.xml
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Nokia.Graphics.Imaging.Managed.xml
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\zxing.wp8.0.pdb
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\zxing.wp8.0.xml
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Nokia.Graphics.Imaging.dll
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Nokia.Graphics.Imaging.xml
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Nokia.InteropServices.WindowsRuntime.dll
+E:\QrCode\QRCodeDemo\QRCodeDemo\Bin\ARM\Debug\Nokia.InteropServices.WindowsRuntime.xml
+E:\QrCode\QRCodeDemo\QRCodeDemo\obj\ARM\Debug\QRCodeDemo.csprojResolveAssemblyReference.cache
+E:\QrCode\QRCodeDemo\QRCodeDemo\obj\ARM\Debug\App.g.cs
+E:\QrCode\QRCodeDemo\QRCodeDemo\obj\ARM\Debug\MainPage.g.cs
+E:\QrCode\QRCodeDemo\QRCodeDemo\obj\ARM\Debug\Scan.g.cs
+E:\QrCode\QRCodeDemo\QRCodeDemo\obj\ARM\Debug\QRCodeDemo.g.resources
+E:\QrCode\QRCodeDemo\QRCodeDemo\obj\ARM\Debug\QRCodeDemo.Resources.AppResources.resources
+E:\QrCode\QRCodeDemo\QRCodeDemo\obj\ARM\Debug\QRCodeDemo.csproj.GenerateResource.Cache
+E:\QrCode\QRCodeDemo\QRCodeDemo\obj\ARM\Debug\QRCodeDemo.dll
+E:\QrCode\QRCodeDemo\QRCodeDemo\obj\ARM\Debug\QRCodeDemo.pdb
+E:\QrCode\QRCodeDemo\QRCodeDemo\obj\ARM\Debug\XapCacheFile.xml

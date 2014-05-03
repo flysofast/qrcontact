@@ -59,8 +59,8 @@ namespace QRCodeDemo
         {
             if (PhotoCamera.IsCameraTypeSupported(CameraType.Primary))
             {
-                _task.Show();
-
+               // _task.Show();
+                NavigationService.Navigate(new Uri( "/ScanPage.xaml",UriKind.Relative));
             }
             else
             {

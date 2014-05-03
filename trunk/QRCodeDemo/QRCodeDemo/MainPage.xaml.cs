@@ -15,7 +15,7 @@ using System.IO;
 using Microsoft.Xna.Framework.Media;
 using System.Windows.Resources;
 using System.ComponentModel;
-using System.IO;
+
 using System.Text;
 using System.Windows.Media.Imaging;
 using System.Runtime.InteropServices.WindowsRuntime;

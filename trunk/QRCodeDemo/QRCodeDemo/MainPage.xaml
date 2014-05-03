@@ -51,7 +51,7 @@
             <Button x:Name="btScan" Content="Scan" HorizontalAlignment="Left" Margin="159,10,0,0" VerticalAlignment="Top" Width="144" Click="btScan_Click"/>
             <Image x:Name="img" HorizontalAlignment="Left" Height="220" Margin="34,287,0,0" VerticalAlignment="Top" Width="400"/>
             <Button Content="Pin" HorizontalAlignment="Left" Margin="303,10,0,0" VerticalAlignment="Top" Click="Button_Click_1" Width="131"/>
-            <Button x:Name="BtLockScreen" Content="Lock Screen" HorizontalAlignment="Left" Margin="159,103,0,0" VerticalAlignment="Top" Width="179" Click="BtLockScreen_Click"/>
+            <Button x:Name="BtLockScreen" Content="Lock Screen" HorizontalAlignment="Left" Margin="138,215,0,0" VerticalAlignment="Top" Width="179" Click="BtLockScreen_Click"/>
 
         </Grid>
 
