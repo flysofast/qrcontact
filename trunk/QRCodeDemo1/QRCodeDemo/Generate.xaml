@@ -14,10 +14,10 @@
     shell:SystemTray.IsVisible="True">
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar>
-			<shell:ApplicationBarIconButton IconUri="/Assets1/AppBar/folder.png" IsEnabled="True" Text="Get Contact" Click="ApplicationBarIconButton_Click_2" />
-			<shell:ApplicationBarIconButton IconUri="/Assets4/AppBar/cancel.png" IsEnabled="True" Text="Cancel" Click="ApplicationBarIconButton_Click_cancel"/>
-			<shell:ApplicationBarIconButton IconUri="/Assets3/AppBar/refresh.png" IsEnabled="True" Text="Reset" Click="ApplicationBarIconButton_Click_reset"/>
-			<shell:ApplicationBarIconButton IconUri="/Assets2/AppBar/save.png" IsEnabled="True" Text="Save" Click="ApplicationBarIconButton_Click_save"/>
+			<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/folder.png" IsEnabled="True" Text="Get Contact" Click="ApplicationBarIconButton_Click_2" />
+			<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/cancel.png" IsEnabled="True" Text="Cancel" Click="ApplicationBarIconButton_Click_cancel"/>
+			<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/refresh.png" IsEnabled="True" Text="Reset" Click="ApplicationBarIconButton_Click_reset"/>
+			<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/save.png" IsEnabled="True" Text="Save" Click="ApplicationBarIconButton_Click_save"/>
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 

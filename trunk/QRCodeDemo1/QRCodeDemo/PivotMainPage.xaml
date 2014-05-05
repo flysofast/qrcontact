@@ -18,9 +18,13 @@
         <!--Pivot Control-->
         <phone:Pivot x:Name="pvMain" Title="MY APPLICATION" SelectionChanged="pvMain_SelectionChanged">
             <!--Pivot item one-->
-            <phone:PivotItem Header="My QR">
+            <phone:PivotItem Header="My QR" Margin="10,28,14,0">
                 <Grid>
-                    <Image x:Name="img" HorizontalAlignment="Left" Height="494" Margin="19,23,0,0" VerticalAlignment="Top" Width="415"/>
+                    <Grid >
+                        <Image x:Name="img" HorizontalAlignment="Left" Height="360" Margin="19,157,0,0" VerticalAlignment="Top" Width="415"/>
+                        <Button x:Name="BtLockScreen" Content="LockScreen" HorizontalAlignment="Left" Height="81" Margin="19,10,0,0" VerticalAlignment="Top" Width="169" Click="BtLockScreen_Click"/>
+                        <Button x:Name="BtPin" Content="Pin to start" HorizontalAlignment="Left" Margin="235,15,0,0" VerticalAlignment="Top" Click="BtPin_Click"/>
+                    </Grid>
                 </Grid>
             </phone:PivotItem>
 
@@ -30,6 +34,9 @@
 
                 </Grid>
             </phone:PivotItem>
+<<<<<<< .mine
+          
+=======
             <phone:PivotItem Header="Scan">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -65,6 +72,7 @@
                     </StackPanel>
                 </Grid>
             </phone:PivotItem>
+>>>>>>> .r12
         </phone:Pivot>
     </Grid>
 

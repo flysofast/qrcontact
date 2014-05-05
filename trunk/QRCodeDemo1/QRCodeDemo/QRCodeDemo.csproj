@@ -147,16 +147,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets1\AppBar\folder.png">
+    <Content Include="Assets\AppBar\folder.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets2\AppBar\save.png">
+    <Content Include="Assets\AppBar\save.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets3\AppBar\refresh.png">
+    <Content Include="Assets\AppBar\refresh.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets4\AppBar\cancel.png">
+    <Content Include="Assets\AppBar\cancel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\AlignmentGrid.png" />

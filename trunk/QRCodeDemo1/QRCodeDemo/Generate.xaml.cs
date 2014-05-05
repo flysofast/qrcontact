@@ -17,6 +17,7 @@ namespace QRCodeDemo
 {
     public partial class Generate : PhoneApplicationPage
     {
+
         public Generate()
         {
             InitializeComponent();
@@ -30,6 +31,31 @@ namespace QRCodeDemo
                 
             }
            
+        }
+        public void writetext()
+        {
+            string name = TbName.Text, phone = TbPhone.Text, mail = TbMail.Text, add = TbAdd.Text;
+            string ContactString = "{\"name\":\"" + name + "\",\"phone\":\"" + phone + "\"}";
+            #region Save text
+            IsolatedStorageFile myIsolatedStorage1 = IsolatedStorageFile.GetUserStoreForApplication();
+
+            //create new file
+            using (StreamWriter writeFile = new StreamWriter(new IsolatedStorageFileStream("myFile.txt", FileMode.Create, FileAccess.Write, myIsolatedStorage1)))
+            {
+
+            }
+            //Open existing file
+            IsolatedStorageFileStream fileStream = myIsolatedStorage1.OpenFile("myFile.txt", FileMode.Open, FileAccess.Write);
+            using (StreamWriter writer = new StreamWriter(fileStream))
+            {
+                string TextData = name + ":" + phone + ":" + mail + ":" + add;
+                writer.Write(TextData);
+                writer.Close();
+            }
+            #endregion
+        }
+        public void readtext()
+        {
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -115,25 +141,8 @@ namespace QRCodeDemo
 
         private void ApplicationBarIconButton_Click_save(object sender, EventArgs e)
         {
-            string name = TbName.Text, phone = TbPhone.Text, mail = TbMail.Text, add = TbAdd.Text;
-            string ContactString = "{\"name\":\"" + name + "\",\"phone\":\"" + phone + "\"}";
-            #region Save text
-            IsolatedStorageFile myIsolatedStorage1= IsolatedStorageFile.GetUserStoreForApplication();
-
-            //create new file
-            using (StreamWriter writeFile = new StreamWriter(new IsolatedStorageFileStream("myFile.txt", FileMode.Create, FileAccess.Write, myIsolatedStorage1)))
-            {
-                
-            }
-            //Open existing file
-            IsolatedStorageFileStream fileStream = myIsolatedStorage1.OpenFile("myFile.txt", FileMode.Open, FileAccess.Write);
-            using (StreamWriter writer = new StreamWriter(fileStream))
-            {
-                string TextData =name+":"+phone+":"+mail+":"+add ;
-                writer.Write(TextData);
-                writer.Close();
-            }
-            #endregion
+            writetext();
+            
             #region Save Image
            
 
@@ -163,7 +172,7 @@ namespace QRCodeDemo
             }
             #endregion 
         }
-
+       
         private void ApplicationBarIconButton_Click_cancel(object sender, EventArgs e)
         {
 
