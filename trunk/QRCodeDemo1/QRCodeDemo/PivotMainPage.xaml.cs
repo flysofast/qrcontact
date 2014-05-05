@@ -21,14 +21,14 @@ namespace QRCodeDemo
     {
       
 
-        private OpticalReaderLib.OpticalReaderTask _task = new OpticalReaderLib.OpticalReaderTask();
-        private OpticalReaderLib.OpticalReaderResult _result = null;
+    
         public PivotMainPage()
         {
             InitializeComponent();
-            _task.Completed += OpticalReaderTask_Completed;
             BuildLocalizedApplicationBar();
         }
+
+      
 
         private void BuildLocalizedApplicationBar()
         {
@@ -69,16 +69,7 @@ namespace QRCodeDemo
             }
         }
 
-        private void OpticalReaderTask_Completed(object sender, OpticalReaderLib.OpticalReaderResult e)
-        {
-            _result = e;
-
-            //string s = "{\"name\":\"nam\",\"phone\":\"0101021212\"}";
-            string s = FormatString(e.Text);
-            Contact ct;
-            if (s != null)
-                ct = JsonConvert.DeserializeObject<Contact>(FormatString(s));
-        }
+       
 
         string FormatString(string s)
         {
