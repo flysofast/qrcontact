@@ -107,16 +107,10 @@
       <DependentUpon>PivotMainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QRScan.xaml.cs">
-      <DependentUpon>QRScan.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Scan.xaml.cs">
-      <DependentUpon>Scan.xaml</DependentUpon>
     </Compile>
     <Compile Include="ScanPage.xaml.cs">
       <DependentUpon>ScanPage.xaml</DependentUpon>
@@ -139,22 +133,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="QRScan.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Scan.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ScanPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Help\Nokia Imaging SDK.chm" />
-    <None Include="Help\OpticalReaderLib.0.1.0.0.chm" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
@@ -205,12 +189,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.2\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Nokia.Graphics.Imaging.Managed">
-      <HintPath>..\packages\NokiaImagingSDK.1.2.99\lib\wp8\Nokia.Graphics.Imaging.Managed.dll</HintPath>
-    </Reference>
-    <Reference Include="OpticalReaderLib">
-      <HintPath>..\packages\OpticalReaderLib.0.1.0.0\lib\wp8\x86\OpticalReaderLib.dll</HintPath>
-    </Reference>
     <Reference Include="zxing.wp8.0">
       <HintPath>..\packages\ZXing.Net.0.14.0.0\lib\wp8\zxing.wp8.0.dll</HintPath>
     </Reference>
@@ -225,5 +203,4 @@
   </Target>
   -->
   <ProjectExtensions />
-  <Import Project="..\packages\NokiaImagingSDK.1.2.99\build\wp8\NokiaImagingSDK.targets" Condition="Exists('..\packages\NokiaImagingSDK.1.2.99\build\wp8\NokiaImagingSDK.targets')" />
 </Project>
