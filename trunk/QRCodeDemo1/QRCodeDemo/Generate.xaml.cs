@@ -22,11 +22,11 @@ namespace QRCodeDemo
             InitializeComponent();
             BuildLocalizedApplicationBar();
             IsolatedStorageFile Storage = IsolatedStorageFile.GetUserStoreForApplication();
-            IsolatedStorageFileStream fileStream = myIsolatedStorage.OpenFile("myFile.txt", FileMode.Open, FileAccess.Read);
+            IsolatedStorageFileStream fileStream = Storage.OpenFile("myFile.txt", FileMode.Open, FileAccess.Read);
             using (StreamReader reader = new StreamReader(fileStream))
             {    //Visualize the text data in a TextBlock text
                 string s = reader.ReadLine();
-                String[] s1 = s.Split(":");
+                String[] s1 = s.Split(':');
                 
             }
            
@@ -149,16 +149,16 @@ namespace QRCodeDemo
                     myIsolatedStorage.DeleteFile("Shared\\ShellContent\\800x480.jpg");
 
                 }
-                IsolatedStorageFileStream fileStream = myIsolatedStorage.CreateFile("Shared\\ShellContent\\336x336.jpg");
-                IsolatedStorageFileStream fileStream1 = myIsolatedStorage.CreateFile("Shared\\ShellContent\\691x336.jpg");
-                IsolatedStorageFileStream fileStream2 = myIsolatedStorage.CreateFile("Shared\\ShellContent\\800x480.jpg");
+                IsolatedStorageFileStream fileStream1 = myIsolatedStorage.CreateFile("Shared\\ShellContent\\336x336.jpg");
+                IsolatedStorageFileStream fileStream2 = myIsolatedStorage.CreateFile("Shared\\ShellContent\\691x336.jpg");
+                IsolatedStorageFileStream fileStream3 = myIsolatedStorage.CreateFile("Shared\\ShellContent\\800x480.jpg");
 
-                wb.SaveJpeg(fileStream, 336, 336, 0, 100);
-                wb.SaveJpeg(fileStream1, 691, 336, 0, 100);
-                wb1.SaveJpeg(fileStream2, 800, 480, 0, 100);
-                fileStream.Close();
+                wb.SaveJpeg(fileStream1, 336, 336, 0, 100);
+                wb.SaveJpeg(fileStream2, 691, 336, 0, 100);
+                wb1.SaveJpeg(fileStream3, 800, 480, 0, 100);
                 fileStream1.Close();
                 fileStream2.Close();
+                fileStream3.Close();
 
             }
             #endregion 
