@@ -31,7 +31,10 @@ namespace QRCodeDemo
             }
            
         }
-
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+        }
         private void BtGenerate_Click(object sender, RoutedEventArgs e)
         {
             string name =TbName.Text,phone = TbPhone.Text,mail = TbMail.Text, add = TbAdd.Text;
