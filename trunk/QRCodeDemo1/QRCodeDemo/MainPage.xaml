@@ -46,10 +46,12 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Button x:Name="btGenerate" Content="Generate" HorizontalAlignment="Left" Margin="73,10,0,0" VerticalAlignment="Top" Click="btGenerate_Click"/>
-            <Button x:Name="btScan" Content="Scan" HorizontalAlignment="Left" Margin="222,10,0,0" VerticalAlignment="Top" Width="144" Click="btScan_Click"/>
-            <Image x:Name="img" HorizontalAlignment="Left" Height="400" Margin="34,117,0,0" VerticalAlignment="Top" Width="400"/>
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" Height="607" VerticalAlignment="Top">
+            <Button x:Name="btGenerate" Content="Generate" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Click="btGenerate_Click"/>
+            <Button x:Name="btScan" Content="Scan" HorizontalAlignment="Left" Margin="142,0,0,0" VerticalAlignment="Top" Width="144" Click="btScan_Click"/>
+            <Image x:Name="img" HorizontalAlignment="Left" Height="400" Margin="34,144,0,0" VerticalAlignment="Top" Width="400"/>
+            <Button x:Name="BtLockScreen" Content="Lock Screen" HorizontalAlignment="Left" Margin="274,0,0,0" VerticalAlignment="Top" Click="BtLockScreen_Click"/>
+            <Button x:Name="BtPin" Content="Pin to start" HorizontalAlignment="Left" Margin="142,67,0,0" VerticalAlignment="Top" Click="BtPin_Click"/>
 
         </Grid>
 
