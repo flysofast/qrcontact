@@ -34,9 +34,7 @@
 
                 </Grid>
             </phone:PivotItem>
-<<<<<<< .mine
-          
-=======
+
             <phone:PivotItem Header="Scan">
                 <Grid>
                     <Grid.RowDefinitions>

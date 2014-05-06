@@ -14,7 +14,7 @@
     shell:SystemTray.IsVisible="True">
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar>
-			<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/folder.png" IsEnabled="True" Text="Get Contact" Click="ApplicationBarIconButton_Click_2" />
+			<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/folder.png" IsEnabled="True" Text="Get Contact" Click="ApplicationBarIconButton_Click_getcontact" />
 			<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/cancel.png" IsEnabled="True" Text="Cancel" Click="ApplicationBarIconButton_Click_cancel"/>
 			<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/refresh.png" IsEnabled="True" Text="Reset" Click="ApplicationBarIconButton_Click_reset"/>
 			<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/save.png" IsEnabled="True" Text="Save" Click="ApplicationBarIconButton_Click_save"/>
@@ -38,7 +38,7 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10,0,14,0">
 
             <CheckBox x:Name="CbPhone" Content="Phone" HorizontalAlignment="Left" Margin="6,67,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.971,0.253"/>
-            <CheckBox Content="Mail" HorizontalAlignment="Left" Margin="6,121,0,0" VerticalAlignment="Top"/>
+            <CheckBox x:Name="CbMail" Content="Mail" HorizontalAlignment="Left" Margin="6,121,0,0" VerticalAlignment="Top"/>
             <CheckBox x:Name="CbAdd" Content="Address" HorizontalAlignment="Left" Margin="6,171,0,0" VerticalAlignment="Top"/>
             <CheckBox x:Name="CbName" Content="Name" HorizontalAlignment="Left" Margin="6,15,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="TbAdd" HorizontalAlignment="Left" Height="72" Margin="150,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="298"/>

@@ -17,48 +17,67 @@ namespace QRCodeDemo
 {
     public partial class Generate : PhoneApplicationPage
     {
-
+        string mName, mPhone, mAdd, mMail;
         public Generate()
         {
             InitializeComponent();
             BuildLocalizedApplicationBar();
-            IsolatedStorageFile Storage = IsolatedStorageFile.GetUserStoreForApplication();
-            IsolatedStorageFileStream fileStream = Storage.OpenFile("myFile.txt", FileMode.Open, FileAccess.Read);
-            using (StreamReader reader = new StreamReader(fileStream))
-            {    //Visualize the text data in a TextBlock text
-                string s = reader.ReadLine();
-                String[] s1 = s.Split(':');
-                
-            }
-           
         }
         public void writetext()
         {
+            
             string name = TbName.Text, phone = TbPhone.Text, mail = TbMail.Text, add = TbAdd.Text;
             string ContactString = "{\"name\":\"" + name + "\",\"phone\":\"" + phone + "\"}";
             #region Save text
-            IsolatedStorageFile myIsolatedStorage1 = IsolatedStorageFile.GetUserStoreForApplication();
+            IsolatedStorageFile IsolatedSaveText = IsolatedStorageFile.GetUserStoreForApplication();
 
             //create new file
-            using (StreamWriter writeFile = new StreamWriter(new IsolatedStorageFileStream("myFile.txt", FileMode.Create, FileAccess.Write, myIsolatedStorage1)))
+            using (StreamWriter writeFile = new StreamWriter(new IsolatedStorageFileStream("myFile.txt", FileMode.Create, FileAccess.Write, IsolatedSaveText)))
             {
 
             }
             //Open existing file
-            IsolatedStorageFileStream fileStream = myIsolatedStorage1.OpenFile("myFile.txt", FileMode.Open, FileAccess.Write);
+            IsolatedStorageFileStream fileStream = IsolatedSaveText.OpenFile("myFile.txt", FileMode.Open, FileAccess.Write);
             using (StreamWriter writer = new StreamWriter(fileStream))
             {
-                string TextData = name + ":" + phone + ":" + mail + ":" + add;
-                writer.Write(TextData);
+                string Text1 = name + ":" + phone + ":" + mail + ":" + add;
+                string Text2 =CbName.IsChecked + ":" + CbPhone.IsChecked + ":" + CbMail.IsChecked + ":" + CbAdd.IsChecked;
+                writer.WriteLine(Text1);
+                writer.WriteLine(Text2);
                 writer.Close();
             }
             #endregion
         }
         public void readtext()
         {
+            IsolatedStorageFile IsolatedReadFile = IsolatedStorageFile.GetUserStoreForApplication();
+            IsolatedStorageFileStream fileStream = IsolatedReadFile.OpenFile("myFile.txt", FileMode.Open, FileAccess.Read);
+            using (StreamReader reader = new StreamReader(fileStream))
+            {    
+                string st1 = reader.ReadLine();
+                String[] s1 = st1.Split(':');
+                mName = s1[0];
+                mPhone = s1[1];
+                mMail = s1[2];
+                mAdd = s1[3];
+                string st2 = reader.ReadLine();
+                string[] s2 = st2.Split(':');
+                CbName.IsChecked = Boolean.Parse(s2[0].ToString());
+                CbPhone.IsChecked = Boolean.Parse(s2[1].ToString());
+                CbMail.IsChecked = Boolean.Parse(s2[2].ToString());
+                CbAdd.IsChecked = Boolean.Parse(s2[3].ToString());
+
+            }
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            Uri stUri =new Uri("isostore:/Shared/ShellContent/336x336.jpg",UriKind.Absolute);
+            readtext();
+            TbName.Text=mName;
+            TbPhone.Text=mPhone; TbMail.Text=mMail; TbAdd.Text=mAdd;
+            BitmapImage tn = new BitmapImage();
+            tn.SetSource(Application.GetResourceStream(stUri).Stream);
+            img_qr.Source = tn;
             base.OnNavigatedTo(e);
         }
         private void BtGenerate_Click(object sender, RoutedEventArgs e)
@@ -123,29 +142,16 @@ namespace QRCodeDemo
             ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
             ApplicationBar.MenuItems.Add(appBarMenuItem);
         }
-
-        private void ApplicationBarIconButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ApplicationBarIconButton_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ApplicationBarIconButton_Click_2(object sender, EventArgs e)
-        {
-
-        }
-
+     
+        
         private void ApplicationBarIconButton_Click_save(object sender, EventArgs e)
         {
-            writetext();
-            
-            #region Save Image
-           
 
+            writetext();
+
+            #region Save Image
+            string name = TbName.Text, phone = TbPhone.Text, mail = TbMail.Text, add = TbAdd.Text;
+            string ContactString = "{\"name\":\"" + name + "\",\"phone\":\"" + phone + "\"}";
             img_qr.Source = GenerateQRCode(ContactString, 1);
             WriteableBitmap wb = GenerateQRCode(ContactString, 1);
             WriteableBitmap wb1 = GenerateQRCode(ContactString, 35);
@@ -179,6 +185,18 @@ namespace QRCodeDemo
         }
 
         private void ApplicationBarIconButton_Click_reset(object sender, EventArgs e)
+        {
+            TbAdd.Text = "";
+            TbMail.Text = "";
+            TbPhone.Text = "";
+            TbName.Text = "";
+            CbAdd.IsChecked = false;
+            CbName.IsChecked = false;
+            CbPhone.IsChecked = false;
+            CbMail.IsChecked = false;
+        }
+
+        private void ApplicationBarIconButton_Click_getcontact(object sender, EventArgs e)
         {
 
         }
