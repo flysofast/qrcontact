@@ -37,7 +37,7 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10,0,14,0">
 
-            <CheckBox x:Name="CbPhone" Content="Phone" HorizontalAlignment="Left" Margin="6,67,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.971,0.253"/>
+            <CheckBox x:Name="CbPhone" Content="Phone" HorizontalAlignment="Left" Margin="6,67,0,0" VerticalAlignment="Top" />
             <CheckBox x:Name="CbMail" Content="Mail" HorizontalAlignment="Left" Margin="6,121,0,0" VerticalAlignment="Top"/>
             <CheckBox x:Name="CbAdd" Content="Address" HorizontalAlignment="Left" Margin="6,171,0,0" VerticalAlignment="Top"/>
             <CheckBox x:Name="CbName" Content="Name" HorizontalAlignment="Left" Margin="6,15,0,0" VerticalAlignment="Top"/>

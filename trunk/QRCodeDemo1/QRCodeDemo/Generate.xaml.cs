@@ -12,20 +12,21 @@ using System.Windows.Media.Imaging;
 using ZXing;
 using System.IO.IsolatedStorage;
 using System.IO;
+using Microsoft.Phone;
 
 namespace QRCodeDemo
 {
     public partial class Generate : PhoneApplicationPage
     {
-        string mName, mPhone, mAdd, mMail;
+        string mName="", mPhone="", mAdd="", mMail="";
         public Generate()
         {
             InitializeComponent();
-            BuildLocalizedApplicationBar();
+          //  BuildLocalizedApplicationBar();
         }
         public void writetext()
         {
-            
+
             string name = TbName.Text, phone = TbPhone.Text, mail = TbMail.Text, add = TbAdd.Text;
             string ContactString = "{\"name\":\"" + name + "\",\"phone\":\"" + phone + "\"}";
             #region Save text
@@ -41,7 +42,7 @@ namespace QRCodeDemo
             using (StreamWriter writer = new StreamWriter(fileStream))
             {
                 string Text1 = name + ":" + phone + ":" + mail + ":" + add;
-                string Text2 =CbName.IsChecked + ":" + CbPhone.IsChecked + ":" + CbMail.IsChecked + ":" + CbAdd.IsChecked;
+                string Text2 = CbName.IsChecked + ":" + CbPhone.IsChecked + ":" + CbMail.IsChecked + ":" + CbAdd.IsChecked;
                 writer.WriteLine(Text1);
                 writer.WriteLine(Text2);
                 writer.Close();
@@ -51,39 +52,72 @@ namespace QRCodeDemo
         public void readtext()
         {
             IsolatedStorageFile IsolatedReadFile = IsolatedStorageFile.GetUserStoreForApplication();
-            IsolatedStorageFileStream fileStream = IsolatedReadFile.OpenFile("myFile.txt", FileMode.Open, FileAccess.Read);
-            using (StreamReader reader = new StreamReader(fileStream))
-            {    
-                string st1 = reader.ReadLine();
-                String[] s1 = st1.Split(':');
-                mName = s1[0];
-                mPhone = s1[1];
-                mMail = s1[2];
-                mAdd = s1[3];
-                string st2 = reader.ReadLine();
-                string[] s2 = st2.Split(':');
-                CbName.IsChecked = Boolean.Parse(s2[0].ToString());
-                CbPhone.IsChecked = Boolean.Parse(s2[1].ToString());
-                CbMail.IsChecked = Boolean.Parse(s2[2].ToString());
-                CbAdd.IsChecked = Boolean.Parse(s2[3].ToString());
+            try
+            {
+                IsolatedStorageFileStream fileStream = IsolatedReadFile.OpenFile("myFile.txt", FileMode.Open, FileAccess.Read);
+                using (StreamReader reader = new StreamReader(fileStream))
+                {
+                    string st1 = reader.ReadLine();
+                    if(st1!=null)
+                    {
+                        String[] s1 = st1.Split(':');
+                        mName = s1[0];
+                        mPhone = s1[1];
+                        mMail = s1[2];
+                        mAdd = s1[3];
+                    }
+                    TbName.Text = mName;
+                    TbPhone.Text = mPhone;
+                    TbMail.Text = mMail;
+                    TbAdd.Text = mAdd;
 
+                    string st2 = reader.ReadLine();
+                    string[] s2 = st2.Split(':');
+                    CbName.IsChecked = Boolean.Parse(s2[0].ToString());
+                    CbPhone.IsChecked = Boolean.Parse(s2[1].ToString());
+                    CbMail.IsChecked = Boolean.Parse(s2[2].ToString());
+                    CbAdd.IsChecked = Boolean.Parse(s2[3].ToString());
+
+                }
             }
+            catch(Exception tb)
+            { 
+                
+            }
+           
+        }
+
+        private void ReadFromIsolatedStorage(string fileName)
+        {
+            WriteableBitmap bitmap = new WriteableBitmap(200, 200);
+            using (IsolatedStorageFile my = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                using (IsolatedStorageFileStream fileStream = my.OpenFile(fileName, FileMode.Open, FileAccess.Read))
+                {
+                 
+                    bitmap =
+                        PictureDecoder.DecodeJpeg(fileStream);
+                }
+            }
+            img_qr.Source = bitmap;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Uri stUri =new Uri("isostore:/Shared/ShellContent/336x336.jpg",UriKind.Absolute);
+            //Uri stUri =new Uri("isostore:/Shared/ShellContent/336x336.jpg",UriKind.Absolute);
             readtext();
             TbName.Text=mName;
             TbPhone.Text=mPhone; TbMail.Text=mMail; TbAdd.Text=mAdd;
-            BitmapImage tn = new BitmapImage();
-            tn.SetSource(Application.GetResourceStream(stUri).Stream);
-            img_qr.Source = tn;
+            //BitmapImage tn = new BitmapImage();
+            //tn.UriSource = stUri;
+            //if (tn != null)
+                //img_qr.Source =
+            ReadFromIsolatedStorage("Shared\\ShellContent\\336x336.jpg");
             base.OnNavigatedTo(e);
         }
         private void BtGenerate_Click(object sender, RoutedEventArgs e)
         {
             string name =TbName.Text,phone = TbPhone.Text,mail = TbMail.Text, add = TbAdd.Text;
-            string ContactString = "{\"name\":\"nam\",\"phone\":\"0101021212\"}";
+            string ContactString = "{\"name\":\""+name+"\",\"phone\":\""+phone+"\"}";
 
             img_qr.Source = GenerateQRCode(ContactString, 1);
          
@@ -110,38 +144,14 @@ namespace QRCodeDemo
 
             return barcodeImage;
         }
-        private void BuildLocalizedApplicationBar()
-        {
-            // Set the page's ApplicationBar to a new instance of ApplicationBar.
-            ApplicationBar = new ApplicationBar();
-
-            //Generate
-            //ApplicationBarIconButton appBarButton_Generate = new ApplicationBarIconButton(new Uri("/Assets/AppBar/generate.png", UriKind.Relative));
-            //appBarButton_Generate.Text = AppResources.AppBarButtonText;
-            //ApplicationBar.Buttons.Add(appBarButton_Generate);
-            //Save
-            //ApplicationBarIconButton appBarButton_Save = new ApplicationBarIconButton(new Uri("/Assets/AppBar/save.png", UriKind.Relative));
-            //appBarButton_Save.Text = "Save";
-            //ApplicationBar.Buttons.Add(appBarButton_Save);
-            //Get Contact
-            //ApplicationBarIconButton appBarButton_GetContact = new ApplicationBarIconButton(new Uri("/Assets/AppBar/getcontact.png", UriKind.Relative));
-            //appBarButton_GetContact.Text = "Get Contact";
-            //ApplicationBar.Buttons.Add(appBarButton_GetContact);
-            //Cancle
-            //ApplicationBarIconButton appBarButton_Cancle = new ApplicationBarIconButton(new Uri("/Assets/AppBar/cancle.png", UriKind.Relative));
-            //appBarButton_Cancle.Text = "Cancle";
-            //ApplicationBar.Buttons.Add(appBarButton_Cancle);
-            //Reset
-            //ApplicationBarIconButton appBarButton_Reset = new ApplicationBarIconButton(new Uri("/Assets/AppBar/reset.png", UriKind.Relative));
-            //appBarButton_Reset.Text = "Reset";
-            //ApplicationBar.Buttons.Add(appBarButton_Reset);
-
-
-
-            // Create a new menu item with the localized string from AppResources.
-            ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-            ApplicationBar.MenuItems.Add(appBarMenuItem);
-        }
+        //private void BuildLocalizedApplicationBar()
+        //{
+        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
+        //    ApplicationBar = new ApplicationBar();
+        //    // Create a new menu item with the localized string from AppResources.
+        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
+        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
+        //}
      
         
         private void ApplicationBarIconButton_Click_save(object sender, EventArgs e)
