@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace QRCodeDemo
 {
-    public class Contact
+    class PhoneContactHelper
     {
-        public string name { get; set; }
-        public string phone { get; set; }
+
     }
 }

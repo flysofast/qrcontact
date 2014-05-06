@@ -70,7 +70,8 @@
                     </StackPanel>
                 </Grid>
             </phone:PivotItem>
->>>>>>> .r12
+
+            
         </phone:Pivot>
     </Grid>
 

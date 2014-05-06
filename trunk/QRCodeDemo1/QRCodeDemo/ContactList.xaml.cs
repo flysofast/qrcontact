@@ -27,6 +27,7 @@ namespace QRCodeDemo
 
             //Start the asynchronous search.
             cons.SearchAsync(String.Empty, FilterKind.None, "Contacts Test #1");
+           
         }
 
         void Contacts_SearchCompleted(object sender, ContactsSearchEventArgs e)
