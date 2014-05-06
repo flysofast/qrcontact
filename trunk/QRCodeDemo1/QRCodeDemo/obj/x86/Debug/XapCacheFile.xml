@@ -1,0 +1,21 @@
+﻿<xapCache source="E:\QrCode\QRCodeDemo1\QRCodeDemo\Bin\x86\Debug\QRCodeDemo_Debug_x86.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="5/5/2014 9:34:18 AM">
+  <file source="E:\QrCode\QRCodeDemo1\QRCodeDemo\obj\x86\Debug\QRCodeDemo.dll" archivePath="QRCodeDemo.dll" lastWriteTime="5/5/2014 9:34:17 AM" />
+  <file source="E:\QrCode\QRCodeDemo1\QRCodeDemo\Assets1\AppBar\folder.png" archivePath="Assets1\AppBar\folder.png" lastWriteTime="5/5/2014 9:31:29 AM" />
+  <file source="E:\QrCode\QRCodeDemo1\QRCodeDemo\Assets2\AppBar\save.png" archivePath="Assets2\AppBar\save.png" lastWriteTime="5/5/2014 9:31:29 AM" />
+  <file source="E:\QrCode\QRCodeDemo1\QRCodeDemo\Assets3\AppBar\refresh.png" archivePath="Assets3\AppBar\refresh.png" lastWriteTime="5/5/2014 9:31:29 AM" />
+  <file source="E:\QrCode\QRCodeDemo1\QRCodeDemo\Assets4\AppBar\cancel.png" archivePath="Assets4\AppBar\cancel.png" lastWriteTime="5/5/2014 9:31:29 AM" />
+  <file source="E:\QrCode\QRCodeDemo1\QRCodeDemo\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="5/5/2014 9:31:29 AM" />
+  <file source="E:\QrCode\QRCodeDemo1\QRCodeDemo\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="5/5/2014 9:31:29 AM" />
+  <file source="E:\QrCode\QRCodeDemo1\QRCodeDemo\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="5/5/2014 9:31:29 AM" />
+  <file source="E:\QrCode\QRCodeDemo1\QRCodeDemo\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="5/5/2014 9:31:29 AM" />
+  <file source="E:\QrCode\QRCodeDemo1\QRCodeDemo\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="5/5/2014 9:31:29 AM" />
+  <file source="E:\QrCode\QRCodeDemo1\QRCodeDemo\Bin\x86\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="5/5/2014 9:34:17 AM" />
+  <file source="E:\QrCode\QRCodeDemo1\QRCodeDemo\Bin\x86\Debug\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="5/5/2014 9:31:29 AM" />
+  <file source="E:\QrCode\QRCodeDemo1\QRCodeDemo\Bin\x86\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="5/5/2014 9:31:29 AM" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.0\Libraries\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="1/2/2013 8:57:00 AM" />
+  <file source="E:\QrCode\QRCodeDemo1\packages\Newtonsoft.Json.6.0.2\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll" archivePath="Newtonsoft.Json.dll" lastWriteTime="5/5/2014 9:31:26 AM" />
+  <file source="E:\QrCode\QRCodeDemo1\packages\ZXing.Net.0.14.0.0\lib\wp8\zxing.wp8.0.dll" archivePath="zxing.wp8.0.dll" lastWriteTime="5/5/2014 9:31:27 AM" />
+  <file source="E:\QrCode\QRCodeDemo1\packages\Newtonsoft.Json.6.0.2\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.xml" archivePath="Newtonsoft.Json.xml" lastWriteTime="5/5/2014 9:31:26 AM" />
+  <file source="E:\QrCode\QRCodeDemo1\packages\ZXing.Net.0.14.0.0\lib\wp8\zxing.wp8.0.xml" archivePath="zxing.wp8.0.xml" lastWriteTime="5/5/2014 9:31:27 AM" />
+  <file source="E:\QrCode\QRCodeDemo1\QRCodeDemo\Bin\x86\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="5/5/2014 9:34:17 AM" />
+</xapCache>
