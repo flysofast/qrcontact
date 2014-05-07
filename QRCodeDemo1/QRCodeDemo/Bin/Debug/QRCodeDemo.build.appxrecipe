@@ -34,6 +34,9 @@
     <AppxPackagedFile Include="D:\Rin\Visual Studio projects\Windows Phone 8\QRcontactProject\QRCodeDemo1\packages\ZXing.Net.0.14.0.0\lib\wp8\zxing.wp8.0.xml">
       <PackagePath>zxing.wp8.0.xml</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Rin\Visual Studio projects\Windows Phone 8\QRcontactProject\QRCodeDemo1\QRCodeDemo\ServiceReferences.ClientConfig">
+      <PackagePath>ServiceReferences.ClientConfig</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Rin\Visual Studio projects\Windows Phone 8\QRcontactProject\QRCodeDemo1\QRCodeDemo\Assets\AlignmentGrid.png">
       <PackagePath>Assets\AlignmentGrid.png</PackagePath>
     </AppxPackagedFile>

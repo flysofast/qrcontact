@@ -16,5 +16,20 @@ namespace QRCodeDemo
         {
             InitializeComponent();
         }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbRepassword.Text != tbPassword.Text)
+            {
+                MessageBox.Show("Passwords don't match!");
+                return;
+            }
+
+            int su = await WebServiceHelper.SignUp(tbUsername.Text, tbPassword.Text);
+
+            if (su == 2) MessageBox.Show("This username has already existed!");
+            else if (su == 1) MessageBox.Show("Signed up successfully!");
+            else MessageBox.Show("Cannot sign up");
+        }
     }
 }
