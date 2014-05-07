@@ -9,9 +9,11 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
+		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
 		Release|ARM = Release|ARM
+		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
@@ -21,6 +23,9 @@ Global
 		{9FDA8E21-0D79-44BD-99E6-32D894502CB2}.Debug|ARM.ActiveCfg = Debug|ARM
 		{9FDA8E21-0D79-44BD-99E6-32D894502CB2}.Debug|ARM.Build.0 = Debug|ARM
 		{9FDA8E21-0D79-44BD-99E6-32D894502CB2}.Debug|ARM.Deploy.0 = Debug|ARM
+		{9FDA8E21-0D79-44BD-99E6-32D894502CB2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9FDA8E21-0D79-44BD-99E6-32D894502CB2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9FDA8E21-0D79-44BD-99E6-32D894502CB2}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
 		{9FDA8E21-0D79-44BD-99E6-32D894502CB2}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{9FDA8E21-0D79-44BD-99E6-32D894502CB2}.Debug|x86.Build.0 = Debug|Any CPU
 		{9FDA8E21-0D79-44BD-99E6-32D894502CB2}.Debug|x86.Deploy.0 = Debug|Any CPU
@@ -30,6 +35,9 @@ Global
 		{9FDA8E21-0D79-44BD-99E6-32D894502CB2}.Release|ARM.ActiveCfg = Release|ARM
 		{9FDA8E21-0D79-44BD-99E6-32D894502CB2}.Release|ARM.Build.0 = Release|ARM
 		{9FDA8E21-0D79-44BD-99E6-32D894502CB2}.Release|ARM.Deploy.0 = Release|ARM
+		{9FDA8E21-0D79-44BD-99E6-32D894502CB2}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{9FDA8E21-0D79-44BD-99E6-32D894502CB2}.Release|Mixed Platforms.Build.0 = Release|x86
+		{9FDA8E21-0D79-44BD-99E6-32D894502CB2}.Release|Mixed Platforms.Deploy.0 = Release|x86
 		{9FDA8E21-0D79-44BD-99E6-32D894502CB2}.Release|x86.ActiveCfg = Release|x86
 		{9FDA8E21-0D79-44BD-99E6-32D894502CB2}.Release|x86.Build.0 = Release|x86
 		{9FDA8E21-0D79-44BD-99E6-32D894502CB2}.Release|x86.Deploy.0 = Release|x86

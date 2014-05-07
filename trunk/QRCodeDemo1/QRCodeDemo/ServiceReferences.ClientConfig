@@ -1,0 +1,17 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="WebServiceHuscSoap" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://manhtuank34.somee.com/WebServiceHusc.asmx"
+                binding="basicHttpBinding" bindingConfiguration="WebServiceHuscSoap"
+                contract="WebService.WebServiceHuscSoap" name="WebServiceHuscSoap" />
+        </client>
+    </system.serviceModel>
+</configuration>
