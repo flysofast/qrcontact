@@ -1,1 +1,1 @@
-E:\QrCode\QRCodeDemo1\QRCodeDemo\QRCodeDemo.csproj;neutral
+D:\Rin\Visual Studio projects\Windows Phone 8\QRcontactProject\QRCodeDemo1\QRCodeDemo\QRCodeDemo.csproj;neutral
