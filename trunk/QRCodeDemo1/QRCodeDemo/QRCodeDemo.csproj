@@ -111,7 +111,7 @@
       <DependentUpon>Generate.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="Classes\LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -135,7 +135,7 @@
     <Compile Include="SignUp.xaml.cs">
       <DependentUpon>SignUp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WebServiceHelper.cs" />
+    <Compile Include="Classes\WebServiceHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -251,4 +251,8 @@
   </Target>
   -->
   <ProjectExtensions />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

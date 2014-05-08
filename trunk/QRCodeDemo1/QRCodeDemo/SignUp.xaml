@@ -28,25 +28,26 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="14,0,10,0">
-            <Button Content="Sign up" HorizontalAlignment="Left" Margin="191,422,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-            <TextBlock HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top"/>
-            <TextBox x:Name="tbUsername"  HorizontalAlignment="Left" Height="72" Margin="105.791,74.302,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335.209" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Button Content="Sign up" HorizontalAlignment="Left" Margin="287,204,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+            <TextBlock HorizontalAlignment="Left" Margin="16,40,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top"/>
+            <TextBox x:Name="tbUsername"  HorizontalAlignment="Left" Height="72" Margin="111.761,14.601,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335.209" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
                 <TextBox.RenderTransform>
                     <CompositeTransform SkewY="-0.747" TranslateY="2.972"/>
                 </TextBox.RenderTransform>
             </TextBox>
-            <TextBlock HorizontalAlignment="Left" Margin="10,216,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" RenderTransformOrigin="0.561,0.296"/>
-            <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="72" Margin="106.224,187.168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="334.776" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <TextBlock HorizontalAlignment="Left" Margin="16,104,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" RenderTransformOrigin="0.561,0.296"/>
+            <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="72" Margin="112.194,75.228,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="334.776" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
                 <TextBox.RenderTransform>
                     <CompositeTransform SkewY="-0.747" TranslateY="2.972"/>
                 </TextBox.RenderTransform>
             </TextBox>
-            <TextBlock HorizontalAlignment="Left" Margin="10,299,0,0" TextWrapping="Wrap" Text="Retype password" VerticalAlignment="Top" Width="89"/>
-            <TextBox x:Name="tbRepassword" HorizontalAlignment="Left" Height="72" Margin="106.268,287.158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="334.732" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <TextBlock x:Name="lbRePassword" HorizontalAlignment="Left" Margin="16,148,0,0" TextWrapping="Wrap" Text="Retype password" VerticalAlignment="Top" Width="89"/>
+            <TextBox x:Name="tbRepassword" HorizontalAlignment="Left" Height="72" Margin="112.268,136.412,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="334.732" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
                 <TextBox.RenderTransform>
                     <CompositeTransform SkewY="-0.747" TranslateY="2.972"/>
                 </TextBox.RenderTransform>
             </TextBox>
+            <Button x:Name="btLogIn" Content="Log in" HorizontalAlignment="Left" Margin="120,204,0,0" VerticalAlignment="Top" Click="btLogIn_Click"/>
 
         </Grid>
     </Grid>

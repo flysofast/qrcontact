@@ -11,18 +11,7 @@ namespace QRCodeDemo
     {
         static WebService.WebServiceHuscSoapClient service = new WebService.WebServiceHuscSoapClient();
        
-        public static Task<int> WhenRequestCompleted() //can make it an extension method if you want.
-        {
-            TaskCompletionSource<int> tcs = new TaskCompletionSource<int>();
-
-            service.InsertNewUserCompleted += (object sender, WebService.InsertNewUserCompletedEventArgs e) => //change parameter list to fit the event's delegate
-            {
-                MessageBox.Show(e.Result.ToString());
-                tcs.SetResult(-1);
-            };
-            service.InsertNewUserAsync("asd", "dasd", "asds");
-            return tcs.Task;
-        }
+       
 
         public static Task<int> SignUp(string username,string password) //can make it an extension method if you want.
         {
@@ -30,11 +19,26 @@ namespace QRCodeDemo
 
             service.SignUpCompleted += (object sender, WebService.SignUpCompletedEventArgs e) => //change parameter list to fit the event's delegate
             {
+                if (e.Error != null) tcs.SetResult(-1);
+                else
                 tcs.SetResult((int)e.Result);
             };
             service.SignUpAsync(username, password);
             return tcs.Task;
         }
+
+        //public static Task<int> SignIn(string username, string password) //can make it an extension method if you want.
+        //{
+        //    TaskCompletionSource<int> tcs = new TaskCompletionSource<int>();
+        //    service.SignInCompleted += (object sender, WebService.SignInCompletedEventArgs e) => //change parameter list to fit the event's delegate
+        //    {
+        //        if (e.Error != null) tcs.SetResult(-1);
+        //        else
+        //            tcs.SetResult((int)e.Result);
+        //    };
+        //    service.SignInAsync(username, password);
+        //    return tcs.Task;
+        //}
 
        
     }
