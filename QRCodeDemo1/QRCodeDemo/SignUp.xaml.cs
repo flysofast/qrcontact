@@ -25,11 +25,43 @@ namespace QRCodeDemo
                 return;
             }
 
-            int su = await WebServiceHelper.SignUp(tbUsername.Text, tbPassword.Text);
+            try
+            {
+                int su = await WebServiceHelper.SignUp(tbUsername.Text, tbPassword.Text);
 
-            if (su == 2) MessageBox.Show("This username has already existed!");
-            else if (su == 1) MessageBox.Show("Signed up successfully!");
-            else MessageBox.Show("Cannot sign up");
+                if (su == 2) MessageBox.Show("This username has already existed!");
+                else if (su == 1) MessageBox.Show("Signed up successfully!");
+                else MessageBox.Show("Cannot sign up");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btLogIn_Click(object sender, RoutedEventArgs e)
+        {
+            tbRepassword.Visibility = Visibility.Collapsed;
+            lbRePassword.Visibility = Visibility.Collapsed;
+
+            //if (tbRepassword.Text != tbPassword.Text)
+            //{
+            //    MessageBox.Show("Passwords don't match!");
+            //    return;
+            //}
+
+            //try
+            //{
+            //    int su = await WebServiceHelper.SignIn(tbUsername.Text, tbPassword.Text);
+
+               
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    MessageBox.Show(ex.Message);
+            //}
         }
     }
 }

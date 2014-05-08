@@ -7,6 +7,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using QRCodeDemo.Resources;
+using System.IO.IsolatedStorage;
 
 namespace QRCodeDemo
 {
@@ -32,6 +33,36 @@ namespace QRCodeDemo
             // Phone-specific initialization
             InitializePhoneApplication();
 
+           
+            try
+            {
+
+                IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+                if (!settings.Contains("ReleaseCount")) // 1.0.0.2 version
+                {
+                    settings.Add("ReleaseCount", int.Parse(AppResources._ReleaseCount));
+
+                    if (!settings.Contains("NewRelease"))
+                        settings.Add("NewRelease", true);
+                    else
+                        settings["NewRelease"] = true;
+
+                    if (!settings.Contains("LaunchCount"))
+                        settings.Add("LaunchCount", 0);
+                    //else
+                    //{
+                    //    settings["LaunchCount"] = 0;
+                    //}
+
+                }
+               
+
+                settings.Save();
+            }
+
+            catch
+            {
+            }
 
 
 
