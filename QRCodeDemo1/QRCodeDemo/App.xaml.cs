@@ -38,25 +38,21 @@ namespace QRCodeDemo
             {
 
                 IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-                if (!settings.Contains("ReleaseCount")) // 1.0.0.2 version
-                {
-                    settings.Add("ReleaseCount", int.Parse(AppResources._ReleaseCount));
-
-                    if (!settings.Contains("NewRelease"))
-                        settings.Add("NewRelease", true);
-                    else
-                        settings["NewRelease"] = true;
-
-                    if (!settings.Contains("LaunchCount"))
-                        settings.Add("LaunchCount", 0);
-                    //else
-                    //{
-                    //    settings["LaunchCount"] = 0;
-                    //}
-
-                }
+                if (!settings.Contains("_ReleaseCount")) // 1.0.0.2 version
+                    settings.Add("_ReleaseCount", int.Parse(AppResources._ReleaseCount));
                
+                if (!settings.Contains("NewRelease"))
+                    settings.Add("NewRelease", true);
+                else
+                    settings["NewRelease"] = true;
 
+                if (!settings.Contains("LaunchCount"))
+                    settings.Add("LaunchCount", 1);
+
+                if (!settings.Contains("SignedIn"))
+                    settings.Add("SignedIn", false);
+             
+               
                 settings.Save();
             }
 
@@ -95,7 +91,11 @@ namespace QRCodeDemo
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-           
+            IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+            int count = (int)settings["LaunchCount"];
+            count++;
+            settings["LaunchCount"] = count;
+
         }
 
         // Code to execute when the application is activated (brought to foreground)

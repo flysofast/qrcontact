@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.IO.IsolatedStorage;
 
 namespace QRCodeDemo
 {
@@ -19,6 +20,8 @@ namespace QRCodeDemo
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            tbRepassword.Visibility = Visibility.Visible;
+            lbRePassword.Visibility = Visibility.Visible;
             if (tbRepassword.Text != tbPassword.Text)
             {
                 MessageBox.Show("Passwords don't match!");
@@ -44,6 +47,8 @@ namespace QRCodeDemo
         {
             tbRepassword.Visibility = Visibility.Collapsed;
             lbRePassword.Visibility = Visibility.Collapsed;
+            IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+            MessageBox.Show(settings["LaunchCount"].ToString());
 
             //if (tbRepassword.Text != tbPassword.Text)
             //{
@@ -55,7 +60,7 @@ namespace QRCodeDemo
             //{
             //    int su = await WebServiceHelper.SignIn(tbUsername.Text, tbPassword.Text);
 
-               
+
             //}
             //catch (Exception ex)
             //{

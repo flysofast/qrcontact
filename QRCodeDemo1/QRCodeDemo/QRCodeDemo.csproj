@@ -101,9 +101,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\MyContact.cs" />
     <Compile Include="Classes\PhoneContactHelper.cs" />
-    <Compile Include="Classes\QRScan.cs" />
     <Compile Include="ContactList.xaml.cs">
       <DependentUpon>ContactList.xaml</DependentUpon>
     </Compile>
@@ -175,6 +173,9 @@
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WebService\QRCodeDemo.WebService.MyContact.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\WebService\QRCodeDemo.WebService.QR_CONTACT.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

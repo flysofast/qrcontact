@@ -13,6 +13,9 @@ using Microsoft.Devices;
 using ZXing;
 using System.Windows.Media.Imaging;
 using System.Windows.Input;
+using Newtonsoft.Json;
+using QRCodeDemo.WebService;
+using Microsoft.Phone.Tasks;
 
 namespace QRCodeDemo
 {
@@ -26,6 +29,7 @@ namespace QRCodeDemo
         public ScanPage()
         {
             InitializeComponent();
+            BuildLocalizedApplicationBar();
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -47,7 +51,6 @@ namespace QRCodeDemo
             _scanTimer.Tick += (o, arg) => ScanForBarcode();
 
             viewfinderCanvas.Tap += new EventHandler<GestureEventArgs>(focus_Tapped);
-
             base.OnNavigatedTo(e);
         }
 
@@ -99,6 +102,7 @@ namespace QRCodeDemo
                 _phoneCamera.Dispose();
                 _phoneCamera.Initialized -= cam_Initialized;
                 CameraButtons.ShutterKeyHalfPressed -= CameraButtons_ShutterKeyHalfPressed;
+                
             }
         }
 
@@ -140,14 +144,29 @@ namespace QRCodeDemo
         void _bcReader_ResultFound(Result obj)
         {
             // If a new barcode is found, vibrate the device and display the barcode details in the UI
-            if (!obj.Text.Equals(tbBarcodeData.Text))
+            try
             {
-                VibrateController.Default.Start(TimeSpan.FromMilliseconds(100));
-                tbBarcodeType.Text = obj.BarcodeFormat.ToString();
-                tbBarcodeData.Text = obj.Text;
+                if (!obj.Text.Equals(tbBarcodeData.Text))
+                {
+                    VibrateController.Default.Start(TimeSpan.FromMilliseconds(100));
+                    tbBarcodeType.Text = obj.BarcodeFormat.ToString();
+                    tbBarcodeData.Text = obj.Text;
+                    ct = new MyContact();
+                   
+
+                    string s = JsonConvert.SerializeObject(ct);
+                    tbBarcodeData.Text = "Name:" + ct.name + "\nPhone number:" + ct.phone + "\nEmail:" + ct.email + "\nAddress:" + ct.address + "\nBirthday:" + ct.birthday.ToShortDateString() + "\nWebsite:" + ct.website;
+
+                    ApplicationBar.IsVisible = true;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: Cannot get contact's information from this image\n"+ex.Message);
             }
         }
-
+        MyContact ct;
         private void ScanForBarcode()
         {
             //grab a camera snapshot
@@ -158,6 +177,64 @@ namespace QRCodeDemo
             //if a barcode is found, the ResultFound event will fire
             _barcodeReader.Decode(_previewBuffer);
 
+        }
+
+        private void BuildLocalizedApplicationBar()
+        {
+            // Set the page's ApplicationBar to a new instance of ApplicationBar.
+            ApplicationBar = new ApplicationBar();
+            ApplicationBar.IsVisible = false;
+            // Create a new button and set the text value to the localized string from AppResources.
+            ApplicationBarIconButton appBarButton_Save = new ApplicationBarIconButton(new Uri("/Assets/AppBar/save.png", UriKind.Relative));
+            appBarButton_Save.Text = "Save";
+            appBarButton_Save.Click += appBarButton_Save_Click;
+            ApplicationBar.Buttons.Add(appBarButton_Save);
+
+            ApplicationBarIconButton appBarButton_Cancel = new ApplicationBarIconButton(new Uri("/Assets/AppBar/cancel.png", UriKind.Relative));
+            appBarButton_Cancel.Text = "Cancel";
+            appBarButton_Cancel.Click += appBarButton_Cancel_Click;
+            ApplicationBar.Buttons.Add(appBarButton_Cancel);
+
+      
+        }
+
+        void appBarButton_Cancel_Click(object sender, EventArgs e)
+        {
+            if (NavigationService.CanGoBack) NavigationService.GoBack();
+            else NavigationService.Navigate(new Uri("/PivotMainPage.xaml", UriKind.Relative));
+
+        }
+
+        void appBarButton_Save_Click(object sender, EventArgs e)
+        {
+            var saveContact = new SaveContactTask();
+            saveContact.Completed += saveContact_Completed;
+            saveContact.FirstName = ct.name;
+            saveContact.MobilePhone = ct.phone;
+            saveContact.HomeAddressCity = ct.address;
+
+            saveContact.Show();
+        }
+
+        void saveContact_Completed(object sender, SaveContactResult e)
+        {
+            switch (e.TaskResult)
+            {
+                //Logic for when the contact was saved successfully
+                case TaskResult.OK:
+                    MessageBox.Show("Contact saved.");
+                    break;
+
+                //Logic for when the task was cancelled by the user
+                case TaskResult.Cancel:
+                    MessageBox.Show("Save cancelled.");
+                    break;
+
+                //Logic for when the contact could not be saved
+                case TaskResult.None:
+                    MessageBox.Show("Contact could not be saved.");
+                    break;
+            }
         }
     }
 }
