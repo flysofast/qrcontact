@@ -102,7 +102,7 @@ namespace QRCodeDemo
                 _phoneCamera.Dispose();
                 _phoneCamera.Initialized -= cam_Initialized;
                 CameraButtons.ShutterKeyHalfPressed -= CameraButtons_ShutterKeyHalfPressed;
-                
+
             }
         }
 
@@ -152,7 +152,6 @@ namespace QRCodeDemo
                     tbBarcodeType.Text = obj.BarcodeFormat.ToString();
                     tbBarcodeData.Text = obj.Text;
                     ct = new MyContact();
-                   
 
                     string s = JsonConvert.SerializeObject(ct);
                     tbBarcodeData.Text = "Name:" + ct.name + "\nPhone number:" + ct.phone + "\nEmail:" + ct.email + "\nAddress:" + ct.address + "\nBirthday:" + ct.birthday.ToShortDateString() + "\nWebsite:" + ct.website;
@@ -163,7 +162,7 @@ namespace QRCodeDemo
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: Cannot get contact's information from this image\n"+ex.Message);
+                MessageBox.Show("Error: Cannot get contact's information from this image\n" + ex.Message);
             }
         }
         MyContact ct;
@@ -195,7 +194,7 @@ namespace QRCodeDemo
             appBarButton_Cancel.Click += appBarButton_Cancel_Click;
             ApplicationBar.Buttons.Add(appBarButton_Cancel);
 
-      
+
         }
 
         void appBarButton_Cancel_Click(object sender, EventArgs e)
@@ -210,8 +209,24 @@ namespace QRCodeDemo
             var saveContact = new SaveContactTask();
             saveContact.Completed += saveContact_Completed;
             saveContact.FirstName = ct.name;
-            saveContact.MobilePhone = ct.phone;
+
             saveContact.HomeAddressCity = ct.address;
+
+            string[] s = ct.phone.Split(';');
+            saveContact.MobilePhone = s[0];
+            saveContact.WorkPhone = s[1];
+            saveContact.HomePhone = s[2];
+
+            s = ct.address.Split(';');
+            saveContact.HomeAddressStreet = s[0];
+            saveContact.WorkAddressStreet = s[1];
+
+            s = ct.email.Split(';');
+            saveContact.PersonalEmail = s[0];
+            saveContact.WorkEmail = s[1];
+            saveContact.OtherEmail = s[2];
+
+            saveContact.Website = ct.website;
 
             saveContact.Show();
         }
