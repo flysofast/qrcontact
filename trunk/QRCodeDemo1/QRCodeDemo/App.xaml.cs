@@ -38,8 +38,8 @@ namespace QRCodeDemo
             {
 
                 IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-                if (!settings.Contains("_ReleaseCount")) // 1.0.0.2 version
-                    settings.Add("_ReleaseCount", int.Parse(AppResources._ReleaseCount));
+                if (!settings.Contains("ReleaseCount")) // 1.0.0.2 version
+                    settings.Add("ReleaseCount", int.Parse(AppResources._ReleaseCount));
                
                 if (!settings.Contains("NewRelease"))
                     settings.Add("NewRelease", true);
@@ -49,8 +49,8 @@ namespace QRCodeDemo
                 if (!settings.Contains("LaunchCount"))
                     settings.Add("LaunchCount", 1);
 
-                if (!settings.Contains("SignedIn"))
-                    settings.Add("SignedIn", false);
+                if (!settings.Contains("isSignedIn"))
+                    settings.Add("isSignedIn", false);
              
                
                 settings.Save();

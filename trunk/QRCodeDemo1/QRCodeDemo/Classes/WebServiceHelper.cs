@@ -54,6 +54,6 @@ namespace QRCodeDemo
             return tcs.Task;
         }
 
-       
+        
     }
 }
