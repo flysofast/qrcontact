@@ -27,6 +27,20 @@ namespace QRCodeDemo
             return tcs.Task;
         }
 
+        public static Task<int> GetContactList(int id, string sdt) //can make it an extension method if you want.
+        {
+            TaskCompletionSource<int> tcs = new TaskCompletionSource<int>();
+
+            service.GetContactListCompleted += (object sender, WebService.GetContactListCompletedEventArgs e) => //change parameter list to fit the event's delegate
+            {
+                if (e.Error != null) tcs.SetResult(-1);
+                else
+                    tcs.SetResult((int)e.Result);
+            };
+            service.GetContactListAsync(id, sdt);
+            return tcs.Task;
+        }
+
         //public static Task<int> SignIn(string username, string password) //can make it an extension method if you want.
         //{
         //    TaskCompletionSource<int> tcs = new TaskCompletionSource<int>();
