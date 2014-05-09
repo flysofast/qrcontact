@@ -1,0 +1,54 @@
+﻿<phone:PhoneApplicationPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Controls="clr-namespace:Coding4Fun.Phone.Controls;assembly=Coding4Fun.Phone.Controls"
+    x:Class="QRCodeDemo.Setting"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+	<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar>
+			<shell:ApplicationBarIconButton x:Name="AppBarSave" IconUri="/Assets/AppBar/save.png" IsEnabled="True" Text="Save" Click="AppBarSave_Click"/>
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="Setting" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="14,0,10,0">
+            <ScrollViewer>
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" Margin="31,12,0,0" TextWrapping="Wrap" Text="Language" VerticalAlignment="Top" FontSize="30"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="31,135,0,0" TextWrapping="Wrap" Text="Qr code style" VerticalAlignment="Top" FontSize="30"/>
+                    <TextBlock x:Name="TbBackgrioundCorlor" HorizontalAlignment="Left" Margin="60,183,0,0" TextWrapping="Wrap" Text="Background Color" VerticalAlignment="Top" Tap="TbBackgrioundCorlor_Tap"/>
+                    <TextBlock x:Name="TbQrCodeColor" HorizontalAlignment="Left" Margin="60,335,0,0" TextWrapping="Wrap" Text="Qr code color" VerticalAlignment="Top" Tap="TbQrCodeColor_Tap"/>
+                    <CheckBox x:Name="CbAllowShare" Content="Allow to share" HorizontalAlignment="Left" Margin="31,478,0,0" VerticalAlignment="Top" FontSize="30"/>
+                    <RadioButton x:Name="RbEn" Content="English" HorizontalAlignment="Left" Margin="18,56,0,0" VerticalAlignment="Top" FontSize="22"/>
+                    <RadioButton x:Name="RbVn" Content="Vietnamese" HorizontalAlignment="Left" Margin="207,56,0,0" VerticalAlignment="Top" FontSize="22"/>
+                    <Controls:ColorPicker x:Name="CpQrcode" HorizontalAlignment="Left" Margin="60,372,0,0" VerticalAlignment="Top" Height="118" Width="256" ColorChanged="CpQrcode_ColorChanged"/>
+                    <Controls:ColorPicker x:Name="CpBacground" HorizontalAlignment="Left" Margin="60,214,0,0" VerticalAlignment="Top" Height="118" Width="256" ColorChanged="CpBacground_ColorChanged"/>
+                </Grid>
+            </ScrollViewer>
+            
+
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>
