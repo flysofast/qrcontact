@@ -86,7 +86,11 @@ namespace QRCodeDemo
 
         private void btScan_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Scan.xaml", UriKind.RelativeOrAbsolute));
+           // NavigationService.Navigate(new Uri("/Scan.xaml", UriKind.RelativeOrAbsolute));
+            MessageBox.Show(IsolatedData.isSignedIn.ToString());
+            IsolatedData.isSignedIn = !IsolatedData.isSignedIn;
+            MessageBox.Show(IsolatedData.isSignedIn.ToString());
+            
         }
 
         private void BtLockScreen_Click(object sender, RoutedEventArgs e)
