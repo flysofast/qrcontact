@@ -12,7 +12,7 @@
     <RootNamespace>QRCodeDemo</RootNamespace>
     <AssemblyName>QRCodeDemo</AssemblyName>
     <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>
     </SilverlightVersion>
     <SilverlightApplication>true</SilverlightApplication>
