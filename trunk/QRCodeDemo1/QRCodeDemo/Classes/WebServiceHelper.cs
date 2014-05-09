@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Phone.Shell;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,17 +42,28 @@ namespace QRCodeDemo
             return tcs.Task;
         }
 
-         public static Task<int> SignIn(string username, string password) //can make it an extension method if you want.
+         public  Task<int> SignIn(string username, string password) //can make it an extension method if you want.
         {
-            TaskCompletionSource<int> tcs = new TaskCompletionSource<int>();
-            service.LoginCompleted += (object sender, WebService.LoginCompletedEventArgs e) => //change parameter list to fit the event's delegate
+
+            try
             {
-                if (e.Error != null) tcs.SetResult(-1);
-                else
-                    tcs.SetResult((int)e.Result);
-            };
-            service.LoginAsync(username, password);
-            return tcs.Task;
+                TaskCompletionSource<int> tcs = new TaskCompletionSource<int>();
+                service.LoginCompleted += (object sender, WebService.LoginCompletedEventArgs e) => //change parameter list to fit the event's delegate
+                {
+                    if (e.Error != null) tcs.SetResult(-1);
+                    else
+                        tcs.SetResult((int)e.Result);
+                };
+                service.LoginAsync(username, password);
+                return tcs.Task;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error: " + ex.Message);
+                return null;
+            }
+           
         }
 
         
