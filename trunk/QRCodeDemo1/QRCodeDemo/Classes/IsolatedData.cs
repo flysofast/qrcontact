@@ -14,18 +14,45 @@ namespace QRCodeDemo
 
         public static bool isSignedIn
         {
-            get 
-            { 
-                return (bool)settings["isSignedIn"]; 
-            }
+            get { return (bool)settings["isSignedIn"]; }
 
-            set
-            {
-                settings["isSignedIn"] = value;
-            }
+            set { settings["isSignedIn"] = value; settings.Save(); }
         }
 
-    
+        public static AppSetting appSettings
+        {
+            get { return (AppSetting)settings["appSettings"]; }
 
+            set { settings["appSettings"] = value; settings.Save(); }
+        }
+
+        public static UserContactInfo userInfo
+        {
+            get { return (UserContactInfo)settings["userInfo"]; }
+
+            set { settings["userInfo"] = value; settings.Save(); }
+        }
+
+        public static FriendContactList friendList
+        {
+            get { return (FriendContactList)settings["friendList"]; }
+
+            set { settings["friendList"] = value; settings.Save(); }
+        }
+
+        public static int LaunchCount
+        {
+            get { return (int)settings["LaunchCount"]; }
+
+        }
+
+        public static bool NewRelease
+        {
+            get { return (bool)settings["NewRelease"]; }
+
+            set { settings["NewRelease"] = value; settings.Save(); }
+        }
+
+        
     }
 }

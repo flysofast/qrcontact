@@ -38,8 +38,7 @@ namespace QRCodeDemo
             {
 
                 IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-                if (!settings.Contains("ReleaseCount")) // 1.0.0.2 version
-                    settings.Add("ReleaseCount", int.Parse(AppResources._ReleaseCount));
+                
                
                 if (!settings.Contains("NewRelease"))
                     settings.Add("NewRelease", true);
@@ -47,10 +46,23 @@ namespace QRCodeDemo
                     settings["NewRelease"] = true;
 
                 if (!settings.Contains("LaunchCount"))
-                    settings.Add("LaunchCount", 1);
+                    settings.Add("LaunchCount", 0);
 
                 if (!settings.Contains("isSignedIn"))
                     settings.Add("isSignedIn", false);
+                
+                AppSetting a = new AppSetting();
+
+                if (!settings.Contains("appSettings"))
+                    settings.Add("appSettings", a);
+
+                if (!settings.Contains("userInfo"))
+                    settings.Add("userInfo", null);
+
+                FriendContactList fl = new FriendContactList();
+
+                if (!settings.Contains("friendList"))
+                    settings.Add("friendList", fl);
              
                
                 settings.Save();
@@ -95,6 +107,7 @@ namespace QRCodeDemo
             int count = (int)settings["LaunchCount"];
             count++;
             settings["LaunchCount"] = count;
+            settings.Save();
 
         }
 
