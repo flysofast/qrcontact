@@ -30,6 +30,8 @@ namespace QRCodeDemo
 
             try
             {
+                
+
                 int su = await WebServiceHelper.SignUp(tbUsername.Text, tbPassword.Text);
 
                 if (su == 2) MessageBox.Show("This username has already existed!");
@@ -47,9 +49,14 @@ namespace QRCodeDemo
         {
             tbRepassword.Visibility = Visibility.Collapsed;
             lbRePassword.Visibility = Visibility.Collapsed;
-            IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-            MessageBox.Show(settings["LaunchCount"].ToString());
-
+         
+            ProgressIndicator progress = new ProgressIndicator
+            {
+                IsVisible = true,
+                IsIndeterminate = true,
+                Text = "Downloading details..."
+            };
+            SystemTray.SetProgressIndicator(this, progress);
             //if (tbRepassword.Text != tbPassword.Text)
             //{
             //    MessageBox.Show("Passwords don't match!");
