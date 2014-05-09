@@ -22,6 +22,13 @@ namespace QRCodeDemo
         {
             tbRepassword.Visibility = Visibility.Visible;
             lbRePassword.Visibility = Visibility.Visible;
+
+            if (string.IsNullOrEmpty(tbUsername.Text) || string.IsNullOrEmpty(tbPassword.Text))
+            {
+                MessageBox.Show("You must fill in all fields ");
+                return;
+            }
+
             if (tbRepassword.Text != tbPassword.Text)
             {
                 MessageBox.Show("Passwords don't match!");
@@ -44,8 +51,8 @@ namespace QRCodeDemo
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void btLogIn_Click(object sender, RoutedEventArgs e)
+       
+        private async void btLogIn_Click(object sender, RoutedEventArgs e)
         {
             tbRepassword.Visibility = Visibility.Collapsed;
             lbRePassword.Visibility = Visibility.Collapsed;
@@ -57,6 +64,23 @@ namespace QRCodeDemo
                 Text = "Downloading details..."
             };
             SystemTray.SetProgressIndicator(this, progress);
+           
+            try
+            {
+
+                WebServiceHelper service = new WebServiceHelper();
+                int si = await service.SignIn(tbUsername.Text, tbPassword.Text);
+                progress.IsVisible = false;
+                progress.IsIndeterminate = false;
+                if (si != 0) MessageBox.Show("Signed in successfully!");
+                else MessageBox.Show("Couldn't sign in");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
             //if (tbRepassword.Text != tbPassword.Text)
             //{
             //    MessageBox.Show("Passwords don't match!");
