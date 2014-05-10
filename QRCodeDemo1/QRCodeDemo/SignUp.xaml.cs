@@ -68,8 +68,8 @@ namespace QRCodeDemo
             try
             {
 
-                WebServiceHelper service = new WebServiceHelper();
-                int si = await service.SignIn(tbUsername.Text, tbPassword.Text);
+                int si = await WebServiceHelper.SignIn(tbUsername.Text, tbPassword.Text);
+                
                 progress.IsVisible = false;
                 progress.IsIndeterminate = false;
                 if (si != 0) MessageBox.Show("Signed in successfully!");
