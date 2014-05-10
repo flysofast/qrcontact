@@ -20,9 +20,9 @@ namespace QRCodeDemo
 
             service.SignUpCompleted += (object sender, WebService.SignUpCompletedEventArgs e) => //change parameter list to fit the event's delegate
             {
-                if (e.Error != null) tcs.SetResult(-1);
+                if (e.Error != null) tcs.TrySetResult(-1);
                 else
-                tcs.SetResult((int)e.Result);
+                tcs.TrySetResult((int)e.Result);
             };
             service.SignUpAsync(username, password);
             return tcs.Task;
@@ -30,31 +30,41 @@ namespace QRCodeDemo
 
         public static Task<int> GetContactList(int id, string sdt) //can make it an extension method if you want.
         {
+            
             TaskCompletionSource<int> tcs = new TaskCompletionSource<int>();
 
             service.GetContactListCompleted += (object sender, WebService.GetContactListCompletedEventArgs e) => //change parameter list to fit the event's delegate
             {
-                if (e.Error != null) tcs.SetResult(-1);
+                if (e.Error != null) tcs.TrySetResult(-1);
                 else
-                    tcs.SetResult((int)e.Result);
+                    tcs.TrySetResult((int)e.Result);
             };
             service.GetContactListAsync(id, sdt);
             return tcs.Task;
         }
 
-         public  Task<int> SignIn(string username, string password) //can make it an extension method if you want.
+         public static  Task<int> SignIn(string username, string password) //can make it an extension method if you want.
         {
-
+          
             try
             {
                 TaskCompletionSource<int> tcs = new TaskCompletionSource<int>();
                 service.LoginCompleted += (object sender, WebService.LoginCompletedEventArgs e) => //change parameter list to fit the event's delegate
                 {
-                    if (e.Error != null) tcs.SetResult(-1);
+                    if (e.Error != null) tcs.TrySetResult(-1);
                     else
-                        tcs.SetResult((int)e.Result);
+                        tcs.TrySetResult((int)e.Result);
+                
+                   
                 };
                 service.LoginAsync(username, password);
+                service.LoginCompleted -= (object sender, WebService.LoginCompletedEventArgs e) => //change parameter list to fit the event's delegate
+                {
+                    if (e.Error != null) tcs.TrySetResult(-1);
+                    else
+                        tcs.TrySetResult((int)e.Result);
+
+                };
                 return tcs.Task;
             }
             catch (Exception ex)
