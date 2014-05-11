@@ -37,7 +37,7 @@
             </Canvas.Background>
             <TextBlock 
             x:Name="focusBrackets" 
-            Text="[   ]" 
+            Text="[     ]" 
             FontSize="40"
             Visibility="Collapsed"/>
         </Canvas>

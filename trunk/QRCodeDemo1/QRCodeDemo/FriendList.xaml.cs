@@ -9,6 +9,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using QRCodeDemo.WebService;
 using Newtonsoft.Json;
+using System.Windows.Media;
+using Microsoft.Phone.Tasks;
 
 namespace QRCodeDemo
 {
@@ -146,6 +148,54 @@ namespace QRCodeDemo
         private void grdContact_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             NavigationService.Navigate(new Uri("/ContactDetail.xaml",UriKind.Relative));
+          
+            
+            
         }
+
+        
+
+        private void grdContact_ManipulationCompleted(object sender, System.Windows.Input.ManipulationCompletedEventArgs e)
+        {
+             Grid gr = (Grid)sender;
+             gr.Background = new SolidColorBrush(Color.FromArgb(0, 0, 255, 0));
+             TextBlock tbCall = gr.FindName("CallSymbol") as TextBlock;
+             tbCall.Visibility = Visibility.Collapsed;
+        }
+       
+
+        private void grdContact_ManipulationDelta(object sender, System.Windows.Input.ManipulationDeltaEventArgs e)
+        {
+            
+            double tran = e.CumulativeManipulation.Translation.X*0.5;
+            cucum.Text =tran.ToString();
+           // if (tran > 255) tran = 255;
+
+            Grid gr = (Grid)sender;
+            gr.Background = new SolidColorBrush(Color.FromArgb((byte)tran, 20, 107, 12));
+            TextBlock tbPhonenum = gr.FindName("tbPhoneNumber") as TextBlock;
+            TextBlock tbName = gr.FindName("tbName") as TextBlock;
+            TextBlock tbCall = gr.FindName("CallSymbol") as TextBlock;
+            tbCall.Visibility = Visibility.Visible;
+
+            if (tran > 150)
+            {
+                PhoneCallTask phoneCallTask = new PhoneCallTask();
+                phoneCallTask.PhoneNumber = tbPhonenum.Text;
+                phoneCallTask.DisplayName = tbName.Text;
+                phoneCallTask.Show();
+                grdContact_ManipulationCompleted(sender,new System.Windows.Input.ManipulationCompletedEventArgs());
+            }
+            
+        }
+
+        private void grdContact_Hold(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            Grid gr = (Grid)sender;
+            TextBlock tbCall = gr.FindName("CallSymbol") as TextBlock;
+            tbCall.Visibility = Visibility.Collapsed;
+        }
+
+       
     }
 }
