@@ -23,8 +23,7 @@
 
         <!--header-->
         <StackPanel Grid.Row="0" Background="#FFFF5D00" Orientation="Horizontal">
-            <Image VerticalAlignment="Center" Width="70" Height="70" Margin="0,0,0,0" Source="/Assets/Tiles/icon_signup.png"/>
-            <TextBlock Text="My friends list" Margin="0,0,0,0" VerticalAlignment="Center" FontFamily="Segoe WP SemiLight" FontSize="36"/>
+            <TextBlock Text="My friends list" Margin="120,16" VerticalAlignment="Center" FontFamily="Segoe WP SemiLight" FontSize="36"/>
         </StackPanel>
 
         <!--LongListSelecttor binding with friends informations-->
@@ -41,14 +40,15 @@
                   HideEmptyGroups ="true">
                 <toolkit:LongListMultiSelector.ItemTemplate>
                     <DataTemplate>
-                        <Grid x:Name="grdContact" Tap="grdContact_Tap">
+                        <Grid x:Name="grdContact" Tap="grdContact_Tap" ManipulationCompleted="grdContact_ManipulationCompleted" ManipulationDelta="grdContact_ManipulationDelta" Hold="grdContact_Hold" >
                             <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
-                                <Image Source="{Binding ImgUrl}" Width="100" Height="100" Margin="5,0,0,0" />
+                                <Image Source="\Assets\AlignmentGrid.png" Width="100" Height="100" Margin="5,0,0,0" />
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock FontWeight="Normal"  Text="{Binding nickname}" Margin="10,0,0,0" FontFamily="Segoe WP Semibold" FontSize="26" Foreground="{StaticResource PhoneSemitransparentBrush}" />
-                                    <TextBlock FontWeight="Normal"  Text="{Binding contactInfo.phone}" Margin="10,0,0,0" FontFamily="Segoe WP Semibold" FontSize="18" Foreground="{StaticResource PhoneSemitransparentBrush}" />
+                                    <TextBlock x:Name="tbName" FontWeight="Normal"  Text="{Binding nickname}" Margin="10,0,0,0" FontFamily="Segoe WP Semibold" FontSize="26" Foreground="{StaticResource PhoneSemitransparentBrush}" />
+                                    <TextBlock x:Name="tbPhoneNumber" FontWeight="Normal"  Text="{Binding contactInfo.phone}" Margin="10,0,0,0" FontFamily="Segoe WP Semibold" FontSize="18" Foreground="{StaticResource PhoneSemitransparentBrush}" />
                                     <TextBlock FontWeight="Normal"  Text="{Binding contactInfo.address}" FontFamily="Segoe WP Semibold" FontSize="18" Foreground="{StaticResource PhoneSemitransparentBrush}" />
                                 </StackPanel>
+                                <TextBlock x:Name="CallSymbol" Text="&#x1f4de;" FontSize="48" Margin="150,0,0,0" VerticalAlignment="Center" Opacity="1" Visibility="Collapsed"></TextBlock>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
@@ -56,8 +56,9 @@
 
             </toolkit:LongListMultiSelector>
         </Grid>
-        <Grid x:Name="tb" Grid.Row="2">
-            <TextBlock Text="odsadsad" Foreground="Black" FontSize="48" />
+        <Grid x:Name="asdsda" Grid.Row="2">
+            <TextBlock x:Name="oringinal" Text="odsadsad" Foreground="Black" FontSize="22" Margin="0,0,0,64" />
+            <TextBlock x:Name="cucum" Text="odsadsad" Foreground="Black" FontSize="22" Margin="0,34,0,30" />
         </Grid>
     </Grid>
 

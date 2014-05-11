@@ -30,6 +30,7 @@ namespace QRCodeDemo
         {
             InitializeComponent();
             BuildLocalizedApplicationBar();
+        
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -64,25 +65,31 @@ namespace QRCodeDemo
 
         void focus_Tapped(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            if (_phoneCamera != null)
+            try
             {
-                if (_phoneCamera.IsFocusAtPointSupported == true)
+                if (_phoneCamera != null)
                 {
-                    // Determine the location of the tap.
-                    Point tapLocation = e.GetPosition(viewfinderCanvas);
+                    if (_phoneCamera.IsFocusAtPointSupported == true)
+                    {
+                        // Determine the location of the tap.
+                        Point tapLocation = e.GetPosition(viewfinderCanvas);
 
-                    // Position the focus brackets with the estimated offsets.
-                    focusBrackets.SetValue(Canvas.LeftProperty, tapLocation.X - 30);
-                    focusBrackets.SetValue(Canvas.TopProperty, tapLocation.Y - 28);
+                        // Position the focus brackets with the estimated offsets.
+                        focusBrackets.SetValue(Canvas.LeftProperty, tapLocation.X - 30);
+                        focusBrackets.SetValue(Canvas.TopProperty, tapLocation.Y - 28);
 
-                    // Determine the focus point.
-                    double focusXPercentage = tapLocation.X / viewfinderCanvas.ActualWidth;
-                    double focusYPercentage = tapLocation.Y / viewfinderCanvas.ActualHeight;
+                        // Determine the focus point.
+                        double focusXPercentage = tapLocation.X / viewfinderCanvas.ActualWidth;
+                        double focusYPercentage = tapLocation.Y / viewfinderCanvas.ActualHeight;
 
-                    // Show the focus brackets and focus at point.
-                    focusBrackets.Visibility = Visibility.Visible;
-                    _phoneCamera.FocusAtPoint(focusXPercentage, focusYPercentage);
+                        // Show the focus brackets and focus at point.
+                        focusBrackets.Visibility = Visibility.Visible;
+                        _phoneCamera.FocusAtPoint(focusXPercentage, focusYPercentage);
+                    }
                 }
+            }
+            catch 
+            {
             }
         }
 
@@ -116,7 +123,7 @@ namespace QRCodeDemo
                     _previewBuffer = new WriteableBitmap((int)_phoneCamera.PreviewResolution.Width, (int)_phoneCamera.PreviewResolution.Height);
 
                     _barcodeReader = new BarcodeReader();
-
+                    _barcodeReader.Options.PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.QR_CODE };
                     // By default, BarcodeReader will scan every supported barcode type
                     // If we want to limit the type of barcodes our app can read, 
                     // we can do it by adding each format to this list object
@@ -153,8 +160,9 @@ namespace QRCodeDemo
                     tbBarcodeData.Text = obj.Text;
                     ct = new MyContact();
                     string s = JsonConvert.SerializeObject(ct);
+                   // string s2 = "{\"name\":\"Nguyen Si Thang\",\"phone\":\"06356565849\",\"email\":\"sithangvngb@gmail.com\",\"address\":\"hue jvj j \",\"website\":null,\"birthday\":\"1992-09-23T00:00:00\"}";
                     MessageBox.Show(tbBarcodeData.Text + "\n" + s+"\n"+tbBarcodeType.Text);
-                    ct = JsonConvert.DeserializeObject<MyContact>(obj.BarcodeFormat.ToString());
+                    ct = JsonConvert.DeserializeObject<MyContact>(obj.Text);
                     tbBarcodeData.Text = "Name:" + ct.name + "\nPhone number:" + ct.phone + "\nEmail:" + ct.email + "\nAddress:" + ct.address + "\nBirthday:" + ct.birthday.ToShortDateString() + "\nWebsite:" + ct.website;
 
                     ApplicationBar.IsVisible = true;
