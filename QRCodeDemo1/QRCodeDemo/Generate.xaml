@@ -12,14 +12,14 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
-	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar>
-			<shell:ApplicationBarIconButton IconUri="/Assets2/AppBar/folder.png" IsEnabled="True" Text="Get Contact" Click="ApplicationBarIconButton_Click_getcontact" />
-			<shell:ApplicationBarIconButton IconUri="/Assets3/AppBar/cancel.png" IsEnabled="True" Text="Cancel" Click="ApplicationBarIconButton_Click_cancel"/>
-			<shell:ApplicationBarIconButton IconUri="/Assets4/AppBar/refresh.png" IsEnabled="True" Text="Reset" Click="ApplicationBarIconButton_Click_reset"/>
-			<shell:ApplicationBarIconButton IconUri="/Assets9/AppBar/save.png" IsEnabled="True" Text="Save" Click="ApplicationBarIconButton_Click_save"/>
-		</shell:ApplicationBar>
-	</phone:PhoneApplicationPage.ApplicationBar>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar>
+            <shell:ApplicationBarIconButton x:Name="BtbarUpdate" IconUri="/Assets/AppBar/upload.png" IsEnabled="True" Text="Update" Click="ApplicationBarIconButton_Click_update" />
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/cancel.png" IsEnabled="True" Text="Cancel" Click="ApplicationBarIconButton_Click_cancel"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/refresh.png" IsEnabled="True" Text="Reset" Click="ApplicationBarIconButton_Click_reset"/>
+            <shell:ApplicationBarIconButton x:Name="BtBarSave" IconUri="/Assets/AppBar/save.png" IsEnabled="True" Text="Save" Click="ApplicationBarIconButton_Click_save"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -36,17 +36,29 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10,0,14,0">
+            <ScrollViewer Margin="10,0,-10,-888">
+                <Grid>
+                    <CheckBox x:Name="CbPhone" Content="Phone" HorizontalAlignment="Left" Margin="-2,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.971,0.253" Click="CbPhone_Click"/>
+                    <CheckBox x:Name="CbMail" Content="Mail" HorizontalAlignment="Left" Margin="-2,121,0,0" VerticalAlignment="Top" Click="CbMail_Click"/>
+                    <CheckBox x:Name="CbAdd" Content="Address" HorizontalAlignment="Left" Margin="-2,171,0,0" VerticalAlignment="Top" Click="CbAdd_Click"/>
+                    <CheckBox x:Name="CbName" Content="Name" HorizontalAlignment="Left" Margin="-2,3,0,0" VerticalAlignment="Top" Checked="CbName_Checked" Click="CbName_Click"/>
+                    <TextBox x:Name="TbAdd" HorizontalAlignment="Left" Height="72" Margin="128,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="298"/>
+                    <TextBox x:Name="TbName" HorizontalAlignment="Left" Height="72" Margin="128,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="296"/>
+                    <TextBox x:Name="TbPhone" InputScope="Number" HorizontalAlignment="Left" Height="72" Margin="128,62,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="296"/>
+                    <TextBox x:Name="TbMail" InputScope="EmailSmtpAddress" HorizontalAlignment="Left" Height="72" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="296" Margin="128,125,0,0"/>
+                    <Button x:Name="BtGenerate" Content="Generate" HorizontalAlignment="Left" Margin="282,333,0,0" VerticalAlignment="Top" Click="BtGenerate_Click"/>
+                    <Image x:Name="img_qr" HorizontalAlignment="Left" Height="187" Margin="80,360,0,0" VerticalAlignment="Top" Width="197"/>
+                    <CheckBox x:Name="CbShare" Content="Share" HorizontalAlignment="Left" Margin="-2,305,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="BtGetNameContact" Content="..." Margin="403,1,-14,0" VerticalAlignment="Top" Click="BtGetNameContact_Click" HorizontalAlignment="Left" Width="67"/>
+                    <Button x:Name="BtGetMailContact" Content="..." HorizontalAlignment="Left" Margin="403,121,-14,0" VerticalAlignment="Top" Click="BtGetMailContact_Click"/>
+                    <Button x:Name="BtGetAddContact" Content="..." HorizontalAlignment="Left" Margin="403,189,-14,0" VerticalAlignment="Top" Click="BtGetAddContact_Click"/>
+                    <Button x:Name="BtOtherQrCode" Content="New Qr" HorizontalAlignment="Left" Margin="297,410,0,0" VerticalAlignment="Top" Click="BtOtherQrCode_Click"/>
+                    <CheckBox x:Name="CbWebsite" Content="Website" HorizontalAlignment="Left" Margin="-2,241,0,0" VerticalAlignment="Top" Click="CbWebsite_Click"/>
+                    <TextBox x:Name="TbWebsite" HorizontalAlignment="Left" Height="72" Margin="128,247,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="298"/>
 
-            <CheckBox x:Name="CbPhone" Content="Phone" HorizontalAlignment="Left" Margin="6,67,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.971,0.253"/>
-            <CheckBox x:Name="CbMail" Content="Mail" HorizontalAlignment="Left" Margin="6,121,0,0" VerticalAlignment="Top"/>
-            <CheckBox x:Name="CbAdd" Content="Address" HorizontalAlignment="Left" Margin="6,171,0,0" VerticalAlignment="Top"/>
-            <CheckBox x:Name="CbName" Content="Name" HorizontalAlignment="Left" Margin="6,15,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="TbAdd" HorizontalAlignment="Left" Height="72" Margin="150,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="298"/>
-            <TextBox x:Name="TbName" HorizontalAlignment="Left" Height="72" Margin="150,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="296"/>
-            <TextBox x:Name="TbPhone" HorizontalAlignment="Left" Height="72" Margin="150,62,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="296"/>
-            <TextBox x:Name="TbMail" HorizontalAlignment="Left" Height="72" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="296" Margin="150,125,0,0"/>
-            <Button x:Name="BtGenerate" Content="Generate" HorizontalAlignment="Left" Margin="150,466,0,-2" VerticalAlignment="Top" Click="BtGenerate_Click"/>
-            <Image x:Name="img_qr" HorizontalAlignment="Left" Height="209" Margin="78,266,0,0" VerticalAlignment="Top" Width="305"/>
+                </Grid>
+            </ScrollViewer>
+
 
         </Grid>
     </Grid>
