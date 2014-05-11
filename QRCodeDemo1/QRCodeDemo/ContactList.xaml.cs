@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.UserData;
+using QRCodeDemo.WebService;
 
 namespace QRCodeDemo
 {
@@ -16,6 +17,14 @@ namespace QRCodeDemo
         public ContactList()
         {
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+           
+            
+            
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -37,7 +46,7 @@ namespace QRCodeDemo
 
         }
 
-       async void  Contacts_SearchCompleted(object sender, ContactsSearchEventArgs e)
+        void  Contacts_SearchCompleted(object sender, ContactsSearchEventArgs e)
         {
             //Do something with the results.
 

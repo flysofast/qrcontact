@@ -8,6 +8,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using QRCodeDemo.Resources;
 using System.IO.IsolatedStorage;
+using System.Collections.Generic;
 
 namespace QRCodeDemo
 {
@@ -59,7 +60,7 @@ namespace QRCodeDemo
                 if (!settings.Contains("userInfo"))
                     settings.Add("userInfo", null);
 
-                FriendContactList fl = new FriendContactList();
+                List<FriendsContactInfo> fl = new List<FriendsContactInfo>();
 
                 if (!settings.Contains("friendList"))
                     settings.Add("friendList", fl);

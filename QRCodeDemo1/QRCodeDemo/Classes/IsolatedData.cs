@@ -33,9 +33,9 @@ namespace QRCodeDemo
             set { settings["userInfo"] = value; settings.Save(); }
         }
 
-        public static FriendContactList friendList
+        public static List<FriendsContactInfo> friendList
         {
-            get { return (FriendContactList)settings["friendList"]; }
+            get { return (List<FriendsContactInfo>)settings["friendList"]; }
 
             set { settings["friendList"] = value; settings.Save(); }
         }

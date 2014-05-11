@@ -11,34 +11,64 @@ namespace QRCodeDemo
     [DataContract]
     class FriendContactList
     {
-         [DataMember]
-        List<FriendsContactInfo> friendList;
-       public FriendContactList()
+
+        private static FriendContactList singleTonObject;
+
+        [DataMember]
+        private List<FriendsContactInfo> _friendList;
+        private  FriendContactList()
         {
-            friendList = new List<FriendsContactInfo>();
+            _friendList = new List<FriendsContactInfo>();
+            _friendList = IsolatedData.friendList;
         }
 
-        void Add(FriendsContactInfo ct)
+        public List<FriendsContactInfo> friendList
         {
-            if (friendList.Any(p => p.nickname == ct.nickname))
+            get
+            {
+                return _friendList;
+            }
+        }
+       
+
+        public static FriendContactList GetContacts()
+        {
+            //private static object lockingObject = new object();
+
+            if (singleTonObject == null)
+            {
+                singleTonObject = new FriendContactList();
+
+            }
+            return singleTonObject;
+
+        }
+        public void AddContact(FriendsContactInfo ct)
+        {
+            if (_friendList.Any(p => p.nickname == ct.nickname))
             {
                 MessageBox.Show("This nickname has already exists!");
                 return;
             }
 
-            friendList.Add(ct);
+            _friendList.Add(ct);
         }
 
-        void Remove(string nickname)
+        public void RemoveContact(string nickname)
         {
             string[] names = nickname.Split(';');
             foreach (var s in names)
             {
                 // Goi ham xoa tren server
-                friendList.Remove(friendList.Single(p => p.nickname == nickname));
+                _friendList.Remove(_friendList.Single(p => p.nickname == nickname));
 
             }
 
+        }
+
+        public void SaveFriendList()
+        {
+            IsolatedData.friendList = _friendList;
         }
     }
 }
