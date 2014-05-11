@@ -50,7 +50,7 @@ namespace QRCodeDemo
             _scanTimer.Interval = TimeSpan.FromMilliseconds(250);
             _scanTimer.Tick += (o, arg) => ScanForBarcode();
 
-            viewfinderCanvas.Tap += new EventHandler<GestureEventArgs>(focus_Tapped);
+            viewfinderCanvas.Tap += new EventHandler<System.Windows.Input.GestureEventArgs>(focus_Tapped);
             base.OnNavigatedTo(e);
         }
 
@@ -62,7 +62,7 @@ namespace QRCodeDemo
             });
         }
 
-        void focus_Tapped(object sender, GestureEventArgs e)
+        void focus_Tapped(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (_phoneCamera != null)
             {
@@ -201,6 +201,7 @@ namespace QRCodeDemo
         {
             if (NavigationService.CanGoBack) NavigationService.GoBack();
             else NavigationService.Navigate(new Uri("/PivotMainPage.xaml", UriKind.Relative));
+            
 
         }
 
@@ -212,16 +213,16 @@ namespace QRCodeDemo
 
             saveContact.HomeAddressCity = ct.address;
 
-            string[] s = ct.phone.Split(';');
+            string[] s = ct.phone.Split('|');
             saveContact.MobilePhone = s[0];
             saveContact.WorkPhone = s[1];
             saveContact.HomePhone = s[2];
 
-            s = ct.address.Split(';');
+            s = ct.address.Split('|');
             saveContact.HomeAddressStreet = s[0];
             saveContact.WorkAddressStreet = s[1];
 
-            s = ct.email.Split(';');
+            s = ct.email.Split('|');
             saveContact.PersonalEmail = s[0];
             saveContact.WorkEmail = s[1];
             saveContact.OtherEmail = s[2];

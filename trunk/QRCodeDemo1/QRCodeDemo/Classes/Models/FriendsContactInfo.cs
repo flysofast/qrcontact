@@ -16,7 +16,7 @@ namespace QRCodeDemo
          [DataMember]
         public bool shareMyContactInfo { get; set; }
          [DataMember]
-        MyContact contactInfo;
+         public MyContact contactInfo { get; set; }
 
       public  FriendsContactInfo()
         {
