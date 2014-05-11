@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using QRCodeDemo.WebService;
+using Newtonsoft.Json;
 
 namespace QRCodeDemo
 {
@@ -25,7 +26,7 @@ namespace QRCodeDemo
             SortingListAZ();
 
             FriendContactList a = FriendContactList.GetContacts();
-            MessageBox.Show(a.friendList.First().nickname);
+            
         }
 
         private void CreatePersonalInfoList()
@@ -119,17 +120,32 @@ namespace QRCodeDemo
             appBarButton_Select.Click += appBarButton_Select_Click;
             ApplicationBar.Buttons.Add(appBarButton_Select);
 
-            //ApplicationBarIconButton appBarButton_Cancel = new ApplicationBarIconButton(new Uri("/Assets/AppBar/cancel.png", UriKind.Relative));
-            //appBarButton_Cancel.Text = "Cancel";
-            //appBarButton_Cancel.Click += appBarButton_Cancel_Click;
-            //ApplicationBar.Buttons.Add(appBarButton_Cancel);
+            ApplicationBarIconButton appBarButton_Save = new ApplicationBarIconButton(new Uri("/Assets/AppBar/cancel.png", UriKind.Relative));
+            appBarButton_Save.Text = "Cancel";
+            appBarButton_Save.Click += appBarButton_Save_Click;
+            ApplicationBar.Buttons.Add(appBarButton_Save);
 
 
         }
 
+        void appBarButton_Save_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/ScanPage.xaml",UriKind.Relative));
+        }
+
         void appBarButton_Select_Click(object sender, EventArgs e)
         {
+            string s = "{\"name\":\"nam\",\"phone\":\"010022\"}";
+            string s2 = "{\"name\":\"Nguyen Si Thang\",\"phone\":\"06356565849\",\"email\":\"sithangvngb@gmail.com\",\"address\":\"hue jvj j \",\"website\":null,\"birthday\":\"1992-09-23T00:00:00\"}";
             lstFriendList.IsSelectionEnabled = !lstFriendList.IsSelectionEnabled;
+            var  ct = JsonConvert.DeserializeObject<MyContact>(s2);
+            MessageBox.Show(s2);
+           MessageBox.Show( "Name:" + ct.name + "\nPhone number:" + ct.phone + "\nEmail:" + ct.email + "\nAddress:" + ct.address + "\nBirthday:" + ct.birthday.ToShortDateString() + "\nWebsite:" + ct.website);
+        }
+
+        private void grdContact_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/ContactDetail.xaml",UriKind.Relative));
         }
     }
 }
