@@ -48,6 +48,7 @@
                 </TextBox.RenderTransform>
             </TextBox>
             <Button x:Name="btLogIn" Content="Log in" HorizontalAlignment="Left" Margin="120,204,0,0" VerticalAlignment="Top" Click="btLogIn_Click"/>
+            <Button x:Name="BtSkip" Content="Skip" HorizontalAlignment="Left" Margin="219,304,0,0" VerticalAlignment="Top" Click="BtSkip_Click"/>
 
         </Grid>
     </Grid>

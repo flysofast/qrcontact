@@ -13,11 +13,11 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
-	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar>
-			<shell:ApplicationBarIconButton x:Name="AppBarSave" IconUri="/Assets/AppBar/save.png" IsEnabled="True" Text="Save" Click="AppBarSave_Click"/>
-		</shell:ApplicationBar>
-	</phone:PhoneApplicationPage.ApplicationBar>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar>
+            <shell:ApplicationBarIconButton x:Name="AppBarSave" IconUri="/Assets/AppBar/save.png" IsEnabled="True" Text="Save" Click="AppBarSave_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -32,21 +32,21 @@
             <TextBlock Text="Setting" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="14,0,10,0">
-            <ScrollViewer>
-                <Grid>
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="14,0,10,10">
+            <ScrollViewer Margin="0,0,0,10">
+                <Grid Height="848">
                     <TextBlock HorizontalAlignment="Left" Margin="31,12,0,0" TextWrapping="Wrap" Text="Language" VerticalAlignment="Top" FontSize="30"/>
                     <TextBlock HorizontalAlignment="Left" Margin="31,135,0,0" TextWrapping="Wrap" Text="Qr code style" VerticalAlignment="Top" FontSize="30"/>
                     <TextBlock x:Name="TbBackgrioundCorlor" HorizontalAlignment="Left" Margin="60,183,0,0" TextWrapping="Wrap" Text="Background Color" VerticalAlignment="Top" Tap="TbBackgrioundCorlor_Tap"/>
-                    <TextBlock x:Name="TbQrCodeColor" HorizontalAlignment="Left" Margin="60,335,0,0" TextWrapping="Wrap" Text="Qr code color" VerticalAlignment="Top" Tap="TbQrCodeColor_Tap"/>
-                    <CheckBox x:Name="CbAllowShare" Content="Allow to share" HorizontalAlignment="Left" Margin="31,478,0,0" VerticalAlignment="Top" FontSize="30"/>
+                    <TextBlock x:Name="TbQrCodeColor" HorizontalAlignment="Left" Margin="60,422,0,0" TextWrapping="Wrap" Text="Qr code color" VerticalAlignment="Top" Tap="TbQrCodeColor_Tap"/>
+                    <CheckBox x:Name="CbAllowShare" Content="Allow to share" HorizontalAlignment="Left" Margin="18,701,0,67" FontSize="30" Click="CbAllowShare_Click"/>
                     <RadioButton x:Name="RbEn" Content="English" HorizontalAlignment="Left" Margin="18,56,0,0" VerticalAlignment="Top" FontSize="22"/>
                     <RadioButton x:Name="RbVn" Content="Vietnamese" HorizontalAlignment="Left" Margin="207,56,0,0" VerticalAlignment="Top" FontSize="22"/>
-                    <Controls:ColorPicker x:Name="CpQrcode" HorizontalAlignment="Left" Margin="60,372,0,0" VerticalAlignment="Top" Height="118" Width="256" ColorChanged="CpQrcode_ColorChanged"/>
-                    <Controls:ColorPicker x:Name="CpBacground" HorizontalAlignment="Left" Margin="60,214,0,0" VerticalAlignment="Top" Height="118" Width="256" ColorChanged="CpBacground_ColorChanged"/>
+                    <Controls:ColorPicker x:Name="CpQrcode" HorizontalAlignment="Left" Margin="57,460,0,0" VerticalAlignment="Top" Height="218" Width="328" ColorChanged="CpQrcode_ColorChanged"/>
+                    <Controls:ColorPicker x:Name="CpBacground" HorizontalAlignment="Left" Margin="60,214,0,0" VerticalAlignment="Top" Height="191" Width="328" ColorChanged="CpBacground_ColorChanged" Color="#FFE9F7E8"/>
                 </Grid>
             </ScrollViewer>
-            
+
 
         </Grid>
     </Grid>

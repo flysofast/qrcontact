@@ -21,7 +21,7 @@
             <phone:PivotItem Header="My QR" Margin="10,28,14,0">
                 <Grid>
                     <Grid >
-                        <Image x:Name="img" HorizontalAlignment="Left" Height="360" Margin="19,157,0,0" VerticalAlignment="Top" Width="415"/>
+                        <Image x:Name="img" HorizontalAlignment="Left" Height="360" Margin="19,157,0,0" VerticalAlignment="Top" Width="415" Tap="img_Tap"/>
                         <Button x:Name="BtLockScreen" Content="LockScreen" HorizontalAlignment="Left" Height="81" Margin="19,10,0,0" VerticalAlignment="Top" Width="169" Click="BtLockScreen_Click"/>
                         <Button x:Name="BtPin" Content="Pin to start" HorizontalAlignment="Left" Margin="235,15,0,0" VerticalAlignment="Top" Click="BtPin_Click"/>
                     </Grid>

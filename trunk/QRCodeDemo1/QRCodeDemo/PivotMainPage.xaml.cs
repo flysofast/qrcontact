@@ -13,6 +13,9 @@ using Microsoft.Devices;
 using System.Windows.Media.Imaging;
 using ZXing;
 using Windows.Phone.System.UserProfile;
+using System.IO.IsolatedStorage;
+using System.IO;
+using Microsoft.Phone;
 
 namespace QRCodeDemo
 {
@@ -28,8 +31,12 @@ namespace QRCodeDemo
             BuildLocalizedApplicationBar();
         }
 
-      
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            ReadFromIsolatedStorage("/Shared/ShellContent/336x336.jpg");
 
+            base.OnNavigatedFrom(e);
+        }
         private void BuildLocalizedApplicationBar()
         {
             // Set the page's ApplicationBar to a new instance of ApplicationBar.
@@ -46,9 +53,31 @@ namespace QRCodeDemo
             appBarButton_MyQR.Click += appBarButton_MyQR_Click;
             ApplicationBar.Buttons.Add(appBarButton_MyQR);
 
+            ApplicationBarIconButton appBarButton_Generate = new ApplicationBarIconButton(new Uri("/Assets/AppBar/generate.png", UriKind.Relative));
+            appBarButton_Generate.Text = "Generate";
+            appBarButton_Generate.Click += appBarButton_Generate_Click;
+            ApplicationBar.Buttons.Add(appBarButton_Generate);
+
+            ApplicationBarIconButton appBarButton_Setting = new ApplicationBarIconButton(new Uri("/Assets/AppBar/feature.settings.png", UriKind.Relative));
+            appBarButton_Setting.Text = "Setting";
+            appBarButton_Setting.Click += appBarButton_Setting_Click;
+            ApplicationBar.Buttons.Add(appBarButton_Setting);
+
             // Create a new menu item with the localized string from AppResources.
             ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
             ApplicationBar.MenuItems.Add(appBarMenuItem);
+        }
+
+        void appBarButton_Setting_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Setting.xaml", UriKind.Relative));
+
+        }
+
+        void appBarButton_Generate_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Generate.xaml", UriKind.Relative));
+
         }
 
         private void appBarButton_MyQR_Click(object sender, EventArgs e)
@@ -77,13 +106,25 @@ namespace QRCodeDemo
                 return s.Replace("\\\"", "\"");
             else return null;
         }
-
+        private void ReadFromIsolatedStorage(string fileName)
+        {
+            WriteableBitmap bitmap = new WriteableBitmap(200, 200);
+            using (IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                using (IsolatedStorageFileStream fileStream = myIsolatedStorage.OpenFile(fileName, FileMode.Open, FileAccess.Read))
+                {
+                    // Decode the JPEG stream.
+                    bitmap = PictureDecoder.DecodeJpeg(fileStream);
+                }
+            }
+            img.Source = bitmap;
+        }
         private void pvMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             switch(pvMain.SelectedIndex)
             {
                 case 0:
-                    img.Source = GenerateQRCode("dasjkdhaskjdhaskjdhsakjdhaskjdhsajkd",1);
+                    ReadFromIsolatedStorage("/Shared/ShellContent/336x336.jpg");
                     break;
                 case 1:
 
@@ -172,6 +213,12 @@ namespace QRCodeDemo
                 ShellTileData tileData = this.CreateFlipTileData();
                 ShellTile.Create(tileUri, tileData, true);
             }
+        }
+
+        private void img_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Generate.xaml", UriKind.Relative));
+
         }
 
     }
