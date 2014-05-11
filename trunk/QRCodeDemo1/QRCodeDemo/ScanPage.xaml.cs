@@ -152,8 +152,9 @@ namespace QRCodeDemo
                     tbBarcodeType.Text = obj.BarcodeFormat.ToString();
                     tbBarcodeData.Text = obj.Text;
                     ct = new MyContact();
-
                     string s = JsonConvert.SerializeObject(ct);
+                    MessageBox.Show(tbBarcodeData.Text + "\n" + s+"\n"+tbBarcodeType.Text);
+                    ct = JsonConvert.DeserializeObject<MyContact>(obj.BarcodeFormat.ToString());
                     tbBarcodeData.Text = "Name:" + ct.name + "\nPhone number:" + ct.phone + "\nEmail:" + ct.email + "\nAddress:" + ct.address + "\nBirthday:" + ct.birthday.ToShortDateString() + "\nWebsite:" + ct.website;
 
                     ApplicationBar.IsVisible = true;
