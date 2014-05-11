@@ -99,5 +99,11 @@ namespace QRCodeDemo
             //    MessageBox.Show(ex.Message);
             //}
         }
+
+        private void BtSkip_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/PivotMainPage.xaml", UriKind.Relative));
+
+        }
     }
 }
