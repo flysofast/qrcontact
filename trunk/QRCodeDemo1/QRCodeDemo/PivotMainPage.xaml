@@ -18,7 +18,7 @@
         <!--Pivot Control-->
         <phone:Pivot x:Name="pvMain" Title="MY APPLICATION" SelectionChanged="pvMain_SelectionChanged">
             <!--Pivot item one-->
-            <phone:PivotItem Header="My QR" Margin="10,28,14,0">
+            <phone:PivotItem x:Name="MyQRItem" Header="My QR" Margin="10,28,14,0">
                 <Grid>
                     <Grid >
                         <Image x:Name="img" HorizontalAlignment="Left" Height="360" Margin="19,157,0,0" VerticalAlignment="Top" Width="415" Tap="img_Tap"/>
@@ -35,7 +35,7 @@
                 </Grid>
             </phone:PivotItem>
 
-            <phone:PivotItem Header="Scan">
+            <phone:PivotItem x:Name="ScanItem" Header="Scan">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -47,31 +47,28 @@
                         <!--Camera viewfinder -->
                         <Canvas.Background>
 
-                            <VideoBrush x:Name="viewfinderBrush">
+                            <VideoBrush x:Name="viewfinderBrush" Stretch="None">
                                 <VideoBrush.RelativeTransform>
                                     <CompositeTransform
                         x:Name="viewfinderTransform"
                         CenterX="0.5"
-                        CenterY="0.5"
+                        CenterY="0.4"
                         Rotation="90"/>
                                 </VideoBrush.RelativeTransform>
                             </VideoBrush>
                         </Canvas.Background>
-                        <TextBlock 
-            x:Name="focusBrackets" 
-            Text="[   ]" 
-            FontSize="40"
-            Visibility="Collapsed"/>
+                        <TextBlock  x:Name="focusBrackets" 
+                                    Text="+"  FontSize="72"
+                                    Visibility="Collapsed"/>
                     </Canvas>
                     <!--Used for debugging >-->
-                    <StackPanel Grid.Row="1" Margin="20, 0">
-                        <TextBlock x:Name="tbBarcodeType" FontWeight="ExtraBold" />
+                    <StackPanel Margin="10,22,10,304">
                         <TextBlock x:Name="tbBarcodeData" FontWeight="ExtraBold" TextWrapping="Wrap" />
                     </StackPanel>
                 </Grid>
             </phone:PivotItem>
 
-            
+
         </phone:Pivot>
     </Grid>
 

@@ -156,13 +156,9 @@ namespace QRCodeDemo
                 if (!obj.Text.Equals(tbBarcodeData.Text))
                 {
                     VibrateController.Default.Start(TimeSpan.FromMilliseconds(100));
-                    tbBarcodeType.Text = obj.BarcodeFormat.ToString();
                     tbBarcodeData.Text = obj.Text;
-                    ct = new MyContact();
-                    string s = JsonConvert.SerializeObject(ct);
-                   // string s2 = "{\"name\":\"Nguyen Si Thang\",\"phone\":\"06356565849\",\"email\":\"sithangvngb@gmail.com\",\"address\":\"hue jvj j \",\"website\":null,\"birthday\":\"1992-09-23T00:00:00\"}";
-                    MessageBox.Show(tbBarcodeData.Text + "\n" + s+"\n"+tbBarcodeType.Text);
                     ct = JsonConvert.DeserializeObject<MyContact>(obj.Text);
+                   
                     tbBarcodeData.Text = "Name:" + ct.name + "\nPhone number:" + ct.phone + "\nEmail:" + ct.email + "\nAddress:" + ct.address + "\nBirthday:" + ct.birthday.ToShortDateString() + "\nWebsite:" + ct.website;
 
                     ApplicationBar.IsVisible = true;
@@ -208,7 +204,8 @@ namespace QRCodeDemo
 
         void appBarButton_Cancel_Click(object sender, EventArgs e)
         {
-            if (NavigationService.CanGoBack) NavigationService.GoBack();
+            if (NavigationService.CanGoBack)
+                NavigationService.GoBack();
             else NavigationService.Navigate(new Uri("/PivotMainPage.xaml", UriKind.Relative));
             
 
@@ -216,29 +213,37 @@ namespace QRCodeDemo
 
         void appBarButton_Save_Click(object sender, EventArgs e)
         {
-            var saveContact = new SaveContactTask();
-            saveContact.Completed += saveContact_Completed;
-            saveContact.FirstName = ct.name;
+            try
+            {
+                var saveContact = new SaveContactTask();
+                saveContact.Completed += saveContact_Completed;
+                saveContact.FirstName = ct.name;
 
-            saveContact.HomeAddressCity = ct.address;
+                saveContact.HomeAddressCity = ct.address;
 
-            string[] s = ct.phone.Split('|');
-            saveContact.MobilePhone = s[0];
-            saveContact.WorkPhone = s[1];
-            saveContact.HomePhone = s[2];
+                string[] s = ct.phone.Split('|');
+                saveContact.MobilePhone = s[0];
+                saveContact.WorkPhone = s[1];
+                saveContact.HomePhone = s[2];
 
-            s = ct.address.Split('|');
-            saveContact.HomeAddressStreet = s[0];
-            saveContact.WorkAddressStreet = s[1];
+                s = ct.address.Split('|');
+                saveContact.HomeAddressStreet = s[0];
+                saveContact.WorkAddressStreet = s[1];
 
-            s = ct.email.Split('|');
-            saveContact.PersonalEmail = s[0];
-            saveContact.WorkEmail = s[1];
-            saveContact.OtherEmail = s[2];
+                s = ct.email.Split('|');
+                saveContact.PersonalEmail = s[0];
+                saveContact.WorkEmail = s[1];
+                saveContact.OtherEmail = s[2];
 
-            saveContact.Website = ct.website;
+                saveContact.Website = ct.website;
 
-            saveContact.Show();
+                saveContact.Show();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Cannot save this contact to your phone\nDetail: " + ex.Message);
+            }
         }
 
         void saveContact_Completed(object sender, SaveContactResult e)
