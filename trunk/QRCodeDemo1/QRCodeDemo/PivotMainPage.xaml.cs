@@ -31,7 +31,7 @@ namespace QRCodeDemo
             BuildLocalizedApplicationBar();
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             ReadFromIsolatedStorage("/Shared/ShellContent/336x336.jpg");
 
@@ -108,16 +108,28 @@ namespace QRCodeDemo
         }
         private void ReadFromIsolatedStorage(string fileName)
         {
+            
             WriteableBitmap bitmap = new WriteableBitmap(200, 200);
             using (IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                using (IsolatedStorageFileStream fileStream = myIsolatedStorage.OpenFile(fileName, FileMode.Open, FileAccess.Read))
+                if(myIsolatedStorage.FileExists(fileName))
                 {
-                    // Decode the JPEG stream.
-                    bitmap = PictureDecoder.DecodeJpeg(fileStream);
+                    using (IsolatedStorageFileStream fileStream = myIsolatedStorage.OpenFile(fileName, FileMode.Open, FileAccess.Read))
+                    {
+                        // Decode the JPEG stream.
+                        bitmap = PictureDecoder.DecodeJpeg(fileStream);
+                        img.Source = bitmap;
+
+                    }
                 }
+                else
+                {
+                    BitmapImage tn = new BitmapImage();
+                    tn.SetSource(Application.GetResourceStream(new Uri(@"Assets/SquareTile71x71.png", UriKind.Relative)).Stream);
+                    img.Source = tn;
+                }
+               
             }
-            img.Source = bitmap;
         }
         private void pvMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
