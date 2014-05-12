@@ -12,7 +12,6 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
-
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
@@ -28,7 +27,6 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="14,0,10,0">
-            <Button Content="Sign up" HorizontalAlignment="Left" Margin="287,204,0,0" VerticalAlignment="Top" Click="Button_Click"/>
             <TextBlock HorizontalAlignment="Left" Margin="16,40,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top"/>
             <TextBox x:Name="tbUsername"  HorizontalAlignment="Left" Height="72" Margin="111.761,14.601,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335.209" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
                 <TextBox.RenderTransform>
@@ -36,7 +34,7 @@
                 </TextBox.RenderTransform>
             </TextBox>
             <TextBlock HorizontalAlignment="Left" Margin="16,104,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" RenderTransformOrigin="0.561,0.296"/>
-            <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="72" Margin="112.194,75.228,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="334.776" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="72" Margin="112.194,75.228,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="334.776" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" KeyUp="tbPassword_KeyUp">
                 <TextBox.RenderTransform>
                     <CompositeTransform SkewY="-0.747" TranslateY="2.972"/>
                 </TextBox.RenderTransform>
@@ -47,8 +45,10 @@
                     <CompositeTransform SkewY="-0.747" TranslateY="2.972"/>
                 </TextBox.RenderTransform>
             </TextBox>
-            <Button x:Name="btLogIn" Content="Log in" HorizontalAlignment="Left" Margin="120,204,0,0" VerticalAlignment="Top" Click="btLogIn_Click"/>
-            <Button x:Name="BtSkip" Content="Skip" HorizontalAlignment="Left" Margin="219,304,0,0" VerticalAlignment="Top" Click="BtSkip_Click"/>
+            <Button x:Name="btLogIn" Content="Submit" HorizontalAlignment="Left" Margin="112,312,0,0" VerticalAlignment="Top" Click="btSubmit_Click" RenderTransformOrigin="0.535,0.486" Width="137"/>
+            <Button x:Name="BtSkip" Content="Cancel" HorizontalAlignment="Left" Margin="283,312,0,0" VerticalAlignment="Top" Click="BtSkip_Click" Width="163"/>
+            <RadioButton x:Name="rdSignIn" Content="Sign In" HorizontalAlignment="Left" Margin="112,206,0,0" VerticalAlignment="Top" Checked="rdSignIn_Checked" />
+            <RadioButton x:Name="rdSignUp" Content="Sign Up" HorizontalAlignment="Left" Margin="254,206,0,0" VerticalAlignment="Top"/>
 
         </Grid>
     </Grid>

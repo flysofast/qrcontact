@@ -15,7 +15,7 @@ namespace QRCodeDemo
     {
 
         int i=0,j = 0;
-        string QrcodeColor =IsolatedData.appSettings.QrcodeColor, BackgroundCode=IsolatedData.appSettings.BacgroundQrCode;
+        string QrcodeColor =IsolatedData.appSettings.QrcodeColor, BackgroundCode=IsolatedData.appSettings.BackgroundQrCode;
         
         public Setting()
         {
@@ -69,7 +69,7 @@ namespace QRCodeDemo
         {
             AppSetting a = IsolatedData.appSettings;
             a.QrcodeColor =QrcodeColor;
-            a.BacgroundQrCode = BackgroundCode;
+            a.BackgroundQrCode = BackgroundCode;
             IsolatedData.appSettings = a;
         }
         private void TbBackgrioundCorlor_Tap(object sender, System.Windows.Input.GestureEventArgs e)

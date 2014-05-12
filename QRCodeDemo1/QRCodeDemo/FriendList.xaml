@@ -17,7 +17,6 @@
     <Grid x:Name="LayoutRoot" Background="#FFE0E0E0">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
-            <RowDefinition Height="6*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -40,26 +39,24 @@
                   HideEmptyGroups ="true">
                 <toolkit:LongListMultiSelector.ItemTemplate>
                     <DataTemplate>
-                        <Grid x:Name="grdContact" Tap="grdContact_Tap" ManipulationCompleted="grdContact_ManipulationCompleted" ManipulationDelta="grdContact_ManipulationDelta" Hold="grdContact_Hold" >
+                        <Grid x:Name="grdContact" Tap="grdContact_Tap" ManipulationCompleted="grdContact_ManipulationCompleted" ManipulationDelta="grdContact_ManipulationDelta" >
                             <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
-                                <Image Source="\Assets\AlignmentGrid.png" Width="100" Height="100" Margin="5,0,0,0" />
-                                <StackPanel Orientation="Vertical">
+                                <Image Source="Assets/0.gif" Width="100" Height="100" Margin="5,0,0,0" />
+                                <StackPanel  Orientation="Vertical">
                                     <TextBlock x:Name="tbName" FontWeight="Normal"  Text="{Binding nickname}" Margin="10,0,0,0" FontFamily="Segoe WP Semibold" FontSize="26" Foreground="{StaticResource PhoneSemitransparentBrush}" />
                                     <TextBlock x:Name="tbPhoneNumber" FontWeight="Normal"  Text="{Binding contactInfo.phone}" Margin="10,0,0,0" FontFamily="Segoe WP Semibold" FontSize="18" Foreground="{StaticResource PhoneSemitransparentBrush}" />
-                                    <TextBlock FontWeight="Normal"  Text="{Binding contactInfo.address}" FontFamily="Segoe WP Semibold" FontSize="18" Foreground="{StaticResource PhoneSemitransparentBrush}" />
+                                    <!--<TextBlock FontWeight="Normal"  Text="{Binding contactInfo.address}" FontFamily="Segoe WP Semibold" FontSize="18" Foreground="{StaticResource PhoneSemitransparentBrush}" />-->
                                 </StackPanel>
-                                <TextBlock x:Name="CallSymbol" Text="&#x1f4de;" FontSize="48" Margin="150,0,0,0" VerticalAlignment="Center" Opacity="1" Visibility="Collapsed"></TextBlock>
+                                
                             </StackPanel>
+                            <TextBlock  x:Name="CallSymbol" Text="&#x1f464;" FontSize="48" Margin="350,0,0,0" VerticalAlignment="Center" Opacity="1" Visibility="Collapsed"></TextBlock>
                         </Grid>
                     </DataTemplate>
                 </toolkit:LongListMultiSelector.ItemTemplate>
 
             </toolkit:LongListMultiSelector>
         </Grid>
-        <Grid x:Name="asdsda" Grid.Row="2">
-            <TextBlock x:Name="oringinal" Text="odsadsad" Foreground="Black" FontSize="22" Margin="0,0,0,64" />
-            <TextBlock x:Name="cucum" Text="odsadsad" Foreground="Black" FontSize="22" Margin="0,34,0,30" />
-        </Grid>
+        
     </Grid>
 
 </phone:PhoneApplicationPage>

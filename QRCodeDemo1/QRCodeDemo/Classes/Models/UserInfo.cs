@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace QRCodeDemo
 {
-   [DataContract]
-    class UserContactInfo
+    [DataContract]
+    class UserInfo
     {
-         [DataMember]
+        [DataMember]
         public string username { get; set; }
-         [DataMember]
+        [DataMember]
         public string password { get; set; }
 
         //Truong id con thieu, doi bo sung vao lop MyContact, bien contactData
-         [DataMember]
-        MyContact contactData;
+        [DataMember]
+        public MyContact contactData { set; get; }
 
-       public UserContactInfo()
+        public UserInfo()
         {
             contactData = new MyContact();
         }

@@ -106,7 +106,7 @@
     <Compile Include="Classes\Models\AppSetting.cs" />
     <Compile Include="Classes\Models\FriendsContactInfo.cs" />
     <Compile Include="Classes\IsolatedData.cs" />
-    <Compile Include="Classes\Models\UserContactInfo.cs" />
+    <Compile Include="Classes\Models\UserInfo.cs" />
     <Compile Include="ContactDetail.xaml.cs">
       <DependentUpon>ContactDetail.xaml</DependentUpon>
     </Compile>
@@ -195,6 +195,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Resource Include="Assets\0.gif" />
     <Content Include="Assets\AppBar\cancel.png" />
     <Content Include="Assets\AppBar\feature.settings.png" />
     <Content Include="Assets\AppBar\folder.png" />
@@ -216,6 +217,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\WebService\QRCodeDemo.WebService.QR_CONTACT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WebService\QRCodeDemo.WebService.QR_RELATIONSHIP.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\WebService\WebServiceHusc.wsdl" />

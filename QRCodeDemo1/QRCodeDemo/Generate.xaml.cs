@@ -28,8 +28,8 @@ namespace QRCodeDemo
         string mName, mPhone, mAdd, mMail;
         int kt = 0;
         bool ktbutton = true;
-        Color foregroundcl = HexColor(IsolatedData.appSettings.QrcodeColor);
-        Color backgroundcl = HexColor(IsolatedData.appSettings.BacgroundQrCode);
+        Color foregroundcl;
+        Color backgroundcl;
         PhoneNumberChooserTask phoneNumberChooserTask;
         AddressChooserTask addressTask;
         EmailAddressChooserTask emailAddressChooserTask;
@@ -210,7 +210,7 @@ namespace QRCodeDemo
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Color foregroundcl = HexColor(IsolatedData.appSettings.QrcodeColor);
-            Color backgroundcl = HexColor(IsolatedData.appSettings.BacgroundQrCode);
+            Color backgroundcl = HexColor(IsolatedData.appSettings.BackgroundQrCode);
 
             ApplicationBarIconButton btupdate = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
 
@@ -394,8 +394,8 @@ namespace QRCodeDemo
                 string[] upmail = (TbMail.Text + "||").Split('|');
                 string mail = upmail[0] + "|" + upmail[1] + "|" + upmail[2] + "|";
 
-                MyService.WebServiceHuscSoapClient sv = new MyService.WebServiceHuscSoapClient();
-                MyService.MyContact a = new MyService.MyContact();
+                WebService.WebServiceHuscSoapClient sv = new WebService.WebServiceHuscSoapClient();
+                WebService.MyContact a = new WebService.MyContact();
                 if (CbName.IsChecked == true)
                     a.name = TbName.Text;
                 if (CbPhone.IsChecked == true)
@@ -411,7 +411,7 @@ namespace QRCodeDemo
                 sv.UpdateAsync(1, a, "", CbShare.IsChecked == true ? true : false);
             }
             else
-                MessageBox.Show("Internet turn on?");
+                MessageBox.Show("No internet connection is available");
             { }
 
 
@@ -479,7 +479,7 @@ namespace QRCodeDemo
         }
 
 
-        void sv_UpdateCompleted(object sender, MyService.UpdateCompletedEventArgs e)
+        void sv_UpdateCompleted(object sender, WebService.UpdateCompletedEventArgs e)
         {
 
             if (e.Error == null)
@@ -496,7 +496,7 @@ namespace QRCodeDemo
                 }
             else
             {
-                MessageBox.Show("Loi khong xac dinh");
+                MessageBox.Show("Unexpected error");
             }
 
 

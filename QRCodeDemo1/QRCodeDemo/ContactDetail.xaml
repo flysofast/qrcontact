@@ -23,13 +23,72 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="Contact detail" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Image HorizontalAlignment="Left" Height="203" Margin="10,10,0,0" VerticalAlignment="Top" Width="203" Source="Assets/0.gif"/>
+            <TextBlock x:Name="tbNickname" HorizontalAlignment="Left" Margin="233,10,0,0" TextWrapping="Wrap" Text="A very very looooooooooooooooooooooooooooooooooong name" VerticalAlignment="Top" Width="213" Height="203" FontSize="48"/>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Height="203" Margin="10,10,0,0" VerticalAlignment="Top" Width="203"/>
+            <ScrollViewer HorizontalAlignment="Left" Height="379" Margin="10,218,0,0" VerticalAlignment="Top" Width="436">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid x:Name="grdPhone"  Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Height="Auto" Grid.Row="0" Text="Call"  x:Name="lbCall" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203"  FontSize="36"/>
+                        <TextBlock Grid.Row="1" x:Name="tbPhoneNumber1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24" Tap="tbPhoneNumber_Tap"/>
+                        <TextBlock Grid.Row="2" x:Name="tbPhoneNumber2" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24" Tap="tbPhoneNumber_Tap"/>
+                        <TextBlock Grid.Row="3" x:Name="tbPhoneNumber3" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24" Tap="tbPhoneNumber_Tap"/>
 
+                    </Grid>
+                    <Grid Grid.Row="1" x:Name="grdText">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="193*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Height="Auto"   x:Name="lbText" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="36" Text="Text SMS " Grid.ColumnSpan="2" />
+                        <TextBlock   x:Name="tbPhoneNumberText1" HorizontalAlignment="Left" Margin="10,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24" Tap="tbPhoneNumberText_Tap" Grid.ColumnSpan="2" />
+                        <TextBlock  x:Name="tbPhoneNumberText2" HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24" Tap="tbPhoneNumberText_Tap" Grid.ColumnSpan="2"/>
+                        <TextBlock  x:Name="tbPhoneNumberText3" HorizontalAlignment="Left" Margin="10,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24" Tap="tbPhoneNumberText_Tap" Grid.ColumnSpan="2"/>
+                    </Grid>
+                    <Grid Grid.Row="2" x:Name="grdEmail">
+
+                        <TextBlock Height="Auto"  x:Name="lbEmail" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="36" Text="Email" />
+                        <TextBlock  x:Name="tbEmail1" HorizontalAlignment="Left" Margin="10,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24" Tap="tbPhoneNumberEmail_Tap" />
+                        <TextBlock  x:Name="tbEmail2" HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24" Tap="tbPhoneNumberEmail_Tap"/>
+                        <TextBlock  x:Name="tbEmail3" HorizontalAlignment="Left" Margin="10,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24" Tap="tbPhoneNumberEmail_Tap"/>
+                    </Grid>
+                    <Grid Grid.Row="3" x:Name="grdAddress">
+                        <TextBlock Height="Auto" x:Name="lbAddress" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="36" Text="Address" />
+                        <TextBlock  x:Name="tbAdd1" HorizontalAlignment="Left" Margin="10,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24" />
+                        <TextBlock  x:Name="tbAdd2" HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24"/>
+                    </Grid>
+                    <Grid Grid.Row="4" x:Name="grdBirthday">
+                        <TextBlock Height="Auto"   x:Name="lbBirthday" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="36" Text="Birthday" />
+                        <TextBlock  x:Name="tbBirthday" HorizontalAlignment="Left" Margin="10,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24"  />
+                    </Grid>
+                    <Grid Grid.Row="5" x:Name="grdWebsite">
+                        <TextBlock Height="Auto"  x:Name="lbWebsite" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="36" Text="Website" />
+                        <TextBlock  x:Name="tbWebsite" HorizontalAlignment="Left" Margin="10,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24"  />
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
         </Grid>
+
     </Grid>
 
 </phone:PhoneApplicationPage>

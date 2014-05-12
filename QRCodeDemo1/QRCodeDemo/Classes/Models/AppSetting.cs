@@ -15,14 +15,17 @@ namespace QRCodeDemo
          [DataMember]
         public bool Share { get; set; }
          [DataMember]
-        public string BacgroundQrCode { get; set; }
+        public string BackgroundQrCode { get; set; }
          [DataMember]
         public string QrcodeColor { get; set; }
         
 
         public AppSetting()
         {
-
+            Language = "english";
+            Share = true;
+            BackgroundQrCode = "FFFFFF";
+            QrcodeColor = "000000";
         }
     }
 }
