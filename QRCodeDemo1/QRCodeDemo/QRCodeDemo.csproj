@@ -195,6 +195,12 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Assets\AppBar\cancel.png" />
+    <Content Include="Assets\AppBar\feature.settings.png" />
+    <Content Include="Assets\AppBar\folder.png" />
+    <Content Include="Assets\AppBar\refresh.png" />
+    <Content Include="Assets\AppBar\save.png" />
+    <Content Include="Assets\AppBar\upload.png" />
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
@@ -271,9 +277,7 @@
       <HintPath>..\packages\ZXing.Net.0.14.0.0\lib\wp8\zxing.wp8.0.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\AppBar\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
