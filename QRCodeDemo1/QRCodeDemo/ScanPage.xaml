@@ -43,8 +43,7 @@
         </Canvas>
         <!--Used for debugging >-->
         <StackPanel Margin="10,22,10,304">
-            <TextBlock x:Name="tbBarcodeType" FontWeight="ExtraBold" />
-            <TextBlock x:Name="tbBarcodeData" FontWeight="ExtraBold" TextWrapping="Wrap" />
+            <TextBlock Height="Auto" x:Name="tbBarcodeData" FontWeight="ExtraBold" TextWrapping="Wrap" />
         </StackPanel>
     </Grid>
 </phone:PhoneApplicationPage>

@@ -201,6 +201,7 @@
     <Content Include="Assets\AppBar\folder.png" />
     <Content Include="Assets\AppBar\refresh.png" />
     <Content Include="Assets\AppBar\save.png" />
+    <Content Include="Assets\AppBar\scan.png" />
     <Content Include="Assets\AppBar\upload.png" />
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
