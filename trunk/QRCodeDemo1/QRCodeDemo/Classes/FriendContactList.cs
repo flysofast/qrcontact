@@ -13,31 +13,45 @@ namespace QRCodeDemo
     {
 
         private static FriendContactList singleTonObject;
+        static bool seperatedNumbers = false;
 
         [DataMember]
         private List<FriendsContactInfo> _friendList;
-        private  FriendContactList()
+        private  FriendContactList(bool sepNumbers)
         {
             _friendList = new List<FriendsContactInfo>();
             _friendList = IsolatedData.friendList;
+            if (sepNumbers)
+            {
+                foreach (var fr in _friendList)
+                {
+                    fr.contactInfo.phone = fr.contactInfo.phone.Replace('|', '\n');
+                }
+            }
         }
 
         public List<FriendsContactInfo> friendList
         {
             get
             {
+                if(seperatedNumbers)
+                    foreach (var fr in _friendList)
+                    {
+                        fr.contactInfo.phone = fr.contactInfo.phone.Replace('|', '\n');
+                    }
                 return _friendList;
             }
         }
        
 
-        public static FriendContactList GetContacts()
+        public static FriendContactList GetContacts(bool sepNumbers)
         {
             //private static object lockingObject = new object();
 
-            if (singleTonObject == null)
+            if (singleTonObject == null||sepNumbers!=seperatedNumbers)
             {
-                singleTonObject = new FriendContactList();
+                singleTonObject = new FriendContactList(sepNumbers);
+                seperatedNumbers = sepNumbers;
 
             }
             return singleTonObject;

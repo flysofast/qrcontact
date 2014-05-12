@@ -22,12 +22,12 @@ namespace QRCodeDemo
         public FriendList()
         {
             InitializeComponent();
-            FriendsInfoList = FriendContactList.GetContacts();
-            // CreatePersonalInfoList();
+           
+            FriendsInfoList = FriendContactList.GetContacts(true);
+         // CreatePersonalInfoList();
             BuildLocalizedApplicationBar();
             SortingListAZ();
 
-            FriendContactList a = FriendContactList.GetContacts();
             
         }
 
@@ -37,70 +37,71 @@ namespace QRCodeDemo
             FriendsContactInfo frct = new FriendsContactInfo();
 
             ct.name = "name 1";
-            ct.phone = "phone 1";
-            ct.email = "email 1";
+            ct.phone = "phone 1|phone2|phone 3";
+            ct.email = "email 1|email 2|emial3";
+            ct.address = "add|add2";
+            ct.birthday = new DateTime(1992, 1, 1);
+            ct.website = "dấdasdassd";
 
             frct.contactInfo = ct;
             frct.nickname = "a1";
             frct.shareMyContactInfo = true;
-            
+            FriendsInfoList.AddContact(frct);
+
+           ct = new MyContact();
+            ct.name = "name 2";
+            ct.phone = "phone 1|phone2|";
+            ct.email = "email 1|email 2|";
+            ct.address = "add|";
+           // ct.birthday = new DateTime(1992, 1, 1);
+            ct.website = "dấdasdassd";
+            frct = new FriendsContactInfo();
+            frct.contactInfo = ct;
+            frct.nickname = "b1";
+            frct.shareMyContactInfo = true;
+            FriendsInfoList.AddContact(frct);
+
             ct = new MyContact();
             ct.name = "name 2";
-            ct.phone = "phone 2";
-            ct.email = "email 2";
-
+            ct.phone = "phone 1|||";
+            ct.email = "email 1||";
+            ct.address = "add|";
+             ct.birthday = new DateTime(1992, 1, 1);
+            //ct.website = "dấdasdassd";
             frct = new FriendsContactInfo();
             frct.contactInfo = ct;
-            frct.nickname = "b2";
-            frct.shareMyContactInfo = true;
-            FriendsInfoList.AddContact(frct);
-            ct = new MyContact();
-            ct.name = "name 3";
-            ct.phone = "phone 3";
-            ct.email = "email 3";
-            frct = new FriendsContactInfo();
-            frct.contactInfo = ct;
-            frct.nickname = "a3";
-            frct.shareMyContactInfo = true;
-            FriendsInfoList.AddContact(frct);
-            ct = new MyContact();
-            ct.name = "name 4";
-            ct.phone = "phone 4";
-            ct.email = "email 4";
-            frct = new FriendsContactInfo();
-            frct.contactInfo = ct;
-            frct.nickname = "caca4";
+            frct.nickname = "c1";
             frct.shareMyContactInfo = true;
             FriendsInfoList.AddContact(frct);
 
-            
+            ct = new MyContact();
+            ct.name = "name 2";
+            ct.phone = "phone 1|||";
+            ct.email = "email 1||";
+          //  ct.address = "add";
+             ct.birthday = new DateTime(1992, 1, 1);
+            ct.website = "dấdasdassd";
+            frct = new FriendsContactInfo();
+            frct.contactInfo = ct;
+            frct.nickname = "c21";
+            frct.shareMyContactInfo = true;
+            FriendsInfoList.AddContact(frct);
+
+            ct = new MyContact();
+            ct.name = "name 2";
+            ct.phone = "phone 1|||";
+           // ct.email = "email 1|email 2";
+            ct.address = "add|";
+            // ct.birthday = new DateTime(1992, 1, 1);
+            ct.website = "dấdasdassd";
+            frct = new FriendsContactInfo();
+            frct.contactInfo = ct;
+            frct.nickname = "d1";
+            frct.shareMyContactInfo = true;
+            FriendsInfoList.AddContact(frct);
+
             FriendsInfoList.SaveFriendList();
-            //FriendsInfoList.Add(new FriendsInfo("Sanka Bulathgama", "/Assets/Img/my.jpg", "www.csharpteacher.com")); 
-            //FriendsInfoList.Add(new FriendsInfo("Ann MMC", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Astor", "/Assets/Img/my.jpg", "www.csharpteacher.com")); 
-            //FriendsInfoList.Add(new FriendsInfo("Anela WRD", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Alison DEC", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Brad", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Boni", "/Assets/Img/my.jpg", "www.csharpteacher.com")); 
-            //FriendsInfoList.Add(new FriendsInfo("Corolein", "/Assets/Img/my.jpg", "www.csharpteacher.com")); 
-            //FriendsInfoList.Add(new FriendsInfo("Demon", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Elaric", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Fox", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Ian Bell", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Jaliya Udagedara", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Klaus VD", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Lenis BB", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Matt VD", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Fiqri Smile", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Welington Perera", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Sheldon Cooper", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Penny BBT", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Zee Mar", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Trisha Mag", "/Assets/Img/my.jpg", "www.csharpteacher.com")); 
-            //FriendsInfoList.Add(new FriendsInfo("Dimple SI", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Mom", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Dad", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
-            //FriendsInfoList.Add(new FriendsInfo("Vanel Bidel", "/Assets/Img/my.jpg", "www.csharpteacher.com"));
+           
         }
         private void SortingListAZ()
         {
@@ -137,18 +138,24 @@ namespace QRCodeDemo
 
         void appBarButton_Select_Click(object sender, EventArgs e)
         {
-            string s = "{\"name\":\"nam\",\"phone\":\"010022\"}";
-            string s2 = "{\"name\":\"Nguyen Si Thang\",\"phone\":\"06356565849\",\"email\":\"sithangvngb@gmail.com\",\"address\":\"hue jvj j \",\"website\":null,\"birthday\":\"1992-09-23T00:00:00\"}";
             lstFriendList.IsSelectionEnabled = !lstFriendList.IsSelectionEnabled;
-            var  ct = JsonConvert.DeserializeObject<MyContact>(s2);
-            MessageBox.Show(s2);
-           MessageBox.Show( "Name:" + ct.name + "\nPhone number:" + ct.phone + "\nEmail:" + ct.email + "\nAddress:" + ct.address + "\nBirthday:" + ct.birthday.ToShortDateString() + "\nWebsite:" + ct.website);
         }
 
         private void grdContact_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/ContactDetail.xaml",UriKind.Relative));
-          
+            Grid gr = (Grid)sender;
+            gr.Background = new SolidColorBrush(Color.FromArgb(255, 20, 107, 12));
+            TextBlock tbPhonenum = gr.FindName("tbPhoneNumber") as TextBlock;
+            TextBlock tbName = gr.FindName("tbName") as TextBlock;
+
+            string number = tbPhonenum.Text.Split('\n')[0];
+
+
+            PhoneCallTask phoneCallTask = new PhoneCallTask();
+            phoneCallTask.PhoneNumber = number;
+            phoneCallTask.DisplayName = tbName.Text;
+            phoneCallTask.Show();
+            grdContact_ManipulationCompleted(sender, new System.Windows.Input.ManipulationCompletedEventArgs());
             
             
         }
@@ -158,7 +165,7 @@ namespace QRCodeDemo
         private void grdContact_ManipulationCompleted(object sender, System.Windows.Input.ManipulationCompletedEventArgs e)
         {
              Grid gr = (Grid)sender;
-             gr.Background = new SolidColorBrush(Color.FromArgb(0, 0, 255, 0));
+             gr.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
              TextBlock tbCall = gr.FindName("CallSymbol") as TextBlock;
              tbCall.Visibility = Visibility.Collapsed;
         }
@@ -168,7 +175,6 @@ namespace QRCodeDemo
         {
             
             double tran = e.CumulativeManipulation.Translation.X*0.5;
-            cucum.Text =tran.ToString();
            // if (tran > 255) tran = 255;
 
             Grid gr = (Grid)sender;
@@ -180,21 +186,14 @@ namespace QRCodeDemo
 
             if (tran > 150)
             {
-                PhoneCallTask phoneCallTask = new PhoneCallTask();
-                phoneCallTask.PhoneNumber = tbPhonenum.Text;
-                phoneCallTask.DisplayName = tbName.Text;
-                phoneCallTask.Show();
-                grdContact_ManipulationCompleted(sender,new System.Windows.Input.ManipulationCompletedEventArgs());
+                string encodedValue = Uri.EscapeDataString(tbName.Text);
+                NavigationService.Navigate(new Uri("/ContactDetail.xaml?nick="+encodedValue, UriKind.Relative));
+                grdContact_ManipulationCompleted(sender, new System.Windows.Input.ManipulationCompletedEventArgs());
             }
             
         }
 
-        private void grdContact_Hold(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            Grid gr = (Grid)sender;
-            TextBlock tbCall = gr.FindName("CallSymbol") as TextBlock;
-            tbCall.Visibility = Visibility.Collapsed;
-        }
+      
 
        
     }

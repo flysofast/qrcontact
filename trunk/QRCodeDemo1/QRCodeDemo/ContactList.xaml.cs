@@ -36,8 +36,8 @@ namespace QRCodeDemo
 
 
 
-            int s = await WebServiceHelper.GetContactList(1,"2");
-            MessageBox.Show(s.ToString());
+         //   int s = await WebServiceHelper.GetContactList(1,"2");
+          //  MessageBox.Show(s.ToString());
 
 
 

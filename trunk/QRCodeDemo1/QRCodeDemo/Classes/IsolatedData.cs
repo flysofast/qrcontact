@@ -26,9 +26,9 @@ namespace QRCodeDemo
             set { settings["appSettings"] = value; settings.Save(); }
         }
 
-        public static UserContactInfo userInfo
+        public static UserInfo userInfo
         {
-            get { return (UserContactInfo)settings["userInfo"]; }
+            get { return (UserInfo)settings["userInfo"]; }
 
             set { settings["userInfo"] = value; settings.Save(); }
         }

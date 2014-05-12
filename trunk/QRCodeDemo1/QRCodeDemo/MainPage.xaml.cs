@@ -13,6 +13,8 @@ using ZXing;
 using System.Windows.Media.Imaging;
 using System.IO.IsolatedStorage;
 using Windows.Phone.System.UserProfile;
+using QRCodeDemo.WebService;
+using Newtonsoft.Json;
 
 namespace QRCodeDemo
 {
@@ -84,12 +86,22 @@ namespace QRCodeDemo
         }
 
 
-        private void btScan_Click(object sender, RoutedEventArgs e)
+        private async void btScan_Click(object sender, RoutedEventArgs e)
         {
            // NavigationService.Navigate(new Uri("/Scan.xaml", UriKind.RelativeOrAbsolute));
-            MessageBox.Show(IsolatedData.LaunchCount.ToString());
+           // MessageBox.Show(IsolatedData.LaunchCount.ToString());
+            MyContact[] a = null;
+
+            MessageBox.Show(a[0].name);
+
+            //WebService.WebServiceHuscSoapClient s = new WebServiceHuscSoapClient();
+            //s.myFriendUpdateInfoCompleted += s_myFriendUpdateInfoCompleted;
+            //s.myFriendUpdateInfoAsync(1);   
+            
             
         }
+
+       
 
         private void BtLockScreen_Click(object sender, RoutedEventArgs e)
         {

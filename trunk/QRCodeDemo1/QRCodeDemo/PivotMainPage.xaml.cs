@@ -33,6 +33,10 @@ namespace QRCodeDemo
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (!IsolatedData.isSignedIn && IsolatedData.LaunchCount == 1)
+            {
+                QRCodeDemo.App.RootFrame.Navigate(new Uri("/SignUp.xaml", UriKind.Relative));
+            }
             ReadFromIsolatedStorage("/Shared/ShellContent/336x336.jpg");
 
             base.OnNavigatedFrom(e);
