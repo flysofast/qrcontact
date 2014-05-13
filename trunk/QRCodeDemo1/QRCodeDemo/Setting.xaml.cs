@@ -70,6 +70,7 @@ namespace QRCodeDemo
             AppSetting a = IsolatedData.appSettings;
             a.QrcodeColor =QrcodeColor;
             a.BackgroundQrCode = BackgroundCode;
+            a.Share =(bool)CbAllowShare.IsChecked;
             IsolatedData.appSettings = a;
         }
         private void TbBackgrioundCorlor_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -116,41 +117,22 @@ namespace QRCodeDemo
         private void AppBarSave_Click(object sender, EventArgs e)
         {
             WriteAppSetting();
-            //if (NavigationService.CanGoBack)
-            //{
-            //    NavigationService.GoBack();
-            //}
-            //else
-            {
-                NavigationService.Navigate(new Uri("/Generate.xaml", UriKind.Relative));
-
-            }
         }
 
         private void CbAllowShare_Click(object sender, RoutedEventArgs e)
         {
+           
             if(IsolatedData.isSignedIn)
             {
-                CbAllowShare.IsChecked = true;
             }
             else
             {
+                CbAllowShare.IsChecked = false;
                if (MessageBox.Show("Login or Sign Up to Share", "Note", MessageBoxButton.OKCancel)==MessageBoxResult.OK)
                 {
                     NavigationService.Navigate(new Uri("/SignUp.xaml", UriKind.Relative));
                 }
-               else
-               {
-                   if(NavigationService.CanGoBack)
-                   {
-                       NavigationService.GoBack();
-                   }
-                   else
-                   {
-                       NavigationService.Navigate(new Uri("/SignUp.xaml", UriKind.Relative));
-
-                   }
-               }
+               
             }
             
         }
