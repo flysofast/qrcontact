@@ -111,7 +111,7 @@ namespace QRCodeDemo
             TaskCompletionSource<MyContact[]> tcs = new TaskCompletionSource<MyContact[]>();
             if (NetworkInterface.GetIsNetworkAvailable())
             {
-
+               
                 service.myFriendUpdateInfoCompleted += (object sender, WebService.myFriendUpdateInfoCompletedEventArgs e) => //change parameter list to fit the event's delegate
                 {
                     if (e.Error != null) tcs.TrySetResult(null);
