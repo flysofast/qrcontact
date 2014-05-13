@@ -9,6 +9,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.IO.IsolatedStorage;
 using System.Windows.Input;
+using Microsoft.Phone.UserData;
+using QRCodeDemo.WebService;
 
 namespace QRCodeDemo
 {
@@ -26,7 +28,7 @@ namespace QRCodeDemo
             rdSignUp.Checked+=rdSignUp_Checked;
         }
 
-       
+        ProgressIndicator progress;
         private async void btSubmit_Click(object sender, RoutedEventArgs e)
         {
 
@@ -36,7 +38,7 @@ namespace QRCodeDemo
                 return;
             }
 
-            ProgressIndicator progress = new ProgressIndicator
+             progress = new ProgressIndicator
             {
                 IsVisible = true,
                 IsIndeterminate = true,
@@ -59,7 +61,8 @@ namespace QRCodeDemo
                     uinfo.contactData.id = si;
                     IsolatedData.userInfo = uinfo;
                     IsolatedData.isSignedIn = true;
-                    NavigationService.Navigate(new Uri ("/PivotMainPage.xaml",UriKind.Relative));
+                    GetFriendUsers();
+                 
                 }
                 else MessageBox.Show("Sign in failed");
 
@@ -93,7 +96,83 @@ namespace QRCodeDemo
             }
            
         }
+        
+        void GetFriendUsers()
+        {
+            Contacts cons = new Contacts();
+            cons.SearchCompleted += new EventHandler<ContactsSearchEventArgs>(Contacts_SearchCompleted);
+            progress = new ProgressIndicator
+            {
+                IsVisible = true,
+                IsIndeterminate = true,
+                Text = "Getting phone numbers..."
+            };
+            SystemTray.SetProgressIndicator(this, progress);
+            cons.SearchAsync(String.Empty, FilterKind.None, "Contacts Test #1");
+        }
 
+       
+        private async void Contacts_SearchCompleted(object sender, ContactsSearchEventArgs e)
+        {
+            progress.IsVisible = false;
+            progress.IsIndeterminate = false;
+            IEnumerable<Contact> contacts = e.Results; //Here your result
+           string phoneNumbers = "";
+            foreach (var item in contacts)
+            {
+                foreach (var sdt in item.PhoneNumbers)
+                {
+                    phoneNumbers += sdt.PhoneNumber + "|";
+                }
+            }
+            string res = phoneNumbers;
+            while (true)
+            {
+                int index1 = res.IndexOf('(');
+                int index2 = res.IndexOf(')');
+                int index3 = res.IndexOf('-');
+                if (index1 != -1)
+                {
+                    res = res.Remove(index1, 1); // Use integer from IndexOf.
+                }
+                if (index2 != -1)
+                {
+                    res = res.Remove(index2, 1); // Use integer from IndexOf.
+                }
+                if (index3 != -1)
+                {
+                    res = res.Remove(index3, 1); // Use integer from IndexOf.
+                }
+                if (index1 == -1 && index2 == -1 && index3 == -1) break;
+            }
+
+            progress = new ProgressIndicator
+            {
+                IsVisible = true,
+                IsIndeterminate = true,
+                Text = "Connecting to server..."
+            };
+            SystemTray.SetProgressIndicator(this, progress);
+
+            MyContact[] contactList = await WebServiceHelper.GetToBeFriends(IsolatedData.userInfo.contactData.id, phoneNumbers, IsolatedData.appSettings.Share);
+
+            progress.IsVisible = false;
+            progress.IsIndeterminate = false;
+          FriendContactList  FriendsInfoList = FriendContactList.GetContacts(true);
+            foreach (var i in contactList)
+            {
+                FriendsContactInfo fc = new FriendsContactInfo();
+                fc.nickname = i.name;
+                fc.shareMyContactInfo = IsolatedData.appSettings.Share;
+                fc.contactInfo = i;
+
+                FriendsInfoList.AddContact(fc, false);
+            }
+
+            FriendsInfoList.SaveFriendList();
+
+            NavigationService.Navigate(new Uri("/PivotMainPage.xaml", UriKind.Relative));
+        }
         private void BtSkip_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/PivotMainPage.xaml", UriKind.Relative));

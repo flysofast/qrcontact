@@ -117,6 +117,7 @@ namespace QRCodeDemo
 
         void appBarButton_Scan_Click(object sender, EventArgs e)
         {
+            NavigationService.Navigate(new Uri("/FriendList.xaml", UriKind.Relative));
             if (PhotoCamera.IsCameraTypeSupported(CameraType.Primary))
             {
                 pvMain.SelectedItem = ScanItem;

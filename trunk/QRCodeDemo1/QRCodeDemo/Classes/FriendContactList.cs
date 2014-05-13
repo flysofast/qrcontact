@@ -17,7 +17,7 @@ namespace QRCodeDemo
 
         [DataMember]
         private List<FriendsContactInfo> _friendList;
-        private  FriendContactList(bool sepNumbers)
+        private FriendContactList(bool sepNumbers)
         {
             _friendList = new List<FriendsContactInfo>();
             _friendList = IsolatedData.friendList;
@@ -34,7 +34,7 @@ namespace QRCodeDemo
         {
             get
             {
-                if(seperatedNumbers)
+                if (seperatedNumbers)
                     foreach (var fr in _friendList)
                     {
                         fr.contactInfo.phone = fr.contactInfo.phone.Replace('|', '\n');
@@ -42,13 +42,13 @@ namespace QRCodeDemo
                 return _friendList;
             }
         }
-       
+
 
         public static FriendContactList GetContacts(bool sepNumbers)
         {
             //private static object lockingObject = new object();
 
-            if (singleTonObject == null||sepNumbers!=seperatedNumbers)
+            if (singleTonObject == null || sepNumbers != seperatedNumbers)
             {
                 singleTonObject = new FriendContactList(sepNumbers);
                 seperatedNumbers = sepNumbers;
@@ -57,11 +57,12 @@ namespace QRCodeDemo
             return singleTonObject;
 
         }
-        public void AddContact(FriendsContactInfo ct)
+        public void AddContact(FriendsContactInfo ct, bool showMessageBoxWarning)
         {
             if (_friendList.Any(p => p.nickname == ct.nickname))
             {
-                MessageBox.Show("This nickname has already exists!");
+                if (showMessageBoxWarning)
+                    MessageBox.Show("This nickname has already exists!");
                 return;
             }
 

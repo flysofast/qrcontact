@@ -2,80 +2,6 @@
 <wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://husc.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://husc.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://husc.com/">
-      <s:element name="CountUser">
-        <s:complexType />
-      </s:element>
-      <s:element name="CountUserResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="CountUserResult" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="ListUser">
-        <s:complexType />
-      </s:element>
-      <s:element name="ListUserResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="ListUserResult" type="tns:ArrayOfQR_CONTACT" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="ArrayOfQR_CONTACT">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="QR_CONTACT" nillable="true" type="tns:QR_CONTACT" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="QR_CONTACT">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="phone" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="address" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="birthday" nillable="true" type="s:dateTime" />
-          <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="website" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="share" nillable="true" type="s:boolean" />
-          <s:element minOccurs="0" maxOccurs="1" name="QR_RELATIONSHIPs" type="tns:ArrayOfQR_RELATIONSHIP" />
-          <s:element minOccurs="0" maxOccurs="1" name="QR_RELATIONSHIPs1" type="tns:ArrayOfQR_RELATIONSHIP" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfQR_RELATIONSHIP">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="QR_RELATIONSHIP" nillable="true" type="tns:QR_RELATIONSHIP" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="QR_RELATIONSHIP">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="id1" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="id2" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="s1" type="s:boolean" />
-          <s:element minOccurs="1" maxOccurs="1" name="s2" type="s:boolean" />
-          <s:element minOccurs="1" maxOccurs="1" name="u1" type="s:boolean" />
-          <s:element minOccurs="1" maxOccurs="1" name="u2" type="s:boolean" />
-          <s:element minOccurs="0" maxOccurs="1" name="QR_CONTACT" type="tns:QR_CONTACT" />
-          <s:element minOccurs="0" maxOccurs="1" name="QR_CONTACT1" type="tns:QR_CONTACT" />
-        </s:sequence>
-      </s:complexType>
-      <s:element name="InsertNewUser">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="phone" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="address" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="InsertNewUserResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="InsertNewUserResult" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="SignUp">
         <s:complexType>
           <s:sequence>
@@ -228,6 +154,39 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:complexType name="QR_RELATIONSHIP">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id1" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="id2" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="s1" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="s2" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="u1" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="u2" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="QR_CONTACT" type="tns:QR_CONTACT" />
+          <s:element minOccurs="0" maxOccurs="1" name="QR_CONTACT1" type="tns:QR_CONTACT" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QR_CONTACT">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="birthday" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="website" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="share" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="QR_RELATIONSHIPs" type="tns:ArrayOfQR_RELATIONSHIP" />
+          <s:element minOccurs="0" maxOccurs="1" name="QR_RELATIONSHIPs1" type="tns:ArrayOfQR_RELATIONSHIP" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfQR_RELATIONSHIP">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="QR_RELATIONSHIP" nillable="true" type="tns:QR_RELATIONSHIP" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="DeleteFriends">
         <s:complexType>
           <s:sequence>
@@ -263,25 +222,6 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
         </s:sequence>
       </s:complexType>
-      <s:element name="test">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="testResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="testResult" type="tns:ArrayOfMyContact" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="ArrayOfMyContact">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="MyContact" nillable="true" type="tns:MyContact" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="myFriendUpdateInfo">
         <s:complexType>
           <s:sequence>
@@ -296,6 +236,11 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:complexType name="ArrayOfMyContact">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MyContact" nillable="true" type="tns:MyContact" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="GetContactFriendsList">
         <s:complexType>
           <s:sequence>
@@ -313,7 +258,6 @@
         </s:complexType>
       </s:element>
       <s:element name="int" type="s:int" />
-      <s:element name="ArrayOfQR_CONTACT" nillable="true" type="tns:ArrayOfQR_CONTACT" />
       <s:element name="MyContact" nillable="true" type="tns:MyContact" />
       <s:element name="QR_RELATIONSHIP" nillable="true" type="tns:QR_RELATIONSHIP" />
       <s:element name="boolean" type="s:boolean" />
@@ -321,24 +265,6 @@
       <s:element name="ArrayOfMyContact" nillable="true" type="tns:ArrayOfMyContact" />
     </s:schema>
   </wsdl:types>
-  <wsdl:message name="CountUserSoapIn">
-    <wsdl:part name="parameters" element="tns:CountUser" />
-  </wsdl:message>
-  <wsdl:message name="CountUserSoapOut">
-    <wsdl:part name="parameters" element="tns:CountUserResponse" />
-  </wsdl:message>
-  <wsdl:message name="ListUserSoapIn">
-    <wsdl:part name="parameters" element="tns:ListUser" />
-  </wsdl:message>
-  <wsdl:message name="ListUserSoapOut">
-    <wsdl:part name="parameters" element="tns:ListUserResponse" />
-  </wsdl:message>
-  <wsdl:message name="InsertNewUserSoapIn">
-    <wsdl:part name="parameters" element="tns:InsertNewUser" />
-  </wsdl:message>
-  <wsdl:message name="InsertNewUserSoapOut">
-    <wsdl:part name="parameters" element="tns:InsertNewUserResponse" />
-  </wsdl:message>
   <wsdl:message name="SignUpSoapIn">
     <wsdl:part name="parameters" element="tns:SignUp" />
   </wsdl:message>
@@ -405,12 +331,6 @@
   <wsdl:message name="GetContactListSoapOut">
     <wsdl:part name="parameters" element="tns:GetContactListResponse" />
   </wsdl:message>
-  <wsdl:message name="testSoapIn">
-    <wsdl:part name="parameters" element="tns:test" />
-  </wsdl:message>
-  <wsdl:message name="testSoapOut">
-    <wsdl:part name="parameters" element="tns:testResponse" />
-  </wsdl:message>
   <wsdl:message name="myFriendUpdateInfoSoapIn">
     <wsdl:part name="parameters" element="tns:myFriendUpdateInfo" />
   </wsdl:message>
@@ -422,22 +342,6 @@
   </wsdl:message>
   <wsdl:message name="GetContactFriendsListSoapOut">
     <wsdl:part name="parameters" element="tns:GetContactFriendsListResponse" />
-  </wsdl:message>
-  <wsdl:message name="CountUserHttpGetIn" />
-  <wsdl:message name="CountUserHttpGetOut">
-    <wsdl:part name="Body" element="tns:int" />
-  </wsdl:message>
-  <wsdl:message name="ListUserHttpGetIn" />
-  <wsdl:message name="ListUserHttpGetOut">
-    <wsdl:part name="Body" element="tns:ArrayOfQR_CONTACT" />
-  </wsdl:message>
-  <wsdl:message name="InsertNewUserHttpGetIn">
-    <wsdl:part name="name" type="s:string" />
-    <wsdl:part name="phone" type="s:string" />
-    <wsdl:part name="address" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="InsertNewUserHttpGetOut">
-    <wsdl:part name="Body" element="tns:int" />
   </wsdl:message>
   <wsdl:message name="SignUpHttpGetIn">
     <wsdl:part name="username" type="s:string" />
@@ -514,12 +418,6 @@
   <wsdl:message name="GetContactListHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfInt" />
   </wsdl:message>
-  <wsdl:message name="testHttpGetIn">
-    <wsdl:part name="id" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="testHttpGetOut">
-    <wsdl:part name="Body" element="tns:ArrayOfMyContact" />
-  </wsdl:message>
   <wsdl:message name="myFriendUpdateInfoHttpGetIn">
     <wsdl:part name="myId" type="s:string" />
   </wsdl:message>
@@ -533,22 +431,6 @@
   </wsdl:message>
   <wsdl:message name="GetContactFriendsListHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfMyContact" />
-  </wsdl:message>
-  <wsdl:message name="CountUserHttpPostIn" />
-  <wsdl:message name="CountUserHttpPostOut">
-    <wsdl:part name="Body" element="tns:int" />
-  </wsdl:message>
-  <wsdl:message name="ListUserHttpPostIn" />
-  <wsdl:message name="ListUserHttpPostOut">
-    <wsdl:part name="Body" element="tns:ArrayOfQR_CONTACT" />
-  </wsdl:message>
-  <wsdl:message name="InsertNewUserHttpPostIn">
-    <wsdl:part name="name" type="s:string" />
-    <wsdl:part name="phone" type="s:string" />
-    <wsdl:part name="address" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="InsertNewUserHttpPostOut">
-    <wsdl:part name="Body" element="tns:int" />
   </wsdl:message>
   <wsdl:message name="SignUpHttpPostIn">
     <wsdl:part name="username" type="s:string" />
@@ -625,12 +507,6 @@
   <wsdl:message name="GetContactListHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfInt" />
   </wsdl:message>
-  <wsdl:message name="testHttpPostIn">
-    <wsdl:part name="id" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="testHttpPostOut">
-    <wsdl:part name="Body" element="tns:ArrayOfMyContact" />
-  </wsdl:message>
   <wsdl:message name="myFriendUpdateInfoHttpPostIn">
     <wsdl:part name="myId" type="s:string" />
   </wsdl:message>
@@ -646,18 +522,6 @@
     <wsdl:part name="Body" element="tns:ArrayOfMyContact" />
   </wsdl:message>
   <wsdl:portType name="WebServiceHuscSoap">
-    <wsdl:operation name="CountUser">
-      <wsdl:input message="tns:CountUserSoapIn" />
-      <wsdl:output message="tns:CountUserSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="ListUser">
-      <wsdl:input message="tns:ListUserSoapIn" />
-      <wsdl:output message="tns:ListUserSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="InsertNewUser">
-      <wsdl:input message="tns:InsertNewUserSoapIn" />
-      <wsdl:output message="tns:InsertNewUserSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="SignUp">
       <wsdl:input message="tns:SignUpSoapIn" />
       <wsdl:output message="tns:SignUpSoapOut" />
@@ -702,10 +566,6 @@
       <wsdl:input message="tns:GetContactListSoapIn" />
       <wsdl:output message="tns:GetContactListSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="test">
-      <wsdl:input message="tns:testSoapIn" />
-      <wsdl:output message="tns:testSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="myFriendUpdateInfo">
       <wsdl:input message="tns:myFriendUpdateInfoSoapIn" />
       <wsdl:output message="tns:myFriendUpdateInfoSoapOut" />
@@ -716,18 +576,6 @@
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHuscHttpGet">
-    <wsdl:operation name="CountUser">
-      <wsdl:input message="tns:CountUserHttpGetIn" />
-      <wsdl:output message="tns:CountUserHttpGetOut" />
-    </wsdl:operation>
-    <wsdl:operation name="ListUser">
-      <wsdl:input message="tns:ListUserHttpGetIn" />
-      <wsdl:output message="tns:ListUserHttpGetOut" />
-    </wsdl:operation>
-    <wsdl:operation name="InsertNewUser">
-      <wsdl:input message="tns:InsertNewUserHttpGetIn" />
-      <wsdl:output message="tns:InsertNewUserHttpGetOut" />
-    </wsdl:operation>
     <wsdl:operation name="SignUp">
       <wsdl:input message="tns:SignUpHttpGetIn" />
       <wsdl:output message="tns:SignUpHttpGetOut" />
@@ -768,10 +616,6 @@
       <wsdl:input message="tns:GetContactListHttpGetIn" />
       <wsdl:output message="tns:GetContactListHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="test">
-      <wsdl:input message="tns:testHttpGetIn" />
-      <wsdl:output message="tns:testHttpGetOut" />
-    </wsdl:operation>
     <wsdl:operation name="myFriendUpdateInfo">
       <wsdl:input message="tns:myFriendUpdateInfoHttpGetIn" />
       <wsdl:output message="tns:myFriendUpdateInfoHttpGetOut" />
@@ -782,18 +626,6 @@
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="WebServiceHuscHttpPost">
-    <wsdl:operation name="CountUser">
-      <wsdl:input message="tns:CountUserHttpPostIn" />
-      <wsdl:output message="tns:CountUserHttpPostOut" />
-    </wsdl:operation>
-    <wsdl:operation name="ListUser">
-      <wsdl:input message="tns:ListUserHttpPostIn" />
-      <wsdl:output message="tns:ListUserHttpPostOut" />
-    </wsdl:operation>
-    <wsdl:operation name="InsertNewUser">
-      <wsdl:input message="tns:InsertNewUserHttpPostIn" />
-      <wsdl:output message="tns:InsertNewUserHttpPostOut" />
-    </wsdl:operation>
     <wsdl:operation name="SignUp">
       <wsdl:input message="tns:SignUpHttpPostIn" />
       <wsdl:output message="tns:SignUpHttpPostOut" />
@@ -834,10 +666,6 @@
       <wsdl:input message="tns:GetContactListHttpPostIn" />
       <wsdl:output message="tns:GetContactListHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="test">
-      <wsdl:input message="tns:testHttpPostIn" />
-      <wsdl:output message="tns:testHttpPostOut" />
-    </wsdl:operation>
     <wsdl:operation name="myFriendUpdateInfo">
       <wsdl:input message="tns:myFriendUpdateInfoHttpPostIn" />
       <wsdl:output message="tns:myFriendUpdateInfoHttpPostOut" />
@@ -849,33 +677,6 @@
   </wsdl:portType>
   <wsdl:binding name="WebServiceHuscSoap" type="tns:WebServiceHuscSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="CountUser">
-      <soap:operation soapAction="http://husc.com/CountUser" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ListUser">
-      <soap:operation soapAction="http://husc.com/ListUser" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InsertNewUser">
-      <soap:operation soapAction="http://husc.com/InsertNewUser" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="SignUp">
       <soap:operation soapAction="http://husc.com/SignUp" style="document" />
       <wsdl:input>
@@ -975,15 +776,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="test">
-      <soap:operation soapAction="http://husc.com/test" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="myFriendUpdateInfo">
       <soap:operation soapAction="http://husc.com/myFriendUpdateInfo" style="document" />
       <wsdl:input>
@@ -1005,33 +797,6 @@
   </wsdl:binding>
   <wsdl:binding name="WebServiceHuscSoap12" type="tns:WebServiceHuscSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="CountUser">
-      <soap12:operation soapAction="http://husc.com/CountUser" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ListUser">
-      <soap12:operation soapAction="http://husc.com/ListUser" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InsertNewUser">
-      <soap12:operation soapAction="http://husc.com/InsertNewUser" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="SignUp">
       <soap12:operation soapAction="http://husc.com/SignUp" style="document" />
       <wsdl:input>
@@ -1131,15 +896,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="test">
-      <soap12:operation soapAction="http://husc.com/test" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="myFriendUpdateInfo">
       <soap12:operation soapAction="http://husc.com/myFriendUpdateInfo" style="document" />
       <wsdl:input>
@@ -1161,33 +917,6 @@
   </wsdl:binding>
   <wsdl:binding name="WebServiceHuscHttpGet" type="tns:WebServiceHuscHttpGet">
     <http:binding verb="GET" />
-    <wsdl:operation name="CountUser">
-      <http:operation location="/CountUser" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ListUser">
-      <http:operation location="/ListUser" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InsertNewUser">
-      <http:operation location="/InsertNewUser" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="SignUp">
       <http:operation location="/SignUp" />
       <wsdl:input>
@@ -1271,15 +1000,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetContactList">
       <http:operation location="/GetContactList" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="test">
-      <http:operation location="/test" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1308,33 +1028,6 @@
   </wsdl:binding>
   <wsdl:binding name="WebServiceHuscHttpPost" type="tns:WebServiceHuscHttpPost">
     <http:binding verb="POST" />
-    <wsdl:operation name="CountUser">
-      <http:operation location="/CountUser" />
-      <wsdl:input>
-        <mime:content type="application/x-www-form-urlencoded" />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ListUser">
-      <http:operation location="/ListUser" />
-      <wsdl:input>
-        <mime:content type="application/x-www-form-urlencoded" />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="InsertNewUser">
-      <http:operation location="/InsertNewUser" />
-      <wsdl:input>
-        <mime:content type="application/x-www-form-urlencoded" />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="SignUp">
       <http:operation location="/SignUp" />
       <wsdl:input>
@@ -1418,15 +1111,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetContactList">
       <http:operation location="/GetContactList" />
-      <wsdl:input>
-        <mime:content type="application/x-www-form-urlencoded" />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="test">
-      <http:operation location="/test" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
