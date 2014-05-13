@@ -19,6 +19,7 @@ using Newtonsoft.Json;
 using System.Net.NetworkInformation;
 using QRCodeDemo.WebService;
 using System.Windows.Media;
+using System.Windows.Controls.Primitives;
 
 
 namespace QRCodeDemo
@@ -26,7 +27,7 @@ namespace QRCodeDemo
     public partial class Generate : PhoneApplicationPage
     {
         string mName, mPhone, mAdd, mMail;
-        int kt = 0;
+        int kt = 0, mPopup = 0;
         bool ktbutton = true;
         Color foregroundcl;
         Color backgroundcl;
@@ -121,15 +122,49 @@ namespace QRCodeDemo
             WriteableBitmap bitmap = new WriteableBitmap(200, 200);
             using (IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                using (IsolatedStorageFileStream fileStream = myIsolatedStorage.OpenFile(fileName, FileMode.Open, FileAccess.Read))
+                if (myIsolatedStorage.FileExists(fileName))
                 {
-                    // Decode the JPEG stream.
-                    bitmap = PictureDecoder.DecodeJpeg(fileStream);
+                    using (IsolatedStorageFileStream fileStream = myIsolatedStorage.OpenFile(fileName, FileMode.Open, FileAccess.Read))
+                    {
+                        // Decode the JPEG stream.
+                        bitmap = PictureDecoder.DecodeJpeg(fileStream);
+                        img_qr.Source = bitmap;
+                    }
                 }
-            }
-            img_qr.Source = bitmap;
-        }
+                else
+                {
+                    BitmapImage tn = new BitmapImage();
+                    tn.SetSource(Application.GetResourceStream(new Uri(@"Assets/SquareTile71x71.png", UriKind.Relative)).Stream);
+                    img_qr.Source = tn;
+                }
 
+            }
+
+        }
+        private void ReadFromIsolatedStorage1(string fileName)
+        {
+            WriteableBitmap bitmap = new WriteableBitmap(200, 200);
+            using (IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                if (myIsolatedStorage.FileExists(fileName))
+                {
+                    using (IsolatedStorageFileStream fileStream = myIsolatedStorage.OpenFile(fileName, FileMode.Open, FileAccess.Read))
+                    {
+                        // Decode the JPEG stream.
+                        bitmap = PictureDecoder.DecodeJpeg(fileStream);
+                        Img_popup.Source = bitmap;
+
+                    }
+                }
+                else
+                {
+                    BitmapImage tn = new BitmapImage();
+                    tn.SetSource(Application.GetResourceStream(new Uri(@"Assets/SquareTile71x71.png", UriKind.Relative)).Stream);
+                    Img_popup.Source = tn;
+                }
+
+            }
+        }
 
         void phoneNumberChooserTask_Completed(object sender, PhoneNumberResult e)
         {
@@ -179,7 +214,7 @@ namespace QRCodeDemo
                 //emailComposeTask.Show();
             }
         }
-       
+
 
 
         private void reset()
@@ -263,7 +298,8 @@ namespace QRCodeDemo
         private void BtGenerate_Click(object sender, RoutedEventArgs e)
         {
             string name = TbName.Text, phone = TbPhone.Text, mail = TbMail.Text, add = TbAdd.Text;
-
+            Color foregroundcl = HexColor(IsolatedData.appSettings.QrcodeColor);
+            Color backgroundcl = HexColor(IsolatedData.appSettings.BackgroundQrCode);
             if (name == "" && phone == "" && mail == "" && add == "")
                 MessageBox.Show("Empty");
             else
@@ -281,7 +317,6 @@ namespace QRCodeDemo
                     a.birthday = (DateTime)Pickerdatetime.Value;
                 if (CbWebsite.IsChecked == true)
                     a.website = TbWebsite.Text + "|||";
-                //a.birthday = new DateTime(1992, 9, 23, 0, 0, 0);
                 if (CbName.IsChecked == false && CbPhone.IsChecked == false && CbAdd.IsChecked == false && CbMail.IsChecked == false && CbWebsite.IsChecked == false && CbBirthDay.IsChecked == false)
                     MessageBox.Show("Check infor to generate !");
 
@@ -290,6 +325,7 @@ namespace QRCodeDemo
                 //b = JsonConvert.DeserializeObject<MyContact>(ContactString);
                 //MessageBox.Show(b.phone);
                 img_qr.Source = GenerateQRCode(ContactString, 1, foregroundcl, backgroundcl);
+                Img_popup.Source = GenerateQRCode(ContactString, 1, foregroundcl, backgroundcl);
             }
 
         }
@@ -346,35 +382,12 @@ namespace QRCodeDemo
             // Set the page's ApplicationBar to a new instance of ApplicationBar.
             ApplicationBar = new ApplicationBar();
 
-            //Generate
-            //ApplicationBarIconButton appBarButton_Generate = new ApplicationBarIconButton(new Uri("/Assets/AppBar/generate.png", UriKind.Relative));
-            //appBarButton_Generate.Text = AppResources.AppBarButtonText;
-            //ApplicationBar.Buttons.Add(appBarButton_Generate);
-            //Save
-            //ApplicationBarIconButton appBarButton_Save = new ApplicationBarIconButton(new Uri("/Assets/AppBar/save.png", UriKind.Relative));
-            //appBarButton_Save.Text = "Save";
-            //ApplicationBar.Buttons.Add(appBarButton_Save);
-            //Get Contact
-            //ApplicationBarIconButton appBarButton_GetContact = new ApplicationBarIconButton(new Uri("/Assets/AppBar/getcontact.png", UriKind.Relative));
-            //appBarButton_GetContact.Text = "Get Contact";
-            //ApplicationBar.Buttons.Add(appBarButton_GetContact);
-            //Cancle
-            //ApplicationBarIconButton appBarButton_Cancle = new ApplicationBarIconButton(new Uri("/Assets/AppBar/cancle.png", UriKind.Relative));
-            //appBarButton_Cancle.Text = "Cancle";
-            //ApplicationBar.Buttons.Add(appBarButton_Cancle);
-            //Reset
-            //ApplicationBarIconButton appBarButton_Reset = new ApplicationBarIconButton(new Uri("/Assets/AppBar/reset.png", UriKind.Relative));
-            //appBarButton_Reset.Text = "Reset";
-            //ApplicationBar.Buttons.Add(appBarButton_Reset);
-
 
 
             // Create a new menu item with the localized string from AppResources.
             ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
             ApplicationBar.MenuItems.Add(appBarMenuItem);
         }
-
-
         private void ApplicationBarIconButton_Click_reset(object sender, EventArgs e)
         {
             TbAdd.Text = "";
@@ -417,33 +430,33 @@ namespace QRCodeDemo
 
         }
 
-
-       
-
-       
-
         private void ApplicationBarIconButton_Click_save(object sender, EventArgs e)
         {
+            Color foregroundcl = HexColor(IsolatedData.appSettings.QrcodeColor);
+            Color backgroundcl = HexColor(IsolatedData.appSettings.BackgroundQrCode);
 
             writetext();
             MyContact a = new MyContact();
             if (CbName.IsChecked == true)
                 a.name = TbName.Text;
             if (CbPhone.IsChecked == true)
-                a.phone = TbPhone.Text;
+                a.phone = TbPhone.Text + "|||";
             if (CbAdd.IsChecked == true)
-                a.address = TbAdd.Text;
+                a.address = TbAdd.Text + "||";
             if (CbMail.IsChecked == true)
-                a.email = TbMail.Text;
-            a.birthday = new DateTime(1992, 9, 23, 0, 0, 0);
-            if (CbName.IsChecked == false && CbPhone.IsChecked == false && CbAdd.IsChecked == false && CbMail.IsChecked == false)
+                a.email = TbMail.Text + "|||";
+            if (CbBirthDay.IsChecked == true)
+                a.birthday = (DateTime)Pickerdatetime.Value;
+            if (CbWebsite.IsChecked == true)
+                a.website = TbWebsite.Text + "|||";
+            if (CbName.IsChecked == false && CbPhone.IsChecked == false && CbAdd.IsChecked == false && CbMail.IsChecked == false && CbBirthDay.IsChecked == false && CbWebsite.IsChecked == false)
                 MessageBox.Show("Check infor to generate !");
 
             string ContactString = JsonConvert.SerializeObject(a);
 
 
             WriteableBitmap wb = GenerateQRCode(ContactString, 1, foregroundcl, backgroundcl);
-            WriteableBitmap wb1 = GenerateQRCode(ContactString, 35, foregroundcl, backgroundcl);
+            WriteableBitmap wb1 = GenerateQRCode(ContactString, 60, foregroundcl, backgroundcl);
 
             using (IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
             {
@@ -498,8 +511,6 @@ namespace QRCodeDemo
             {
                 MessageBox.Show("Unexpected error");
             }
-
-
         }
         private void CbWebsite_Click(object sender, RoutedEventArgs e)
         {
@@ -534,10 +545,10 @@ namespace QRCodeDemo
             else
                 TbPhone.IsEnabled = false;
         }
-        
 
 
-      
+
+
 
         private void BtGetNameContact_Click(object sender, RoutedEventArgs e)
         {
@@ -624,7 +635,35 @@ namespace QRCodeDemo
             else
                 TbAdd.IsEnabled = false;
         }
-       
+
+        private void img_qr_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (mPopup == 0)
+            {
+                if (Img_popup.Source == null)
+                    ReadFromIsolatedStorage1("/Shared/ShellContent/336x336.jpg");
+                popup_image.IsOpen = true;
+                mPopup = 1;
+            }
+            else
+            {
+                popup_image.IsOpen = false;
+                mPopup = 0;
+            }
+
+        }
+
+        private void BtOkPopup_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Img_popup_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            popup_image.IsOpen = false;
+            mPopup = 0;
+        }
+
 
 
 

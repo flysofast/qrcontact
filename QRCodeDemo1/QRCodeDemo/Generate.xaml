@@ -35,6 +35,7 @@
             <TextBlock Text="Generate" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
+
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10,0,14,0">
             <ScrollViewer Margin="10,0,-10,0">
@@ -47,22 +48,37 @@
                     <TextBox x:Name="TbName" HorizontalAlignment="Left" Height="72" Margin="128,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="296"/>
                     <TextBox x:Name="TbPhone" InputScope="Number" HorizontalAlignment="Left" Height="72" Margin="128,62,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="296"/>
                     <TextBox x:Name="TbMail" InputScope="EmailSmtpAddress" HorizontalAlignment="Left" Height="72" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="296" Margin="128,125,0,0"/>
-                    <Button x:Name="BtGenerate" Content="Generate" HorizontalAlignment="Left" Margin="297,479,0,0" VerticalAlignment="Top" Click="BtGenerate_Click"/>
-                    <Image x:Name="img_qr" HorizontalAlignment="Left" Height="201" Margin="-2,402,0,0" VerticalAlignment="Top" Width="233"/>
-                    <CheckBox x:Name="CbShare" Content="Share" HorizontalAlignment="Left" Margin="297,402,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="BtGenerate" Content="Generate" HorizontalAlignment="Left" Margin="249,479,0,0" VerticalAlignment="Top" Click="BtGenerate_Click"/>
+                    <Image x:Name="img_qr" HorizontalAlignment="Left" Height="201" Margin="-2,402,0,0" VerticalAlignment="Top" Width="209" Tap="img_qr_Tap"/>
+                    <CheckBox x:Name="CbShare" Content="Share" HorizontalAlignment="Left" Margin="251,402,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="BtGetNameContact" Content="..." Margin="403,1,-14,0" VerticalAlignment="Top" Click="BtGetNameContact_Click" HorizontalAlignment="Left" Width="67"/>
                     <Button x:Name="BtGetMailContact" Content="..." HorizontalAlignment="Left" Margin="403,121,-14,0" VerticalAlignment="Top" Click="BtGetMailContact_Click"/>
                     <Button x:Name="BtGetAddContact" Content="..." HorizontalAlignment="Left" Margin="403,189,-14,0" VerticalAlignment="Top" Click="BtGetAddContact_Click"/>
-                    <Button x:Name="BtOtherQrCode" Content="New Qr" HorizontalAlignment="Left" Margin="312,559,0,0" VerticalAlignment="Top" Click="BtOtherQrCode_Click"/>
+                    <Button x:Name="BtOtherQrCode" Content="New Qr" HorizontalAlignment="Left" Margin="252,559,0,0" VerticalAlignment="Top" Click="BtOtherQrCode_Click"/>
                     <CheckBox x:Name="CbWebsite" Content="Website" HorizontalAlignment="Left" Margin="-2,241,0,0" VerticalAlignment="Top" Click="CbWebsite_Click"/>
                     <TextBox x:Name="TbWebsite" HorizontalAlignment="Left" Height="72" Margin="128,247,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="298"/>
                     <CheckBox x:Name="CbBirthDay" Content="Birth Date" HorizontalAlignment="Left" Margin="-2,311,0,0" VerticalAlignment="Top" Click="CbWebsite_Click"/>
                     <toolkit:DatePicker x:Name="Pickerdatetime" HorizontalAlignment="Left" Margin="167,319,0,0" VerticalAlignment="Top" Width="246"/>
+
                 </Grid>
             </ScrollViewer>
-          
+            <!--Popup image-->
+
+            <Popup x:Name="popup_image"  >
+                <Grid  Visibility="Visible" Width="480" Height="800" >
+
+
+                    <StackPanel  >
+
+                        <Image x:Name="Img_popup" Stretch="None" Tap="Img_popup_Tap"/>
+
+                    </StackPanel>
+
+                </Grid>
+            </Popup>
+
         </Grid>
-       
+
     </Grid>
 
 </phone:PhoneApplicationPage>
