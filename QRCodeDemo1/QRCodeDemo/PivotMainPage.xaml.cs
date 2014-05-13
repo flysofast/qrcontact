@@ -26,8 +26,6 @@ namespace QRCodeDemo
     public partial class PivotMainPage : PhoneApplicationPage
     {
 
-
-
         public PivotMainPage()
         {
             InitializeComponent();
@@ -41,6 +39,30 @@ namespace QRCodeDemo
                 QRCodeDemo.App.RootFrame.Navigate(new Uri("/SignUp.xaml", UriKind.Relative));
             }
             ReadFromIsolatedStorage("/Shared/ShellContent/336x336.jpg");
+
+            if (pvMain.SelectedItem == ScanItem)
+            {
+                if (!cameraInitialized)
+                {
+                    _phoneCamera = new PhotoCamera();
+                    _phoneCamera.Initialized += cam_Initialized;
+                    _phoneCamera.AutoFocusCompleted += _phoneCamera_AutoFocusCompleted;
+
+                    CameraButtons.ShutterKeyHalfPressed += CameraButtons_ShutterKeyHalfPressed;
+
+                    //Display the camera feed in the UI
+                    viewfinderBrush.SetSource(_phoneCamera);
+
+
+                    // This timer will be used to scan the camera buffer every 250ms and scan for any barcodes
+                    _scanTimer = new DispatcherTimer();
+                    _scanTimer.Interval = TimeSpan.FromMilliseconds(250);
+                    _scanTimer.Tick += (o, arg) => ScanForBarcode();
+
+                    viewfinderCanvas.Tap += new EventHandler<System.Windows.Input.GestureEventArgs>(focus_Tapped);
+                    cameraInitialized = true;
+                }
+            }
 
             base.OnNavigatedFrom(e);
         }
@@ -102,7 +124,6 @@ namespace QRCodeDemo
             }
             else
             {
-
                 MessageBox.Show("Primary camera is not available!");
             }
         }
@@ -321,17 +342,23 @@ namespace QRCodeDemo
         protected override void OnNavigatingFrom(System.Windows.Navigation.NavigatingCancelEventArgs e)
         {
             //we're navigating away from this page, we won't be scanning any barcodes
-            _scanTimer.Stop();
-
-            if (_phoneCamera != null)
+            if (cameraInitialized)
             {
-                // Cleanup
-                _phoneCamera.Dispose();
-                _phoneCamera.Initialized -= cam_Initialized;
-                CameraButtons.ShutterKeyHalfPressed -= CameraButtons_ShutterKeyHalfPressed;
+                _scanTimer.Stop();
 
+                if (_phoneCamera != null)
+                {
+                    // Cleanup
+                    _phoneCamera.Dispose();
+                    _phoneCamera.Initialized -= cam_Initialized;
+                    CameraButtons.ShutterKeyHalfPressed -= CameraButtons_ShutterKeyHalfPressed;
+                    cameraInitialized = false;
+
+                }
             }
         }
+
+        
 
         void cam_Initialized(object sender, Microsoft.Devices.CameraOperationCompletedEventArgs e)
         {
@@ -384,6 +411,7 @@ namespace QRCodeDemo
                     ApplicationBarIconButton btn = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
                     btn.IconUri = new Uri("/Assets/AppBar/save.png", UriKind.Relative);
                     btn.Text = "Save";
+                    btn.Click -= appBarButton_Scan_Click;
                     btn.Click += appBarButton_Save_Click;
 
                 }
@@ -428,6 +456,12 @@ namespace QRCodeDemo
         {
             try
             {
+                ApplicationBarIconButton bt = (ApplicationBarIconButton)sender;
+                bt.Text = "scan";
+                bt.Click -= appBarButton_Save_Click;
+                bt.Click += appBarButton_Scan_Click;
+                bt.IconUri = new Uri("/Assets/AppBar/scan.png", UriKind.Relative);
+
                 var saveContact = new SaveContactTask();
                 saveContact.Completed += saveContact_Completed;
                 saveContact.FirstName = ct.name;
@@ -458,10 +492,7 @@ namespace QRCodeDemo
                 MessageBox.Show("Cannot save this contact to your phone\nDetail: " + ex.Message);
             }
 
-            ApplicationBarIconButton bt = (ApplicationBarIconButton)sender;
-            bt.Text = "scan";
-            bt.Click += appBarButton_Scan_Click;
-            bt.IconUri = new Uri("/Assets/AppBar/scan.png", UriKind.Relative);
+           
 
         }
 
