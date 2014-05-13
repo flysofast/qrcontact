@@ -113,5 +113,6 @@ namespace QRCodeDemo.Resources {
                 return ResourceManager.GetString("ResourceLanguage", resourceCulture);
             }
         }
+
     }
 }

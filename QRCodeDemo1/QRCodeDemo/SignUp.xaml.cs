@@ -21,11 +21,11 @@ namespace QRCodeDemo
             if (IsolatedData.isSignedIn)
             {
                 MessageBox.Show("You have already signed in");
-                NavigationService.Navigate(new Uri ("/PivotMainPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/PivotMainPage.xaml", UriKind.Relative));
             }
             InitializeComponent();
             rdSignUp.IsChecked = true;
-            rdSignUp.Checked+=rdSignUp_Checked;
+            rdSignUp.Checked += rdSignUp_Checked;
         }
 
         ProgressIndicator progress;
@@ -38,15 +38,15 @@ namespace QRCodeDemo
                 return;
             }
 
-             progress = new ProgressIndicator
-            {
-                IsVisible = true,
-                IsIndeterminate = true,
-                Text = "Connecting to server..."
-            };
+            progress = new ProgressIndicator
+           {
+               IsVisible = true,
+               IsIndeterminate = true,
+               Text = "Connecting to server..."
+           };
             SystemTray.SetProgressIndicator(this, progress);
 
-            if (rdSignIn.IsChecked==true)
+            if (rdSignIn.IsChecked == true)
             {
                 int si = await WebServiceHelper.SignIn(tbUsername.Text, tbPassword.Text);
 
@@ -62,7 +62,7 @@ namespace QRCodeDemo
                     IsolatedData.userInfo = uinfo;
                     IsolatedData.isSignedIn = true;
                     GetFriendUsers();
-                 
+
                 }
                 else MessageBox.Show("Sign in failed");
 
@@ -79,7 +79,7 @@ namespace QRCodeDemo
 
                 try
                 {
-                  
+
                     int su = await WebServiceHelper.SignUp(tbUsername.Text, tbPassword.Text);
                     progress.IsVisible = false;
                     progress.IsIndeterminate = false;
@@ -94,9 +94,9 @@ namespace QRCodeDemo
                 }
 
             }
-           
+
         }
-        
+
         void GetFriendUsers()
         {
             Contacts cons = new Contacts();
@@ -111,13 +111,13 @@ namespace QRCodeDemo
             cons.SearchAsync(String.Empty, FilterKind.None, "Contacts Test #1");
         }
 
-       
+
         private async void Contacts_SearchCompleted(object sender, ContactsSearchEventArgs e)
         {
             progress.IsVisible = false;
             progress.IsIndeterminate = false;
             IEnumerable<Contact> contacts = e.Results; //Here your result
-           string phoneNumbers = "";
+            string phoneNumbers = "";
             foreach (var item in contacts)
             {
                 foreach (var sdt in item.PhoneNumbers)
@@ -158,7 +158,7 @@ namespace QRCodeDemo
 
             progress.IsVisible = false;
             progress.IsIndeterminate = false;
-          FriendContactList  FriendsInfoList = FriendContactList.GetContacts(true);
+            FriendContactList FriendsInfoList = FriendContactList.GetContacts(true);
             foreach (var i in contactList)
             {
                 FriendsContactInfo fc = new FriendsContactInfo();
@@ -181,7 +181,7 @@ namespace QRCodeDemo
 
         private void rdSignUp_Checked(object sender, RoutedEventArgs e)
         {
-           
+
             tbRepassword.Visibility = Visibility.Visible;
             lbRePassword.Visibility = Visibility.Visible;
         }
@@ -196,7 +196,7 @@ namespace QRCodeDemo
         {
             if (e.Key == Key.Enter)
             {
-                btSubmit_Click(btLogIn, new RoutedEventArgs() );
+                btSubmit_Click(btLogIn, new RoutedEventArgs());
             }
         }
     }

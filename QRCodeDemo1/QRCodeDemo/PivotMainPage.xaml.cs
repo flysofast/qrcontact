@@ -95,7 +95,14 @@ namespace QRCodeDemo
 
             // Create a new menu item with the localized string from AppResources.
             ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
+            appBarMenuItem.Text = "friend list";
+            appBarMenuItem.Click += appBarMenuItem_Click;
             ApplicationBar.MenuItems.Add(appBarMenuItem);
+        }
+
+        void appBarMenuItem_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/FriendList.xaml", UriKind.Relative));
         }
 
         void appBarButton_Setting_Click(object sender, EventArgs e)
@@ -117,7 +124,7 @@ namespace QRCodeDemo
 
         void appBarButton_Scan_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/FriendList.xaml", UriKind.Relative));
+            
             if (PhotoCamera.IsCameraTypeSupported(CameraType.Primary))
             {
                 pvMain.SelectedItem = ScanItem;

@@ -137,6 +137,34 @@ namespace QRCodeDemo
 
             return tcs.Task;
         }
+
+        public static Task<bool> DeleteFriend(int myid,int[] id) //can make it an extension method if you want.
+        {
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+
+                service.Delete_nFriendsCompleted += (object sender, WebService.Delete_nFriendsCompletedEventArgs e) => //change parameter list to fit the event's delegate
+                {
+                    if (e.Error != null) tcs.TrySetResult(false);
+                    else
+                        tcs.TrySetResult((bool)e.Result);
+
+                };
+                service.Delete_nFriendsAsync(myid, id);
+                return tcs.Task;
+            }
+            else
+            {
+                MessageBox.Show("No internet connection is available!");
+                tcs.TrySetResult(false);
+            }
+
+            return tcs.Task;
+        }
+
+
+
     }
 
 

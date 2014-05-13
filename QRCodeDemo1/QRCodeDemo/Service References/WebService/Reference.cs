@@ -78,6 +78,12 @@ namespace QRCodeDemo.WebService {
         
         bool EndDeleteFriends(System.IAsyncResult result);
         
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://husc.com/Delete_nFriends", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.IAsyncResult BeginDelete_nFriends(int myid, int[] frid, System.AsyncCallback callback, object asyncState);
+        
+        bool EndDelete_nFriends(System.IAsyncResult result);
+        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://husc.com/GetContactList", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.IAsyncResult BeginGetContactList(int myid, string frPhone, System.AsyncCallback callback, object asyncState);
@@ -719,6 +725,25 @@ namespace QRCodeDemo.WebService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class Delete_nFriendsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public Delete_nFriendsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public bool Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class GetContactListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -838,6 +863,12 @@ namespace QRCodeDemo.WebService {
         
         private System.Threading.SendOrPostCallback onDeleteFriendsCompletedDelegate;
         
+        private BeginOperationDelegate onBeginDelete_nFriendsDelegate;
+        
+        private EndOperationDelegate onEndDelete_nFriendsDelegate;
+        
+        private System.Threading.SendOrPostCallback onDelete_nFriendsCompletedDelegate;
+        
         private BeginOperationDelegate onBeginGetContactListDelegate;
         
         private EndOperationDelegate onEndGetContactListDelegate;
@@ -928,6 +959,8 @@ namespace QRCodeDemo.WebService {
         public event System.EventHandler<CheckRelationshipCompletedEventArgs> CheckRelationshipCompleted;
         
         public event System.EventHandler<DeleteFriendsCompletedEventArgs> DeleteFriendsCompleted;
+        
+        public event System.EventHandler<Delete_nFriendsCompletedEventArgs> Delete_nFriendsCompleted;
         
         public event System.EventHandler<GetContactListCompletedEventArgs> GetContactListCompleted;
         
@@ -1432,6 +1465,54 @@ namespace QRCodeDemo.WebService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult QRCodeDemo.WebService.WebServiceHuscSoap.BeginDelete_nFriends(int myid, int[] frid, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginDelete_nFriends(myid, frid, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        bool QRCodeDemo.WebService.WebServiceHuscSoap.EndDelete_nFriends(System.IAsyncResult result) {
+            return base.Channel.EndDelete_nFriends(result);
+        }
+        
+        private System.IAsyncResult OnBeginDelete_nFriends(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int myid = ((int)(inValues[0]));
+            int[] frid = ((int[])(inValues[1]));
+            return ((QRCodeDemo.WebService.WebServiceHuscSoap)(this)).BeginDelete_nFriends(myid, frid, callback, asyncState);
+        }
+        
+        private object[] OnEndDelete_nFriends(System.IAsyncResult result) {
+            bool retVal = ((QRCodeDemo.WebService.WebServiceHuscSoap)(this)).EndDelete_nFriends(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnDelete_nFriendsCompleted(object state) {
+            if ((this.Delete_nFriendsCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.Delete_nFriendsCompleted(this, new Delete_nFriendsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void Delete_nFriendsAsync(int myid, int[] frid) {
+            this.Delete_nFriendsAsync(myid, frid, null);
+        }
+        
+        public void Delete_nFriendsAsync(int myid, int[] frid, object userState) {
+            if ((this.onBeginDelete_nFriendsDelegate == null)) {
+                this.onBeginDelete_nFriendsDelegate = new BeginOperationDelegate(this.OnBeginDelete_nFriends);
+            }
+            if ((this.onEndDelete_nFriendsDelegate == null)) {
+                this.onEndDelete_nFriendsDelegate = new EndOperationDelegate(this.OnEndDelete_nFriends);
+            }
+            if ((this.onDelete_nFriendsCompletedDelegate == null)) {
+                this.onDelete_nFriendsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnDelete_nFriendsCompleted);
+            }
+            base.InvokeAsync(this.onBeginDelete_nFriendsDelegate, new object[] {
+                        myid,
+                        frid}, this.onEndDelete_nFriendsDelegate, this.onDelete_nFriendsCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult QRCodeDemo.WebService.WebServiceHuscSoap.BeginGetContactList(int myid, string frPhone, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginGetContactList(myid, frPhone, callback, asyncState);
         }
@@ -1794,6 +1875,20 @@ namespace QRCodeDemo.WebService {
             public bool EndDeleteFriends(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 bool _result = ((bool)(base.EndInvoke("DeleteFriends", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginDelete_nFriends(int myid, int[] frid, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[2];
+                _args[0] = myid;
+                _args[1] = frid;
+                System.IAsyncResult _result = base.BeginInvoke("Delete_nFriends", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public bool EndDelete_nFriends(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                bool _result = ((bool)(base.EndInvoke("Delete_nFriends", _args, result)));
                 return _result;
             }
             
