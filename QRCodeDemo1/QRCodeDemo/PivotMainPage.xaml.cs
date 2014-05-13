@@ -34,11 +34,19 @@ namespace QRCodeDemo
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            string a = "";
+            try
+            {
+                a = NavigationContext.QueryString["cancel"].ToString();
 
-            if (!IsolatedData.isSignedIn && IsolatedData.LaunchCount == 1 && NavigationContext.QueryString["cancel"]!="1")
+            }
+            catch{};
+            
+            if (!IsolatedData.isSignedIn && IsolatedData.LaunchCount == 1&&a!="1")
             {
                 QRCodeDemo.App.RootFrame.Navigate(new Uri("/SignUp.xaml", UriKind.Relative));
             }
+            
             ReadFromIsolatedStorage("/Shared/ShellContent/336x336.jpg");
 
             if (pvMain.SelectedItem == ScanItem)
