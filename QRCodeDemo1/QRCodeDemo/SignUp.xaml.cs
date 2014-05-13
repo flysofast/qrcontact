@@ -18,14 +18,20 @@ namespace QRCodeDemo
     {
         public SignUp()
         {
+           
+            InitializeComponent();
+            rdSignUp.IsChecked = true;
+            rdSignUp.Checked += rdSignUp_Checked;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
             if (IsolatedData.isSignedIn)
             {
                 MessageBox.Show("You have already signed in");
                 NavigationService.Navigate(new Uri("/PivotMainPage.xaml", UriKind.Relative));
             }
-            InitializeComponent();
-            rdSignUp.IsChecked = true;
-            rdSignUp.Checked += rdSignUp_Checked;
+            base.OnNavigatedTo(e);
         }
 
         ProgressIndicator progress;
