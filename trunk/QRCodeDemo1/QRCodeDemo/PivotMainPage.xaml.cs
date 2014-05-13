@@ -34,8 +34,8 @@ namespace QRCodeDemo
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-          
-            if (!IsolatedData.isSignedIn && IsolatedData.LaunchCount == 1)
+
+            if (!IsolatedData.isSignedIn && IsolatedData.LaunchCount == 1 && NavigationContext.QueryString["cancel"]!="1")
             {
                 QRCodeDemo.App.RootFrame.Navigate(new Uri("/SignUp.xaml", UriKind.Relative));
             }

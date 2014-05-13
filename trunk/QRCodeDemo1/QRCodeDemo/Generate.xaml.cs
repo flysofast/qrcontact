@@ -445,10 +445,7 @@ namespace QRCodeDemo
 
             base.OnNavigatedTo(e);
         }
-        public void GenerateQr()
-        {
-           
-        }
+
         private void BtGenerate_Click(object sender, RoutedEventArgs e)
         {
             string name = TbName.Text, phone = TbPhone.Text, mail = TbMail.Text, add = TbAdd.Text;
@@ -473,15 +470,12 @@ namespace QRCodeDemo
                     a.website = TbWebsite.Text + "|||";
                 if (CbName.IsChecked == false && CbPhone.IsChecked == false && CbAdd.IsChecked == false && CbMail.IsChecked == false && CbWebsite.IsChecked == false && CbBirthDay.IsChecked == false)
                     MessageBox.Show("Check infor to generate !");
-
-
-               String ContactString = JsonConvert.SerializeObject(a);
-               img_qr.Source = GenerateQRCode(ContactString, 1, foregroundcl, backgroundcl);
+                String ContactString = JsonConvert.SerializeObject(a);
+                img_qr.Source = GenerateQRCode(ContactString, 1, foregroundcl, backgroundcl);
+                Img_popup.Source = GenerateQRCode(ContactString, 1, foregroundcl, backgroundcl);
 
             }
-            // MyContact b = new MyContact();
-            //b = JsonConvert.DeserializeObject<MyContact>(ContactString);
-            //MessageBox.Show(b.phone);
+
         }
 
         private static WriteableBitmap GenerateQRCode(string s, int margin, Color clforeground, Color clbackground)
@@ -510,16 +504,10 @@ namespace QRCodeDemo
         {
             // Set the page's ApplicationBar to a new instance of ApplicationBar.
             ApplicationBar = new ApplicationBar();
-
-
-
             // Create a new menu item with the localized string from AppResources.
             ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
             ApplicationBar.MenuItems.Add(appBarMenuItem);
         }
-
-
-
 
         void sv_UpdateCompleted(object sender, WebService.UpdateCompletedEventArgs e)
         {
@@ -596,7 +584,6 @@ namespace QRCodeDemo
                 TbAdd.IsEnabled = false;
         }
         #endregion
-
         #region Button Get Contact
 
         private void BtGetNameContact_Click(object sender, RoutedEventArgs e)
@@ -663,40 +650,10 @@ namespace QRCodeDemo
                 ktbutton = true;
             }
         }
-
         private void img_qr_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (mPopup == 0)
             {
-                string name = TbName.Text, phone = TbPhone.Text, mail = TbMail.Text, add = TbAdd.Text;
-                Color foregroundcl = HexColor(IsolatedData.appSettings.QrcodeColor);
-                Color backgroundcl = HexColor(IsolatedData.appSettings.BackgroundQrCode);
-                if (name == "" && phone == "" && mail == "" && add == "")
-                    MessageBox.Show("Empty");
-                else
-                {
-                    MyContact a = new MyContact();
-                    if (CbName.IsChecked == true)
-                        a.name = TbName.Text;
-                    if (CbPhone.IsChecked == true)
-                        a.phone = TbPhone.Text + "|||";
-                    if (CbAdd.IsChecked == true)
-                        a.address = TbAdd.Text + "||";
-                    if (CbMail.IsChecked == true)
-                        a.email = TbMail.Text + "|||";
-                    if (CbBirthDay.IsChecked == true)
-                        a.birthday = (DateTime)Pickerdatetime.Value;
-                    if (CbWebsite.IsChecked == true)
-                        a.website = TbWebsite.Text + "|||";
-                    if (CbName.IsChecked == false && CbPhone.IsChecked == false && CbAdd.IsChecked == false && CbMail.IsChecked == false && CbWebsite.IsChecked == false && CbBirthDay.IsChecked == false)
-                        MessageBox.Show("Check infor to generate !");
-
-                    ContactString = JsonConvert.SerializeObject(a);
-                    Img_popup.Source = GenerateQRCode(ContactString, 1, foregroundcl, backgroundcl);
-
-                }
-               
-
                 if (Img_popup.Source == null)
                     ReadFromIsolatedStorage1("/Shared/ShellContent/336x336.jpg");
                 popup_image.IsOpen = true;
@@ -707,11 +664,6 @@ namespace QRCodeDemo
                 popup_image.IsOpen = false;
                 mPopup = 0;
             }
-
-        }
-
-        private void BtOkPopup_Click(object sender, RoutedEventArgs e)
-        {
 
         }
 
