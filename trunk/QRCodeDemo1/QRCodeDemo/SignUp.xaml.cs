@@ -59,6 +59,7 @@ namespace QRCodeDemo
                     uinfo.contactData.id = si;
                     IsolatedData.userInfo = uinfo;
                     IsolatedData.isSignedIn = true;
+                    NavigationService.Navigate(new Uri ("/PivotMainPage.xaml",UriKind.Relative));
                 }
                 else MessageBox.Show("Sign in failed");
 
