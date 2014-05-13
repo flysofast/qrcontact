@@ -60,9 +60,13 @@ namespace QRCodeDemo
                     fc.nickname = ct.name;
                     fc.shareMyContactInfo = IsolatedData.appSettings.Share;
                     fc.contactInfo = ct;
+                    FriendsInfoList.AddContact(fc,false);
                 }
+
+                FriendsInfoList.SaveFriendList();
             }
 
+           
             progress.IsIndeterminate = false;
             progress.IsVisible = false;
             SortingListAZ();
