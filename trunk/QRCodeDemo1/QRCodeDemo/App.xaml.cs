@@ -57,8 +57,9 @@ namespace QRCodeDemo
                 if (!settings.Contains("appSettings"))
                     settings.Add("appSettings", a);
 
+                UserInfo ui = new UserInfo();
                 if (!settings.Contains("userInfo"))
-                    settings.Add("userInfo", null);
+                    settings.Add("userInfo", ui);
 
                 List<FriendsContactInfo> fl = new List<FriendsContactInfo>();
 

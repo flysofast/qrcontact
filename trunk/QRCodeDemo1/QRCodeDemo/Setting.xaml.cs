@@ -16,6 +16,7 @@ namespace QRCodeDemo
 
         int i=0,j = 0;
         string QrcodeColor =IsolatedData.appSettings.QrcodeColor, BackgroundCode=IsolatedData.appSettings.BackgroundQrCode;
+        bool share = IsolatedData.appSettings.Share;
         
         public Setting()
         {
@@ -49,15 +50,17 @@ namespace QRCodeDemo
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if(QrcodeColor!=null&& BackgroundCode!=null)
+            if(QrcodeColor!=null&& BackgroundCode!=null && share!=null)
             {
                 CpBacground.Color = HexColor(BackgroundCode);
                 CpQrcode.Color = HexColor(QrcodeColor);
+                CbAllowShare.IsChecked = share;
             }
             else
             {
                 CpBacground.Color = Color.FromArgb(255, 0, 0, 255);
                 CpQrcode.Color = Color.FromArgb(255,255,255,255);
+                CbAllowShare.IsChecked = true;
             }
             base.OnNavigatedTo(e);
         }

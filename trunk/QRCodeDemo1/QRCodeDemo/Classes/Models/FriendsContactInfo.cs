@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace QRCodeDemo
 {
     [DataContract]
-    class FriendsContactInfo
+  public class FriendsContactInfo
     {
          [DataMember]
         public string nickname { get; set; }
