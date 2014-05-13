@@ -25,9 +25,7 @@ namespace QRCodeDemo
             InitializeComponent();
 
             FriendsInfoList = FriendContactList.GetContacts(true);
-            Contacts cons = new Contacts();
-            cons.SearchCompleted += new EventHandler<ContactsSearchEventArgs>(Contacts_SearchCompleted);
-            cons.SearchAsync(String.Empty, FilterKind.None, "Contacts Test #1");
+            
             // CreatePersonalInfoList();
             BuildLocalizedApplicationBar();
             SortingListAZ();
@@ -36,18 +34,16 @@ namespace QRCodeDemo
         }
 
         string phoneNumbers;
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected  override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
-            MyContact[] a = await WebServiceHelper.GetToBeFriends(IsolatedData.userInfo.contactData.id, phoneNumbers, IsolatedData.appSettings.Share);
-            foreach (var i in a)
-            {
-                MessageBox.Show(i.phone);
-            }
+            base.OnNavigatedTo(e); Contacts cons = new Contacts();
+            cons.SearchCompleted += new EventHandler<ContactsSearchEventArgs>(Contacts_SearchCompleted);
+            cons.SearchAsync(String.Empty, FilterKind.None, "Contacts Test #1");
+           
 
         }
 
-        private void Contacts_SearchCompleted(object sender, ContactsSearchEventArgs e)
+        private async void Contacts_SearchCompleted(object sender, ContactsSearchEventArgs e)
         {
             IEnumerable<Contact> contacts = e.Results; //Here your result
             phoneNumbers = "";
@@ -77,6 +73,12 @@ namespace QRCodeDemo
                     res = res.Remove(index3, 1); // Use integer from IndexOf.
                 }
                 if (index1 == -1 && index2 == -1 && index3 == -1) break;
+            }
+
+            MyContact[] a = await WebServiceHelper.GetToBeFriends(IsolatedData.userInfo.contactData.id, phoneNumbers, IsolatedData.appSettings.Share);
+            foreach (var i in a)
+            {
+                MessageBox.Show(i.phone);
             }
         }
         private void CreatePersonalInfoList()
