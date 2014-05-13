@@ -69,17 +69,7 @@ namespace QRCodeDemo
             _friendList.Add(ct);
         }
 
-        public void RemoveContact(string nickname)
-        {
-            string[] names = nickname.Split(';');
-            foreach (var s in names)
-            {
-                // Goi ham xoa tren server
-                _friendList.Remove(_friendList.Single(p => p.nickname == nickname));
-
-            }
-
-        }
+       
 
         public void SaveFriendList()
         {

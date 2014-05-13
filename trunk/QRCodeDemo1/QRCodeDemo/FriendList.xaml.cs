@@ -36,9 +36,10 @@ namespace QRCodeDemo
 
         }
 
+        ProgressIndicator progress;
         async void UpdateNewInfomation()
         {
-            var progress = new ProgressIndicator
+             progress = new ProgressIndicator
              {
                  IsVisible = true,
                  IsIndeterminate = true,
@@ -181,14 +182,102 @@ namespace QRCodeDemo
             appBarButton_Delete.Click += appBarButton_Delete_Click;
             ApplicationBar.Buttons.Add(appBarButton_Delete);
 
+            ApplicationBarIconButton appBarButton_Update = new ApplicationBarIconButton(new Uri("/Assets/AppBar/refresh.png", UriKind.Relative));
+            appBarButton_Update.Text = "update";
+            appBarButton_Update.Click += appBarButton_Update_Click;
+            ApplicationBar.Buttons.Add(appBarButton_Update);
 
         }
 
+        private void appBarButton_Update_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("This action will renew your contact list entirely", "Attention", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            {
+                GetFriendUsers();
+            }
+        }
+
+        void GetFriendUsers()
+        {
+            Contacts cons = new Contacts();
+            cons.SearchCompleted += new EventHandler<ContactsSearchEventArgs>(Contacts_SearchCompleted);
+            progress = new ProgressIndicator
+            {
+                IsVisible = true,
+                IsIndeterminate = true,
+                Text = "Getting phone numbers..."
+            };
+            SystemTray.SetProgressIndicator(this, progress);
+            cons.SearchAsync(String.Empty, FilterKind.None, "Contacts Test #1");
+        }
+
+
+        private async void Contacts_SearchCompleted(object sender, ContactsSearchEventArgs e)
+        {
+            progress.IsVisible = false;
+            progress.IsIndeterminate = false;
+            IEnumerable<Contact> contacts = e.Results; //Here your result
+            string phoneNumbers = "";
+            foreach (var item in contacts)
+            {
+                foreach (var sdt in item.PhoneNumbers)
+                {
+                    phoneNumbers += sdt.PhoneNumber + "|";
+                }
+            }
+            string res = phoneNumbers;
+            while (true)
+            {
+                int index1 = res.IndexOf('(');
+                int index2 = res.IndexOf(')');
+                int index3 = res.IndexOf('-');
+                if (index1 != -1)
+                {
+                    res = res.Remove(index1, 1); // Use integer from IndexOf.
+                }
+                if (index2 != -1)
+                {
+                    res = res.Remove(index2, 1); // Use integer from IndexOf.
+                }
+                if (index3 != -1)
+                {
+                    res = res.Remove(index3, 1); // Use integer from IndexOf.
+                }
+                if (index1 == -1 && index2 == -1 && index3 == -1) break;
+            }
+
+            progress = new ProgressIndicator
+            {
+                IsVisible = true,
+                IsIndeterminate = true,
+                Text = "Connecting to server..."
+            };
+            SystemTray.SetProgressIndicator(this, progress);
+
+            MyContact[] contactList = await WebServiceHelper.GetToBeFriends(IsolatedData.userInfo.contactData.id, phoneNumbers, IsolatedData.appSettings.Share);
+
+            progress.IsVisible = false;
+            progress.IsIndeterminate = false;
+            IsolatedData.friendList = null;
+            FriendContactList FriendsInfoList = FriendContactList.GetContacts(true);
+            foreach (var i in contactList)
+            {
+                FriendsContactInfo fc = new FriendsContactInfo();
+                fc.nickname = i.name;
+                fc.shareMyContactInfo = IsolatedData.appSettings.Share;
+                fc.contactInfo = i;
+
+                FriendsInfoList.AddContact(fc, false);
+            }
+
+            FriendsInfoList.SaveFriendList();
+
+        }
         private async void appBarButton_Delete_Click(object sender, EventArgs e)
         {
             if (lstFriendList.SelectedItems.Count != 0)
             {
-                if (MessageBox.Show("Do you really want to delete these item?", "Attention", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                if (MessageBox.Show("Do you really want to delete these contacts?", "Attention", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 {
                     var selectedItems = lstFriendList.SelectedItems;
                     int[] list = new int[selectedItems.Count];

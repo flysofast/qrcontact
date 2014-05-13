@@ -17,9 +17,28 @@ namespace QRCodeDemo
         public ContactDetail()
         {
             InitializeComponent();
+            BuildLocalizedApplicationBar();
+        }
+        private void BuildLocalizedApplicationBar()
+        {
+            ApplicationBar = new ApplicationBar();
+            ApplicationBar.IsVisible = false;
 
+            ApplicationBarIconButton appBarButton_Save = new ApplicationBarIconButton(new Uri("/Assets/AppBar/save.png", UriKind.Relative));
+            appBarButton_Save.Text = "save";
+            appBarButton_Save.Click += appBarButton_Save_Click;
+            ApplicationBar.Buttons.Add(appBarButton_Save);
+
+          
+
+           
         }
 
+        private void appBarButton_Save_Click(object sender, EventArgs e)
+        {
+            đm chưa làm hàm update relationship share lên server đỏ
+            throw new NotImplementedException();
+        }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -27,6 +46,8 @@ namespace QRCodeDemo
             string nickname = Uri.UnescapeDataString(encodedValue);
             contact = FriendContactList.GetContacts(true).friendList.FirstOrDefault(p => p.nickname == nickname);
 
+            cbkShare.IsChecked = contact.shareMyContactInfo;
+            cbkShare.Checked += cbkShare_Checked;
             tbNickname.Text = contact.nickname;
             string[] values;
 
@@ -93,6 +114,11 @@ namespace QRCodeDemo
             else grdWebsite.Visibility = Visibility.Collapsed;
 
 
+        }
+
+        void cbkShare_Checked(object sender, RoutedEventArgs e)
+        {
+            ApplicationBar.IsVisible = !ApplicationBar.IsVisible;
         }
 
         private void tbPhoneNumber_Tap(object sender, System.Windows.Input.GestureEventArgs e)

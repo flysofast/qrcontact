@@ -29,7 +29,7 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <Image HorizontalAlignment="Left" Height="203" Margin="10,10,0,0" VerticalAlignment="Top" Width="203" Source="Assets/0.gif"/>
-            <TextBlock x:Name="tbNickname" HorizontalAlignment="Left" Margin="233,10,0,0" TextWrapping="Wrap" Text="A very very looooooooooooooooooooooooooooooooooong name" VerticalAlignment="Top" Width="213" Height="203" FontSize="48"/>
+            <TextBlock x:Name="tbNickname" HorizontalAlignment="Left" Margin="233,10,0,0" TextWrapping="Wrap" Text="A very very looooooooooooooooooooooooooooooooooong name" VerticalAlignment="Top" Width="213" Height="159" FontSize="48"/>
             <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Height="203" Margin="10,10,0,0" VerticalAlignment="Top" Width="203"/>
             <ScrollViewer HorizontalAlignment="Left" Height="379" Margin="10,218,0,0" VerticalAlignment="Top" Width="436">
                 <Grid>
@@ -88,6 +88,7 @@
                 </Grid>
             </ScrollViewer>
         </Grid>
+        <CheckBox x:Name="cbkShare" Content="Share my infomation" HorizontalAlignment="Left" Margin="239,163,0,0" Grid.Row="1" VerticalAlignment="Top" Width="231" FontSize="17"/>
 
     </Grid>
 
