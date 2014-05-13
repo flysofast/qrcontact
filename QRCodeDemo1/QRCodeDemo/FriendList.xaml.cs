@@ -23,136 +23,120 @@ namespace QRCodeDemo
         public FriendList()
         {
             InitializeComponent();
-
             FriendsInfoList = FriendContactList.GetContacts(true);
+            UpdateNewInfomation();
             
             // CreatePersonalInfoList();
+            
             BuildLocalizedApplicationBar();
-            SortingListAZ();
+            
 
 
         }
 
-        string phoneNumbers;
+         async void UpdateNewInfomation()
+        {
+           var progress = new ProgressIndicator
+            {
+                IsVisible = true,
+                IsIndeterminate = true,
+                Text = "Updating your contact list..."
+            };
+            SystemTray.SetProgressIndicator(this, progress);
+
+            MyContact[] cts = await WebServiceHelper.UpdateFriendsInfo(IsolatedData.userInfo.contactData.id);
+
+            foreach (var ct in cts)
+            {
+                MessageBox.Show(ct.id.ToString());
+                int index = FriendsInfoList.friendList.FindIndex(p => p.contactInfo.id == ct.id);
+                FriendsInfoList.friendList[index].contactInfo = ct;
+            }
+
+            progress.IsIndeterminate = false;
+            progress.IsVisible = false;
+            SortingListAZ();
+        }
+
         protected  override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e); Contacts cons = new Contacts();
-            cons.SearchCompleted += new EventHandler<ContactsSearchEventArgs>(Contacts_SearchCompleted);
-            cons.SearchAsync(String.Empty, FilterKind.None, "Contacts Test #1");
-           
-
+            UpdateNewInfomation();
+            base.OnNavigatedTo(e);
         }
 
-        private async void Contacts_SearchCompleted(object sender, ContactsSearchEventArgs e)
-        {
-            IEnumerable<Contact> contacts = e.Results; //Here your result
-            phoneNumbers = "";
-            foreach (var item in contacts)
-            {
-                foreach (var sdt in item.PhoneNumbers)
-                {
-                    phoneNumbers += sdt.PhoneNumber + "|";
-                }
-            }
-            string res = phoneNumbers;
-            while (true)
-            {
-                int index1 = res.IndexOf('(');
-                int index2 = res.IndexOf(')');
-                int index3 = res.IndexOf('-');
-                if (index1 != -1)
-                {
-                    res = res.Remove(index1, 1); // Use integer from IndexOf.
-                }
-                if (index2 != -1)
-                {
-                    res = res.Remove(index2, 1); // Use integer from IndexOf.
-                }
-                if (index3 != -1)
-                {
-                    res = res.Remove(index3, 1); // Use integer from IndexOf.
-                }
-                if (index1 == -1 && index2 == -1 && index3 == -1) break;
-            }
+       
+        //private void CreatePersonalInfoList()
+        //{
+        //    MyContact ct = new MyContact();
+        //    FriendsContactInfo frct = new FriendsContactInfo();
 
-            MyContact[] a = await WebServiceHelper.GetToBeFriends(IsolatedData.userInfo.contactData.id, phoneNumbers, IsolatedData.appSettings.Share);
-            foreach (var i in a)
-            {
-                MessageBox.Show(i.phone);
-            }
-        }
-        private void CreatePersonalInfoList()
-        {
-            MyContact ct = new MyContact();
-            FriendsContactInfo frct = new FriendsContactInfo();
+        //    ct.name = "name 1";
+        //    ct.phone = "phone 1|phone2|phone 3";
+        //    ct.email = "email 1|email 2|emial3";
+        //    ct.address = "add|add2";
+        //    ct.birthday = new DateTime(1992, 1, 1);
+        //    ct.website = "dấdasdassd";
 
-            ct.name = "name 1";
-            ct.phone = "phone 1|phone2|phone 3";
-            ct.email = "email 1|email 2|emial3";
-            ct.address = "add|add2";
-            ct.birthday = new DateTime(1992, 1, 1);
-            ct.website = "dấdasdassd";
+        //    frct.contactInfo = ct;
+        //    frct.nickname = "a1";
+        //    frct.shareMyContactInfo = true;
+        //    FriendsInfoList.AddContact(frct,false);
 
-            frct.contactInfo = ct;
-            frct.nickname = "a1";
-            frct.shareMyContactInfo = true;
-            FriendsInfoList.AddContact(frct);
+        //    ct = new MyContact();
+        //    ct.name = "name 2";
+        //    ct.phone = "phone 1|phone2|";
+        //    ct.email = "email 1|email 2|";
+        //    ct.address = "add|";
+        //    // ct.birthday = new DateTime(1992, 1, 1);
+        //    ct.website = "dấdasdassd";
+        //    frct = new FriendsContactInfo();
+        //    frct.contactInfo = ct;
+        //    frct.nickname = "b1";
+        //    frct.shareMyContactInfo = true;
+        //    FriendsInfoList.AddContact(frct);
 
-            ct = new MyContact();
-            ct.name = "name 2";
-            ct.phone = "phone 1|phone2|";
-            ct.email = "email 1|email 2|";
-            ct.address = "add|";
-            // ct.birthday = new DateTime(1992, 1, 1);
-            ct.website = "dấdasdassd";
-            frct = new FriendsContactInfo();
-            frct.contactInfo = ct;
-            frct.nickname = "b1";
-            frct.shareMyContactInfo = true;
-            FriendsInfoList.AddContact(frct);
+        //    ct = new MyContact();
+        //    ct.name = "name 2";
+        //    ct.phone = "phone 1|||";
+        //    ct.email = "email 1||";
+        //    ct.address = "add|";
+        //    ct.birthday = new DateTime(1992, 1, 1);
+        //    //ct.website = "dấdasdassd";
+        //    frct = new FriendsContactInfo();
+        //    frct.contactInfo = ct;
+        //    frct.nickname = "c1";
+        //    frct.shareMyContactInfo = true;
+        //    FriendsInfoList.AddContact(frct);
 
-            ct = new MyContact();
-            ct.name = "name 2";
-            ct.phone = "phone 1|||";
-            ct.email = "email 1||";
-            ct.address = "add|";
-            ct.birthday = new DateTime(1992, 1, 1);
-            //ct.website = "dấdasdassd";
-            frct = new FriendsContactInfo();
-            frct.contactInfo = ct;
-            frct.nickname = "c1";
-            frct.shareMyContactInfo = true;
-            FriendsInfoList.AddContact(frct);
+        //    ct = new MyContact();
+        //    ct.name = "name 2";
+        //    ct.phone = "phone 1|||";
+        //    ct.email = "email 1||";
+        //    //  ct.address = "add";
+        //    ct.birthday = new DateTime(1992, 1, 1);
+        //    ct.website = "dấdasdassd";
+        //    frct = new FriendsContactInfo();
+        //    frct.contactInfo = ct;
+        //    frct.nickname = "c21";
+        //    frct.shareMyContactInfo = true;
+        //    FriendsInfoList.AddContact(frct);
 
-            ct = new MyContact();
-            ct.name = "name 2";
-            ct.phone = "phone 1|||";
-            ct.email = "email 1||";
-            //  ct.address = "add";
-            ct.birthday = new DateTime(1992, 1, 1);
-            ct.website = "dấdasdassd";
-            frct = new FriendsContactInfo();
-            frct.contactInfo = ct;
-            frct.nickname = "c21";
-            frct.shareMyContactInfo = true;
-            FriendsInfoList.AddContact(frct);
+        //    ct = new MyContact();
+        //    ct.name = "name 2";
+        //    ct.phone = "phone 1|||";
+        //    // ct.email = "email 1|email 2";
+        //    ct.address = "add|";
+        //    // ct.birthday = new DateTime(1992, 1, 1);
+        //    ct.website = "dấdasdassd";
+        //    frct = new FriendsContactInfo();
+        //    frct.contactInfo = ct;
+        //    frct.nickname = "d1";
+        //    frct.shareMyContactInfo = true;
+        //    FriendsInfoList.AddContact(frct);
 
-            ct = new MyContact();
-            ct.name = "name 2";
-            ct.phone = "phone 1|||";
-            // ct.email = "email 1|email 2";
-            ct.address = "add|";
-            // ct.birthday = new DateTime(1992, 1, 1);
-            ct.website = "dấdasdassd";
-            frct = new FriendsContactInfo();
-            frct.contactInfo = ct;
-            frct.nickname = "d1";
-            frct.shareMyContactInfo = true;
-            FriendsInfoList.AddContact(frct);
+        //    FriendsInfoList.SaveFriendList();
 
-            FriendsInfoList.SaveFriendList();
-
-        }
+        //}
         private void SortingListAZ()
         {
             List<AlphaKeyGroup<FriendsContactInfo>> DataSource = AlphaKeyGroup<FriendsContactInfo>.CreateGroups(FriendsInfoList.friendList,

@@ -57,6 +57,7 @@ namespace QRCodeDemo
 
 
             TaskCompletionSource<int> tcs = new TaskCompletionSource<int>();
+           
             if (NetworkInterface.GetIsNetworkAvailable())
             {
                 service.LoginCompleted += (object sender, WebService.LoginCompletedEventArgs e) => //change parameter list to fit the event's delegate
@@ -99,6 +100,32 @@ namespace QRCodeDemo
 
                 };
                 service.GetContactFriendsListAsync(id,phones,share);
+
+                return tcs.Task;
+            }
+            else
+            {
+                MessageBox.Show("No internet connection is available!");
+                tcs.TrySetResult(null);
+            }
+
+            return tcs.Task;
+        }
+
+        public static Task<MyContact[]> UpdateFriendsInfo(int id) //can make it an extension method if you want.
+        {
+            TaskCompletionSource<MyContact[]> tcs = new TaskCompletionSource<MyContact[]>();
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+
+                service.myFriendUpdateInfoCompleted += (object sender, WebService.myFriendUpdateInfoCompletedEventArgs e) => //change parameter list to fit the event's delegate
+                {
+                    if (e.Error != null) tcs.TrySetResult(null);
+                    else
+                        tcs.TrySetResult((MyContact[])e.Result);
+
+                };
+                service.myFriendUpdateInfoAsync(id);
 
                 return tcs.Task;
             }
