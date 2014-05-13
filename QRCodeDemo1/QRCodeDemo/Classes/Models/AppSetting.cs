@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace QRCodeDemo
 {
     [DataContract]
-    class AppSetting
+   public class AppSetting
     {
         [DataMember]
         public string Language { get; set; }

@@ -27,12 +27,12 @@ namespace QRCodeDemo
     public partial class Generate : PhoneApplicationPage
     {
         string mName = "", mPhone = "", mAdd = "", mMail = "", mWebsite = "";
-        DateTime mBirthday;
+        DateTime mBirthday = DateTime.Today;
         int kt = 0, mPopup = 0;
         bool ktbutton = true;
         Color foregroundcl;
         Color backgroundcl;
-        string ContactString;
+        string ContactString = "";
         PhoneNumberChooserTask phoneNumberChooserTask;
         AddressChooserTask addressTask;
         EmailAddressChooserTask emailAddressChooserTask;
@@ -445,7 +445,10 @@ namespace QRCodeDemo
 
             base.OnNavigatedTo(e);
         }
-
+        public void GenerateQr()
+        {
+           
+        }
         private void BtGenerate_Click(object sender, RoutedEventArgs e)
         {
             string name = TbName.Text, phone = TbPhone.Text, mail = TbMail.Text, add = TbAdd.Text;
@@ -457,29 +460,30 @@ namespace QRCodeDemo
             {
                 MyContact a = new MyContact();
                 if (CbName.IsChecked == true)
-                    IsolatedData.userInfo.contactData.name = TbName.Text;
+                    a.name = TbName.Text;
                 if (CbPhone.IsChecked == true)
-                    IsolatedData.userInfo.contactData.phone = TbPhone.Text + "|||";
+                    a.phone = TbPhone.Text + "|||";
                 if (CbAdd.IsChecked == true)
-                    IsolatedData.userInfo.contactData.address = TbAdd.Text + "||";
+                    a.address = TbAdd.Text + "||";
                 if (CbMail.IsChecked == true)
-                    IsolatedData.userInfo.contactData.email = TbMail.Text + "|||";
+                    a.email = TbMail.Text + "|||";
                 if (CbBirthDay.IsChecked == true)
-                    IsolatedData.userInfo.contactData.birthday = (DateTime)Pickerdatetime.Value;
+                    a.birthday = (DateTime)Pickerdatetime.Value;
                 if (CbWebsite.IsChecked == true)
-                    IsolatedData.userInfo.contactData.website = TbWebsite.Text + "|||";
+                    a.website = TbWebsite.Text + "|||";
                 if (CbName.IsChecked == false && CbPhone.IsChecked == false && CbAdd.IsChecked == false && CbMail.IsChecked == false && CbWebsite.IsChecked == false && CbBirthDay.IsChecked == false)
                     MessageBox.Show("Check infor to generate !");
 
-                string ContactString = JsonConvert.SerializeObject(IsolatedData.userInfo.contactData);
-                // MyContact b = new MyContact();
-                //b = JsonConvert.DeserializeObject<MyContact>(ContactString);
-                //MessageBox.Show(b.phone);
-                img_qr.Source = GenerateQRCode(ContactString, 1, foregroundcl, backgroundcl);
-            }
 
+               String ContactString = JsonConvert.SerializeObject(a);
+               img_qr.Source = GenerateQRCode(ContactString, 1, foregroundcl, backgroundcl);
+
+            }
+            // MyContact b = new MyContact();
+            //b = JsonConvert.DeserializeObject<MyContact>(ContactString);
+            //MessageBox.Show(b.phone);
         }
-       
+
         private static WriteableBitmap GenerateQRCode(string s, int margin, Color clforeground, Color clbackground)
         {
             BarcodeWriter _writer = new BarcodeWriter();
@@ -514,7 +518,7 @@ namespace QRCodeDemo
             ApplicationBar.MenuItems.Add(appBarMenuItem);
         }
 
-    
+
 
 
         void sv_UpdateCompleted(object sender, WebService.UpdateCompletedEventArgs e)
@@ -664,8 +668,34 @@ namespace QRCodeDemo
         {
             if (mPopup == 0)
             {
-                //if (ContactString!=null)
-                //Img_popup.Source = GenerateQRCode(ContactString, 1, foregroundcl, backgroundcl);
+                string name = TbName.Text, phone = TbPhone.Text, mail = TbMail.Text, add = TbAdd.Text;
+                Color foregroundcl = HexColor(IsolatedData.appSettings.QrcodeColor);
+                Color backgroundcl = HexColor(IsolatedData.appSettings.BackgroundQrCode);
+                if (name == "" && phone == "" && mail == "" && add == "")
+                    MessageBox.Show("Empty");
+                else
+                {
+                    MyContact a = new MyContact();
+                    if (CbName.IsChecked == true)
+                        a.name = TbName.Text;
+                    if (CbPhone.IsChecked == true)
+                        a.phone = TbPhone.Text + "|||";
+                    if (CbAdd.IsChecked == true)
+                        a.address = TbAdd.Text + "||";
+                    if (CbMail.IsChecked == true)
+                        a.email = TbMail.Text + "|||";
+                    if (CbBirthDay.IsChecked == true)
+                        a.birthday = (DateTime)Pickerdatetime.Value;
+                    if (CbWebsite.IsChecked == true)
+                        a.website = TbWebsite.Text + "|||";
+                    if (CbName.IsChecked == false && CbPhone.IsChecked == false && CbAdd.IsChecked == false && CbMail.IsChecked == false && CbWebsite.IsChecked == false && CbBirthDay.IsChecked == false)
+                        MessageBox.Show("Check infor to generate !");
+
+                    ContactString = JsonConvert.SerializeObject(a);
+                    Img_popup.Source = GenerateQRCode(ContactString, 1, foregroundcl, backgroundcl);
+
+                }
+               
 
                 if (Img_popup.Source == null)
                     ReadFromIsolatedStorage1("/Shared/ShellContent/336x336.jpg");
