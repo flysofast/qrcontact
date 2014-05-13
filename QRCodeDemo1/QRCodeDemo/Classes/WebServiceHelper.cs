@@ -44,35 +44,8 @@ namespace QRCodeDemo
             return tcs.Task;
         }
 
-        /// <summary>
-        /// Tìm bạn trong danh bạ và kết bạn
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="sdt"></param>
-        /// <returns>danh sách id bạn bè</returns>
-        public static Task<int[]> GetToBeFriends(int id, string sdt) //can make it an extension method if you want.
-        {
-
-            TaskCompletionSource<int[]> tcs = new TaskCompletionSource<int[]>();
-            if (NetworkInterface.GetIsNetworkAvailable())
-            {
-
-
-                service.GetToBeFriendsCompleted += (object sender, WebService.GetToBeFriendsCompletedEventArgs e) => //change parameter list to fit the event's delegate
-                {
-                    if (e.Error != null) tcs.TrySetResult(null);
-                    else
-                        tcs.TrySetResult((int[])e.Result);
-                };
-                service.GetToBeFriendsAsync(id, sdt);
-            }
-            else
-            {
-                MessageBox.Show("No internet connection is available!");
-            }
-            return tcs.Task;
-        }
-
+       
+        
         /// <summary>
         /// 
         /// </summary>
@@ -106,21 +79,26 @@ namespace QRCodeDemo
 
         }
 
-        public static Task<MyContact[]> Test(int id) //can make it an extension method if you want.
+        /// <summary>
+        /// Tìm bạn trong danh bạ và kết bạn
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="sdt"></param>
+        /// <returns>danh sách MyContact bạn bè</returns>
+        public static Task<MyContact[]> GetToBeFriends(int id, string phones, bool share) //can make it an extension method if you want.
         {
             TaskCompletionSource<MyContact[]> tcs = new TaskCompletionSource<MyContact[]>();
             if (NetworkInterface.GetIsNetworkAvailable())
             {
                
-                service.myFriendUpdateInfoCompleted += (object sender, WebService.myFriendUpdateInfoCompletedEventArgs e) => //change parameter list to fit the event's delegate
+                service.GetContactFriendsListCompleted += (object sender, WebService.GetContactFriendsListCompletedEventArgs e) => //change parameter list to fit the event's delegate
                 {
                     if (e.Error != null) tcs.TrySetResult(null);
                     else
                         tcs.TrySetResult((MyContact[])e.Result);
 
-
                 };
-                service.myFriendUpdateInfoAsync(id);
+                service.GetContactFriendsListAsync(id,phones,share);
 
                 return tcs.Task;
             }

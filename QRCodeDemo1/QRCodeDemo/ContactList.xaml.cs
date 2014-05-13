@@ -29,9 +29,9 @@ namespace QRCodeDemo
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Contacts cons = new Contacts();
-            //cons.SearchCompleted += new EventHandler<ContactsSearchEventArgs>(Contacts_SearchCompleted);
-            //cons.SearchAsync(String.Empty, FilterKind.None, "Contacts Test #1");
+            Contacts cons = new Contacts();
+            cons.SearchCompleted += new EventHandler<ContactsSearchEventArgs>(Contacts_SearchCompleted);
+            cons.SearchAsync(String.Empty, FilterKind.None, "Contacts Test #1");
 
 
 
@@ -60,7 +60,7 @@ namespace QRCodeDemo
                // everynames += (item.PhoneNumbers.Count() > 0 ? (item.PhoneNumbers.FirstOrDefault()).PhoneNumber + ";" : "");
                 foreach (var sdt in item.PhoneNumbers)
                 {
-                    everynames += sdt.PhoneNumber + ";";
+                    everynames += sdt.PhoneNumber + "|";
                    
                 }
             }

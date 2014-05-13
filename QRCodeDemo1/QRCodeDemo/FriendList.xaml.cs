@@ -11,26 +11,74 @@ using QRCodeDemo.WebService;
 using Newtonsoft.Json;
 using System.Windows.Media;
 using Microsoft.Phone.Tasks;
+using Microsoft.Phone.UserData;
 
 namespace QRCodeDemo
 {
     public partial class FriendList : PhoneApplicationPage
     {
-       
 
-         FriendContactList FriendsInfoList;
+
+        FriendContactList FriendsInfoList;
         public FriendList()
         {
             InitializeComponent();
-           
+
             FriendsInfoList = FriendContactList.GetContacts(true);
-         // CreatePersonalInfoList();
+            Contacts cons = new Contacts();
+            cons.SearchCompleted += new EventHandler<ContactsSearchEventArgs>(Contacts_SearchCompleted);
+            cons.SearchAsync(String.Empty, FilterKind.None, "Contacts Test #1");
+            // CreatePersonalInfoList();
             BuildLocalizedApplicationBar();
             SortingListAZ();
 
-            
+
         }
 
+        string phoneNumbers;
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            MyContact[] a = await WebServiceHelper.GetToBeFriends(IsolatedData.userInfo.contactData.id, phoneNumbers, IsolatedData.appSettings.Share);
+            foreach (var i in a)
+            {
+                MessageBox.Show(i.phone);
+            }
+
+        }
+
+        private void Contacts_SearchCompleted(object sender, ContactsSearchEventArgs e)
+        {
+            IEnumerable<Contact> contacts = e.Results; //Here your result
+            phoneNumbers = "";
+            foreach (var item in contacts)
+            {
+                foreach (var sdt in item.PhoneNumbers)
+                {
+                    phoneNumbers += sdt.PhoneNumber + "|";
+                }
+            }
+            string res = phoneNumbers;
+            while (true)
+            {
+                int index1 = res.IndexOf('(');
+                int index2 = res.IndexOf(')');
+                int index3 = res.IndexOf('-');
+                if (index1 != -1)
+                {
+                    res = res.Remove(index1, 1); // Use integer from IndexOf.
+                }
+                if (index2 != -1)
+                {
+                    res = res.Remove(index2, 1); // Use integer from IndexOf.
+                }
+                if (index3 != -1)
+                {
+                    res = res.Remove(index3, 1); // Use integer from IndexOf.
+                }
+                if (index1 == -1 && index2 == -1 && index3 == -1) break;
+            }
+        }
         private void CreatePersonalInfoList()
         {
             MyContact ct = new MyContact();
@@ -48,12 +96,12 @@ namespace QRCodeDemo
             frct.shareMyContactInfo = true;
             FriendsInfoList.AddContact(frct);
 
-           ct = new MyContact();
+            ct = new MyContact();
             ct.name = "name 2";
             ct.phone = "phone 1|phone2|";
             ct.email = "email 1|email 2|";
             ct.address = "add|";
-           // ct.birthday = new DateTime(1992, 1, 1);
+            // ct.birthday = new DateTime(1992, 1, 1);
             ct.website = "dấdasdassd";
             frct = new FriendsContactInfo();
             frct.contactInfo = ct;
@@ -66,7 +114,7 @@ namespace QRCodeDemo
             ct.phone = "phone 1|||";
             ct.email = "email 1||";
             ct.address = "add|";
-             ct.birthday = new DateTime(1992, 1, 1);
+            ct.birthday = new DateTime(1992, 1, 1);
             //ct.website = "dấdasdassd";
             frct = new FriendsContactInfo();
             frct.contactInfo = ct;
@@ -78,8 +126,8 @@ namespace QRCodeDemo
             ct.name = "name 2";
             ct.phone = "phone 1|||";
             ct.email = "email 1||";
-          //  ct.address = "add";
-             ct.birthday = new DateTime(1992, 1, 1);
+            //  ct.address = "add";
+            ct.birthday = new DateTime(1992, 1, 1);
             ct.website = "dấdasdassd";
             frct = new FriendsContactInfo();
             frct.contactInfo = ct;
@@ -90,7 +138,7 @@ namespace QRCodeDemo
             ct = new MyContact();
             ct.name = "name 2";
             ct.phone = "phone 1|||";
-           // ct.email = "email 1|email 2";
+            // ct.email = "email 1|email 2";
             ct.address = "add|";
             // ct.birthday = new DateTime(1992, 1, 1);
             ct.website = "dấdasdassd";
@@ -101,7 +149,7 @@ namespace QRCodeDemo
             FriendsInfoList.AddContact(frct);
 
             FriendsInfoList.SaveFriendList();
-           
+
         }
         private void SortingListAZ()
         {
@@ -133,7 +181,7 @@ namespace QRCodeDemo
 
         void appBarButton_Save_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/ScanPage.xaml",UriKind.Relative));
+            NavigationService.Navigate(new Uri("/ScanPage.xaml", UriKind.Relative));
         }
 
         void appBarButton_Select_Click(object sender, EventArgs e)
@@ -156,26 +204,26 @@ namespace QRCodeDemo
             phoneCallTask.DisplayName = tbName.Text;
             phoneCallTask.Show();
             grdContact_ManipulationCompleted(sender, new System.Windows.Input.ManipulationCompletedEventArgs());
-            
-            
+
+
         }
 
-        
+
 
         private void grdContact_ManipulationCompleted(object sender, System.Windows.Input.ManipulationCompletedEventArgs e)
         {
-             Grid gr = (Grid)sender;
-             gr.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
-             TextBlock tbCall = gr.FindName("CallSymbol") as TextBlock;
-             tbCall.Visibility = Visibility.Collapsed;
+            Grid gr = (Grid)sender;
+            gr.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
+            TextBlock tbCall = gr.FindName("CallSymbol") as TextBlock;
+            tbCall.Visibility = Visibility.Collapsed;
         }
-       
+
 
         private void grdContact_ManipulationDelta(object sender, System.Windows.Input.ManipulationDeltaEventArgs e)
         {
-            
-            double tran = e.CumulativeManipulation.Translation.X*0.5;
-           // if (tran > 255) tran = 255;
+
+            double tran = e.CumulativeManipulation.Translation.X * 0.5;
+            // if (tran > 255) tran = 255;
 
             Grid gr = (Grid)sender;
             gr.Background = new SolidColorBrush(Color.FromArgb((byte)tran, 20, 107, 12));
@@ -187,14 +235,14 @@ namespace QRCodeDemo
             if (tran > 150)
             {
                 string encodedValue = Uri.EscapeDataString(tbName.Text);
-                NavigationService.Navigate(new Uri("/ContactDetail.xaml?nick="+encodedValue, UriKind.Relative));
+                NavigationService.Navigate(new Uri("/ContactDetail.xaml?nick=" + encodedValue, UriKind.Relative));
                 grdContact_ManipulationCompleted(sender, new System.Windows.Input.ManipulationCompletedEventArgs());
             }
-            
+
         }
 
-      
 
-       
+
+
     }
 }

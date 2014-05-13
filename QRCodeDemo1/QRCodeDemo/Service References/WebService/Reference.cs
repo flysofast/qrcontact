@@ -96,17 +96,29 @@ namespace QRCodeDemo.WebService {
         
         bool EndDeleteFriends(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://husc.com/GetToBeFriends", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://husc.com/GetContactList", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.IAsyncResult BeginGetToBeFriends(int myid, string frPhone, System.AsyncCallback callback, object asyncState);
+        System.IAsyncResult BeginGetContactList(int myid, string frPhone, System.AsyncCallback callback, object asyncState);
         
-        int[] EndGetToBeFriends(System.IAsyncResult result);
+        int[] EndGetContactList(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://husc.com/test", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.IAsyncResult Begintest(int id, System.AsyncCallback callback, object asyncState);
+        
+        QRCodeDemo.WebService.MyContact[] Endtest(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://husc.com/myFriendUpdateInfo", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.IAsyncResult BeginmyFriendUpdateInfo(int myId, System.AsyncCallback callback, object asyncState);
         
         QRCodeDemo.WebService.MyContact[] EndmyFriendUpdateInfo(System.IAsyncResult result);
+        
+        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://husc.com/GetContactFriendsList", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.IAsyncResult BeginGetContactFriendsList(int myid, string frPhone, bool share, System.AsyncCallback callback, object asyncState);
+        
+        QRCodeDemo.WebService.MyContact[] EndGetContactFriendsList(System.IAsyncResult result);
     }
     
     /// <remarks/>
@@ -788,11 +800,11 @@ namespace QRCodeDemo.WebService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetToBeFriendsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetContactListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        public GetToBeFriendsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        public GetContactListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -807,11 +819,49 @@ namespace QRCodeDemo.WebService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class testCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public testCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public QRCodeDemo.WebService.MyContact[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((QRCodeDemo.WebService.MyContact[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class myFriendUpdateInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
         public myFriendUpdateInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public QRCodeDemo.WebService.MyContact[] Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((QRCodeDemo.WebService.MyContact[])(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GetContactFriendsListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public GetContactFriendsListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -906,17 +956,29 @@ namespace QRCodeDemo.WebService {
         
         private System.Threading.SendOrPostCallback onDeleteFriendsCompletedDelegate;
         
-        private BeginOperationDelegate onBeginGetToBeFriendsDelegate;
+        private BeginOperationDelegate onBeginGetContactListDelegate;
         
-        private EndOperationDelegate onEndGetToBeFriendsDelegate;
+        private EndOperationDelegate onEndGetContactListDelegate;
         
-        private System.Threading.SendOrPostCallback onGetToBeFriendsCompletedDelegate;
+        private System.Threading.SendOrPostCallback onGetContactListCompletedDelegate;
+        
+        private BeginOperationDelegate onBegintestDelegate;
+        
+        private EndOperationDelegate onEndtestDelegate;
+        
+        private System.Threading.SendOrPostCallback ontestCompletedDelegate;
         
         private BeginOperationDelegate onBeginmyFriendUpdateInfoDelegate;
         
         private EndOperationDelegate onEndmyFriendUpdateInfoDelegate;
         
         private System.Threading.SendOrPostCallback onmyFriendUpdateInfoCompletedDelegate;
+        
+        private BeginOperationDelegate onBeginGetContactFriendsListDelegate;
+        
+        private EndOperationDelegate onEndGetContactFriendsListDelegate;
+        
+        private System.Threading.SendOrPostCallback onGetContactFriendsListCompletedDelegate;
         
         private BeginOperationDelegate onBeginOpenDelegate;
         
@@ -997,9 +1059,13 @@ namespace QRCodeDemo.WebService {
         
         public event System.EventHandler<DeleteFriendsCompletedEventArgs> DeleteFriendsCompleted;
         
-        public event System.EventHandler<GetToBeFriendsCompletedEventArgs> GetToBeFriendsCompleted;
+        public event System.EventHandler<GetContactListCompletedEventArgs> GetContactListCompleted;
+        
+        public event System.EventHandler<testCompletedEventArgs> testCompleted;
         
         public event System.EventHandler<myFriendUpdateInfoCompletedEventArgs> myFriendUpdateInfoCompleted;
+        
+        public event System.EventHandler<GetContactFriendsListCompletedEventArgs> GetContactFriendsListCompleted;
         
         public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> OpenCompleted;
         
@@ -1638,51 +1704,97 @@ namespace QRCodeDemo.WebService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult QRCodeDemo.WebService.WebServiceHuscSoap.BeginGetToBeFriends(int myid, string frPhone, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetToBeFriends(myid, frPhone, callback, asyncState);
+        System.IAsyncResult QRCodeDemo.WebService.WebServiceHuscSoap.BeginGetContactList(int myid, string frPhone, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetContactList(myid, frPhone, callback, asyncState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        int[] QRCodeDemo.WebService.WebServiceHuscSoap.EndGetToBeFriends(System.IAsyncResult result) {
-            return base.Channel.EndGetToBeFriends(result);
+        int[] QRCodeDemo.WebService.WebServiceHuscSoap.EndGetContactList(System.IAsyncResult result) {
+            return base.Channel.EndGetContactList(result);
         }
         
-        private System.IAsyncResult OnBeginGetToBeFriends(object[] inValues, System.AsyncCallback callback, object asyncState) {
+        private System.IAsyncResult OnBeginGetContactList(object[] inValues, System.AsyncCallback callback, object asyncState) {
             int myid = ((int)(inValues[0]));
             string frPhone = ((string)(inValues[1]));
-            return ((QRCodeDemo.WebService.WebServiceHuscSoap)(this)).BeginGetToBeFriends(myid, frPhone, callback, asyncState);
+            return ((QRCodeDemo.WebService.WebServiceHuscSoap)(this)).BeginGetContactList(myid, frPhone, callback, asyncState);
         }
         
-        private object[] OnEndGetToBeFriends(System.IAsyncResult result) {
-            int[] retVal = ((QRCodeDemo.WebService.WebServiceHuscSoap)(this)).EndGetToBeFriends(result);
+        private object[] OnEndGetContactList(System.IAsyncResult result) {
+            int[] retVal = ((QRCodeDemo.WebService.WebServiceHuscSoap)(this)).EndGetContactList(result);
             return new object[] {
                     retVal};
         }
         
-        private void OnGetToBeFriendsCompleted(object state) {
-            if ((this.GetToBeFriendsCompleted != null)) {
+        private void OnGetContactListCompleted(object state) {
+            if ((this.GetContactListCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetToBeFriendsCompleted(this, new GetToBeFriendsCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+                this.GetContactListCompleted(this, new GetContactListCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
-        public void GetToBeFriendsAsync(int myid, string frPhone) {
-            this.GetToBeFriendsAsync(myid, frPhone, null);
+        public void GetContactListAsync(int myid, string frPhone) {
+            this.GetContactListAsync(myid, frPhone, null);
         }
         
-        public void GetToBeFriendsAsync(int myid, string frPhone, object userState) {
-            if ((this.onBeginGetToBeFriendsDelegate == null)) {
-                this.onBeginGetToBeFriendsDelegate = new BeginOperationDelegate(this.OnBeginGetToBeFriends);
+        public void GetContactListAsync(int myid, string frPhone, object userState) {
+            if ((this.onBeginGetContactListDelegate == null)) {
+                this.onBeginGetContactListDelegate = new BeginOperationDelegate(this.OnBeginGetContactList);
             }
-            if ((this.onEndGetToBeFriendsDelegate == null)) {
-                this.onEndGetToBeFriendsDelegate = new EndOperationDelegate(this.OnEndGetToBeFriends);
+            if ((this.onEndGetContactListDelegate == null)) {
+                this.onEndGetContactListDelegate = new EndOperationDelegate(this.OnEndGetContactList);
             }
-            if ((this.onGetToBeFriendsCompletedDelegate == null)) {
-                this.onGetToBeFriendsCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetToBeFriendsCompleted);
+            if ((this.onGetContactListCompletedDelegate == null)) {
+                this.onGetContactListCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetContactListCompleted);
             }
-            base.InvokeAsync(this.onBeginGetToBeFriendsDelegate, new object[] {
+            base.InvokeAsync(this.onBeginGetContactListDelegate, new object[] {
                         myid,
-                        frPhone}, this.onEndGetToBeFriendsDelegate, this.onGetToBeFriendsCompletedDelegate, userState);
+                        frPhone}, this.onEndGetContactListDelegate, this.onGetContactListCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult QRCodeDemo.WebService.WebServiceHuscSoap.Begintest(int id, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.Begintest(id, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        QRCodeDemo.WebService.MyContact[] QRCodeDemo.WebService.WebServiceHuscSoap.Endtest(System.IAsyncResult result) {
+            return base.Channel.Endtest(result);
+        }
+        
+        private System.IAsyncResult OnBegintest(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int id = ((int)(inValues[0]));
+            return ((QRCodeDemo.WebService.WebServiceHuscSoap)(this)).Begintest(id, callback, asyncState);
+        }
+        
+        private object[] OnEndtest(System.IAsyncResult result) {
+            QRCodeDemo.WebService.MyContact[] retVal = ((QRCodeDemo.WebService.WebServiceHuscSoap)(this)).Endtest(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OntestCompleted(object state) {
+            if ((this.testCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.testCompleted(this, new testCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void testAsync(int id) {
+            this.testAsync(id, null);
+        }
+        
+        public void testAsync(int id, object userState) {
+            if ((this.onBegintestDelegate == null)) {
+                this.onBegintestDelegate = new BeginOperationDelegate(this.OnBegintest);
+            }
+            if ((this.onEndtestDelegate == null)) {
+                this.onEndtestDelegate = new EndOperationDelegate(this.OnEndtest);
+            }
+            if ((this.ontestCompletedDelegate == null)) {
+                this.ontestCompletedDelegate = new System.Threading.SendOrPostCallback(this.OntestCompleted);
+            }
+            base.InvokeAsync(this.onBegintestDelegate, new object[] {
+                        id}, this.onEndtestDelegate, this.ontestCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1729,6 +1841,56 @@ namespace QRCodeDemo.WebService {
             }
             base.InvokeAsync(this.onBeginmyFriendUpdateInfoDelegate, new object[] {
                         myId}, this.onEndmyFriendUpdateInfoDelegate, this.onmyFriendUpdateInfoCompletedDelegate, userState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.IAsyncResult QRCodeDemo.WebService.WebServiceHuscSoap.BeginGetContactFriendsList(int myid, string frPhone, bool share, System.AsyncCallback callback, object asyncState) {
+            return base.Channel.BeginGetContactFriendsList(myid, frPhone, share, callback, asyncState);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        QRCodeDemo.WebService.MyContact[] QRCodeDemo.WebService.WebServiceHuscSoap.EndGetContactFriendsList(System.IAsyncResult result) {
+            return base.Channel.EndGetContactFriendsList(result);
+        }
+        
+        private System.IAsyncResult OnBeginGetContactFriendsList(object[] inValues, System.AsyncCallback callback, object asyncState) {
+            int myid = ((int)(inValues[0]));
+            string frPhone = ((string)(inValues[1]));
+            bool share = ((bool)(inValues[2]));
+            return ((QRCodeDemo.WebService.WebServiceHuscSoap)(this)).BeginGetContactFriendsList(myid, frPhone, share, callback, asyncState);
+        }
+        
+        private object[] OnEndGetContactFriendsList(System.IAsyncResult result) {
+            QRCodeDemo.WebService.MyContact[] retVal = ((QRCodeDemo.WebService.WebServiceHuscSoap)(this)).EndGetContactFriendsList(result);
+            return new object[] {
+                    retVal};
+        }
+        
+        private void OnGetContactFriendsListCompleted(object state) {
+            if ((this.GetContactFriendsListCompleted != null)) {
+                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
+                this.GetContactFriendsListCompleted(this, new GetContactFriendsListCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            }
+        }
+        
+        public void GetContactFriendsListAsync(int myid, string frPhone, bool share) {
+            this.GetContactFriendsListAsync(myid, frPhone, share, null);
+        }
+        
+        public void GetContactFriendsListAsync(int myid, string frPhone, bool share, object userState) {
+            if ((this.onBeginGetContactFriendsListDelegate == null)) {
+                this.onBeginGetContactFriendsListDelegate = new BeginOperationDelegate(this.OnBeginGetContactFriendsList);
+            }
+            if ((this.onEndGetContactFriendsListDelegate == null)) {
+                this.onEndGetContactFriendsListDelegate = new EndOperationDelegate(this.OnEndGetContactFriendsList);
+            }
+            if ((this.onGetContactFriendsListCompletedDelegate == null)) {
+                this.onGetContactFriendsListCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetContactFriendsListCompleted);
+            }
+            base.InvokeAsync(this.onBeginGetContactFriendsListDelegate, new object[] {
+                        myid,
+                        frPhone,
+                        share}, this.onEndGetContactFriendsListDelegate, this.onGetContactFriendsListCompletedDelegate, userState);
         }
         
         private System.IAsyncResult OnBeginOpen(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -1993,17 +2155,30 @@ namespace QRCodeDemo.WebService {
                 return _result;
             }
             
-            public System.IAsyncResult BeginGetToBeFriends(int myid, string frPhone, System.AsyncCallback callback, object asyncState) {
+            public System.IAsyncResult BeginGetContactList(int myid, string frPhone, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[2];
                 _args[0] = myid;
                 _args[1] = frPhone;
-                System.IAsyncResult _result = base.BeginInvoke("GetToBeFriends", _args, callback, asyncState);
+                System.IAsyncResult _result = base.BeginInvoke("GetContactList", _args, callback, asyncState);
                 return _result;
             }
             
-            public int[] EndGetToBeFriends(System.IAsyncResult result) {
+            public int[] EndGetContactList(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                int[] _result = ((int[])(base.EndInvoke("GetToBeFriends", _args, result)));
+                int[] _result = ((int[])(base.EndInvoke("GetContactList", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult Begintest(int id, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[1];
+                _args[0] = id;
+                System.IAsyncResult _result = base.BeginInvoke("test", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public QRCodeDemo.WebService.MyContact[] Endtest(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                QRCodeDemo.WebService.MyContact[] _result = ((QRCodeDemo.WebService.MyContact[])(base.EndInvoke("test", _args, result)));
                 return _result;
             }
             
@@ -2017,6 +2192,21 @@ namespace QRCodeDemo.WebService {
             public QRCodeDemo.WebService.MyContact[] EndmyFriendUpdateInfo(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 QRCodeDemo.WebService.MyContact[] _result = ((QRCodeDemo.WebService.MyContact[])(base.EndInvoke("myFriendUpdateInfo", _args, result)));
+                return _result;
+            }
+            
+            public System.IAsyncResult BeginGetContactFriendsList(int myid, string frPhone, bool share, System.AsyncCallback callback, object asyncState) {
+                object[] _args = new object[3];
+                _args[0] = myid;
+                _args[1] = frPhone;
+                _args[2] = share;
+                System.IAsyncResult _result = base.BeginInvoke("GetContactFriendsList", _args, callback, asyncState);
+                return _result;
+            }
+            
+            public QRCodeDemo.WebService.MyContact[] EndGetContactFriendsList(System.IAsyncResult result) {
+                object[] _args = new object[0];
+                QRCodeDemo.WebService.MyContact[] _result = ((QRCodeDemo.WebService.MyContact[])(base.EndInvoke("GetContactFriendsList", _args, result)));
                 return _result;
             }
         }
