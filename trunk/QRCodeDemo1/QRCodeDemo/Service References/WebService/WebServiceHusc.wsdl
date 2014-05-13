@@ -202,6 +202,26 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Delete_nFriends">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="myid" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="frid" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Delete_nFriendsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Delete_nFriendsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetContactList">
         <s:complexType>
           <s:sequence>
@@ -217,11 +237,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ArrayOfInt">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="myFriendUpdateInfo">
         <s:complexType>
           <s:sequence>
@@ -324,6 +339,12 @@
   </wsdl:message>
   <wsdl:message name="DeleteFriendsSoapOut">
     <wsdl:part name="parameters" element="tns:DeleteFriendsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Delete_nFriendsSoapIn">
+    <wsdl:part name="parameters" element="tns:Delete_nFriends" />
+  </wsdl:message>
+  <wsdl:message name="Delete_nFriendsSoapOut">
+    <wsdl:part name="parameters" element="tns:Delete_nFriendsResponse" />
   </wsdl:message>
   <wsdl:message name="GetContactListSoapIn">
     <wsdl:part name="parameters" element="tns:GetContactList" />
@@ -562,6 +583,10 @@
       <wsdl:input message="tns:DeleteFriendsSoapIn" />
       <wsdl:output message="tns:DeleteFriendsSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Delete_nFriends">
+      <wsdl:input message="tns:Delete_nFriendsSoapIn" />
+      <wsdl:output message="tns:Delete_nFriendsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetContactList">
       <wsdl:input message="tns:GetContactListSoapIn" />
       <wsdl:output message="tns:GetContactListSoapOut" />
@@ -767,6 +792,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Delete_nFriends">
+      <soap:operation soapAction="http://husc.com/Delete_nFriends" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetContactList">
       <soap:operation soapAction="http://husc.com/GetContactList" style="document" />
       <wsdl:input>
@@ -880,6 +914,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteFriends">
       <soap12:operation soapAction="http://husc.com/DeleteFriends" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete_nFriends">
+      <soap12:operation soapAction="http://husc.com/Delete_nFriends" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

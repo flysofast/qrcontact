@@ -12,6 +12,8 @@ using Newtonsoft.Json;
 using System.Windows.Media;
 using Microsoft.Phone.Tasks;
 using Microsoft.Phone.UserData;
+using QRCodeDemo.Resources;
+using System.IO.IsolatedStorage;
 
 namespace QRCodeDemo
 {
@@ -25,23 +27,23 @@ namespace QRCodeDemo
             InitializeComponent();
             FriendsInfoList = FriendContactList.GetContacts(true);
             UpdateNewInfomation();
-            
+
             // CreatePersonalInfoList();
-            
+
             BuildLocalizedApplicationBar();
-            
+
 
 
         }
 
-         async void UpdateNewInfomation()
+        async void UpdateNewInfomation()
         {
-           var progress = new ProgressIndicator
-            {
-                IsVisible = true,
-                IsIndeterminate = true,
-                Text = "Updating your contact list..."
-            };
+            var progress = new ProgressIndicator
+             {
+                 IsVisible = true,
+                 IsIndeterminate = true,
+                 Text = "Updating your contact list..."
+             };
             SystemTray.SetProgressIndicator(this, progress);
 
             MyContact[] cts = await WebServiceHelper.UpdateFriendsInfo(IsolatedData.userInfo.contactData.id);
@@ -50,7 +52,15 @@ namespace QRCodeDemo
             {
                 MessageBox.Show(ct.id.ToString());
                 int index = FriendsInfoList.friendList.FindIndex(p => p.contactInfo.id == ct.id);
-                FriendsInfoList.friendList[index].contactInfo = ct;
+                if (index != -1)
+                    FriendsInfoList.friendList[index].contactInfo = ct;
+                else
+                {
+                    FriendsContactInfo fc = new FriendsContactInfo();
+                    fc.nickname = ct.name;
+                    fc.shareMyContactInfo = IsolatedData.appSettings.Share;
+                    fc.contactInfo = ct;
+                }
             }
 
             progress.IsIndeterminate = false;
@@ -58,13 +68,13 @@ namespace QRCodeDemo
             SortingListAZ();
         }
 
-        protected  override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             UpdateNewInfomation();
             base.OnNavigatedTo(e);
         }
 
-       
+
         //private void CreatePersonalInfoList()
         //{
         //    MyContact ct = new MyContact();
@@ -162,7 +172,44 @@ namespace QRCodeDemo
             appBarButton_Save.Click += appBarButton_Save_Click;
             ApplicationBar.Buttons.Add(appBarButton_Save);
 
+            ApplicationBarIconButton appBarButton_Delete = new ApplicationBarIconButton(new Uri("/Toolkit.Content/ApplicationBar.Delete.png", UriKind.Relative));
+            appBarButton_Delete.Text = "delete";
+            appBarButton_Delete.Click += appBarButton_Delete_Click;
+            ApplicationBar.Buttons.Add(appBarButton_Delete);
 
+
+        }
+
+        private async void appBarButton_Delete_Click(object sender, EventArgs e)
+        {
+            if (lstFriendList.SelectedItems.Count != 0)
+            {
+                if (MessageBox.Show("Do you really want to delete these item?", "Attention", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                {
+                    var selectedItems = lstFriendList.SelectedItems;
+                    int[] list = new int[selectedItems.Count];
+                    int i = 0;
+                    foreach (FriendsContactInfo item in selectedItems)
+                    {
+                        list[i] = item.contactInfo.id;
+                        i++;
+                    }
+
+                    bool del = await WebServiceHelper.DeleteFriend(IsolatedData.userInfo.contactData.id, list);
+                    if (del)
+                    {
+                        MessageBox.Show("Deleted succcessfully");
+                        FriendsInfoList.friendList.RemoveAll(p => list.Contains(p.contactInfo.id));
+                        FriendsInfoList.SaveFriendList();
+                    }
+                    else
+                        MessageBox.Show("Deleted failed");
+
+                    UpdateNewInfomation();
+                }
+            }
+            else
+                MessageBox.Show("You haven't chosen any contact!");
         }
 
         void appBarButton_Save_Click(object sender, EventArgs e)
