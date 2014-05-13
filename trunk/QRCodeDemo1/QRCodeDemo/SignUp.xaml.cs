@@ -175,7 +175,7 @@ namespace QRCodeDemo
         }
         private void BtSkip_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/PivotMainPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/PivotMainPage.xaml?cancel="+"1", UriKind.Relative));
 
         }
 
