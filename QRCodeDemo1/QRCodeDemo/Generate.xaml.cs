@@ -26,11 +26,12 @@ namespace QRCodeDemo
 {
     public partial class Generate : PhoneApplicationPage
     {
-        string mName, mPhone, mAdd, mMail;
+        string mName = "", mPhone = "", mAdd = "", mMail = "";
         int kt = 0, mPopup = 0;
         bool ktbutton = true;
         Color foregroundcl;
         Color backgroundcl;
+        string ContactString;
         PhoneNumberChooserTask phoneNumberChooserTask;
         AddressChooserTask addressTask;
         EmailAddressChooserTask emailAddressChooserTask;
@@ -69,7 +70,7 @@ namespace QRCodeDemo
                 if (CbName.IsChecked == false && CbPhone.IsChecked == false && CbAdd.IsChecked == false && CbMail.IsChecked == false)
                     MessageBox.Show("Check infor to generate !");
 
-                string ContactString = JsonConvert.SerializeObject(a);
+                ContactString = JsonConvert.SerializeObject(a);
                 IsolatedStorageFile IsolatedSaveText = IsolatedStorageFile.GetUserStoreForApplication();
 
                 //create new file
@@ -94,26 +95,35 @@ namespace QRCodeDemo
         public void readtext()
         {
             IsolatedStorageFile IsolatedReadFile = IsolatedStorageFile.GetUserStoreForApplication();
-            IsolatedStorageFileStream fileStream = IsolatedReadFile.OpenFile("myFile.txt", FileMode.Open, FileAccess.Read);
-            using (StreamReader reader = new StreamReader(fileStream))
+            if (IsolatedReadFile.FileExists("myFile.txt"))
             {
-                MyContact b = new MyContact();
+                IsolatedStorageFileStream fileStream = IsolatedReadFile.OpenFile("myFile.txt", FileMode.Open, FileAccess.Read);
 
-                string ContactString = reader.ReadLine();
-                b = JsonConvert.DeserializeObject<MyContact>(ContactString);
+                using (StreamReader reader = new StreamReader(fileStream))
+                {
+                    MyContact b = new MyContact();
 
-                //String[] s1 = st1.Split(':');
-                mName = b.name;
-                mPhone = b.phone;
-                mMail = b.email;
-                mAdd = b.address;
-                string st2 = reader.ReadLine();
-                string[] s2 = st2.Split(':');
-                CbName.IsChecked = Boolean.Parse(s2[0].ToString());
-                CbPhone.IsChecked = Boolean.Parse(s2[1].ToString());
-                CbMail.IsChecked = Boolean.Parse(s2[2].ToString());
-                CbAdd.IsChecked = Boolean.Parse(s2[3].ToString());
-                CbShare.IsChecked = Boolean.Parse(s2[4].ToString());
+                    string ContactString = reader.ReadLine();
+                    b = JsonConvert.DeserializeObject<MyContact>(ContactString);
+
+                    //String[] s1 = st1.Split(':');
+                    mName = b.name;
+                    mPhone = b.phone;
+                    mMail = b.email;
+                    mAdd = b.address;
+                    string st2 = reader.ReadLine();
+                    string[] s2 = st2.Split(':');
+                    CbName.IsChecked = Boolean.Parse(s2[0].ToString());
+                    CbPhone.IsChecked = Boolean.Parse(s2[1].ToString());
+                    CbMail.IsChecked = Boolean.Parse(s2[2].ToString());
+                    CbAdd.IsChecked = Boolean.Parse(s2[3].ToString());
+                    CbShare.IsChecked = Boolean.Parse(s2[4].ToString());
+
+                }
+            }
+
+            else
+            {
 
             }
         }
@@ -214,9 +224,6 @@ namespace QRCodeDemo
                 //emailComposeTask.Show();
             }
         }
-
-
-
         private void reset()
         {
             TbAdd.Text = "";
@@ -229,9 +236,6 @@ namespace QRCodeDemo
             CbMail.IsChecked = true;
             img_qr.Source = null;
         }
-
-
-
         void contacts_SearchCompleted(object sender, ContactsSearchEventArgs e)
         {
             foreach (var result in e.Results)
@@ -325,7 +329,6 @@ namespace QRCodeDemo
                 //b = JsonConvert.DeserializeObject<MyContact>(ContactString);
                 //MessageBox.Show(b.phone);
                 img_qr.Source = GenerateQRCode(ContactString, 1, foregroundcl, backgroundcl);
-                Img_popup.Source = GenerateQRCode(ContactString, 1, foregroundcl, backgroundcl);
             }
 
         }
@@ -410,18 +413,23 @@ namespace QRCodeDemo
                 WebService.WebServiceHuscSoapClient sv = new WebService.WebServiceHuscSoapClient();
                 WebService.MyContact a = new WebService.MyContact();
                 if (CbName.IsChecked == true)
-                    a.name = TbName.Text;
+                    IsolatedData.userInfo.contactData.name = TbName.Text;
                 if (CbPhone.IsChecked == true)
-                    a.phone = phone;
+                    IsolatedData.userInfo.contactData.phone = phone;
                 if (CbAdd.IsChecked == true)
-                    a.address = address;
+                    IsolatedData.userInfo.contactData.address = address;
                 if (CbMail.IsChecked == true)
-                    a.email = mail;
+                    IsolatedData.userInfo.contactData.email = mail;
+                if (CbWebsite.IsChecked == true)
+                    IsolatedData.userInfo.contactData.website = TbWebsite.Text;
+                if (CbBirthDay.IsChecked == true)
+                    IsolatedData.userInfo.contactData.birthday = (DateTime)Pickerdatetime.Value;
 
 
+
+                save();
                 sv.UpdateCompleted += sv_UpdateCompleted;
-                //
-                sv.UpdateAsync(1, a, "", CbShare.IsChecked == true ? true : false);
+                sv.UpdateAsync(IsolatedData.userInfo.contactData, IsolatedData.userInfo.password, CbShare.IsChecked == true ? true : false);
             }
             else
                 MessageBox.Show("No internet connection is available");
@@ -429,30 +437,28 @@ namespace QRCodeDemo
 
 
         }
-
-        private void ApplicationBarIconButton_Click_save(object sender, EventArgs e)
+        public void save()
         {
             Color foregroundcl = HexColor(IsolatedData.appSettings.QrcodeColor);
             Color backgroundcl = HexColor(IsolatedData.appSettings.BackgroundQrCode);
 
             writetext();
-            MyContact a = new MyContact();
             if (CbName.IsChecked == true)
-                a.name = TbName.Text;
+                IsolatedData.userInfo.contactData.name = TbName.Text;
             if (CbPhone.IsChecked == true)
-                a.phone = TbPhone.Text + "|||";
+                IsolatedData.userInfo.contactData.phone = TbPhone.Text + "|||";
             if (CbAdd.IsChecked == true)
-                a.address = TbAdd.Text + "||";
+                IsolatedData.userInfo.contactData.address = TbAdd.Text + "||";
             if (CbMail.IsChecked == true)
-                a.email = TbMail.Text + "|||";
+                IsolatedData.userInfo.contactData.email = TbMail.Text + "|||";
             if (CbBirthDay.IsChecked == true)
-                a.birthday = (DateTime)Pickerdatetime.Value;
+                IsolatedData.userInfo.contactData.birthday = (DateTime)Pickerdatetime.Value;
             if (CbWebsite.IsChecked == true)
-                a.website = TbWebsite.Text + "|||";
+                IsolatedData.userInfo.contactData.website = TbWebsite.Text + "|||";
             if (CbName.IsChecked == false && CbPhone.IsChecked == false && CbAdd.IsChecked == false && CbMail.IsChecked == false && CbBirthDay.IsChecked == false && CbWebsite.IsChecked == false)
                 MessageBox.Show("Check infor to generate !");
 
-            string ContactString = JsonConvert.SerializeObject(a);
+            string ContactString = JsonConvert.SerializeObject(IsolatedData.userInfo.contactData);
 
 
             WriteableBitmap wb = GenerateQRCode(ContactString, 1, foregroundcl, backgroundcl);
@@ -481,16 +487,16 @@ namespace QRCodeDemo
             }
 
             MessageBox.Show("Save successfuly !");
-
-
+        }
+        private void ApplicationBarIconButton_Click_save(object sender, EventArgs e)
+        {
+            save();
         }
 
         private void ApplicationBarIconButton_Click_cancel(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Setting.xaml", UriKind.Relative));
-
         }
-
 
         void sv_UpdateCompleted(object sender, WebService.UpdateCompletedEventArgs e)
         {
@@ -545,10 +551,6 @@ namespace QRCodeDemo
             else
                 TbPhone.IsEnabled = false;
         }
-
-
-
-
 
         private void BtGetNameContact_Click(object sender, RoutedEventArgs e)
         {
@@ -640,6 +642,9 @@ namespace QRCodeDemo
         {
             if (mPopup == 0)
             {
+                //if (ContactString!=null)
+                //Img_popup.Source = GenerateQRCode(ContactString, 1, foregroundcl, backgroundcl);
+
                 if (Img_popup.Source == null)
                     ReadFromIsolatedStorage1("/Shared/ShellContent/336x336.jpg");
                 popup_image.IsOpen = true;
