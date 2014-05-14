@@ -129,15 +129,11 @@ namespace QRCodeDemo
 
             if (IsolatedData.isSignedIn)
             {
+                MessageBox.Show("You have already signed in !");
             }
             else
-            {
-               // CbAllowShare.IsChecked = false;
-                if (MessageBox.Show("Login or Sign Up to Share", "Note", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-                {
+            {            
                     NavigationService.Navigate(new Uri("/SignUp.xaml", UriKind.Relative));
-                }
-
             }
 
         }
