@@ -53,37 +53,47 @@
 
     </phone:PhoneApplicationPage.Resources>
     <!--LayoutRoot is the root grid where all page content is placed-->
-   
 
-        <!--ContentPanel - place additional content here-->
-      
 
-        <!--LayoutRoot is the root grid where all page content is placed-->
-        <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneTextHighContrastBrush}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+    <!--ContentPanel - place additional content here-->
 
-            <!--header-->
-            <StackPanel Grid.Row="0" Background="#FF0035FF" Orientation="Horizontal">
-                <Image VerticalAlignment="Center" Width="70" Height="70" Margin="0,0,0,0" Source="/Assets/Tiles/icon_signup.png"/>
-                <TextBlock Text="My friends list" Margin="0,0,0,0" VerticalAlignment="Center" FontFamily="Segoe WP SemiLight" FontSize="36"/>
-            </StackPanel>
 
-            <!--LongListSelecttor binding with friends informations-->
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="/Images/Anhnen1.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-            <Grid x:Name="ContentPanel" Grid.Row="1" Margin="5,0,0,0">
-                <phone:LongListSelector
+        <!--header-->
+        <StackPanel Grid.Row="0" Background="#FFDA6027" Orientation="Horizontal">
+            <Image VerticalAlignment="Center" Width="70" Height="70" Margin="0,0,0,0" Source="/Assets/Tiles/icon_signup.png"/>
+            <TextBlock Text="My friends list" TextWrapping="Wrap" FontFamily="Segoe WP SemiLight" FontSize="36" Height="54" Width="320" Margin="0,13"/>
+        </StackPanel>
+
+        <!--LongListSelecttor binding with friends informations-->
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="5,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="181*"/>
+                <ColumnDefinition Width="294*"/>
+            </Grid.ColumnDefinitions>
+            <phone:LongListSelector
                   x:Name="FriendsList"
                   JumpListStyle="{StaticResource FriendsJumpListStyle}"
-                  Background="Transparent"
                   GroupHeaderTemplate="{StaticResource FriendsGroupHeaderTemplate}"
                   ItemTemplate="{StaticResource PersonItemInfoTemplate}"
                   LayoutMode="List"
                   IsGroupingEnabled="true"
-                  HideEmptyGroups ="true"/>
-            </Grid>
+                  HideEmptyGroups ="true" Grid.ColumnSpan="2">
+                <phone:LongListSelector.Background>
+                    <ImageBrush Stretch="Fill" ImageSource="Anhnen1.jpg"/>
+                </phone:LongListSelector.Background>
+            </phone:LongListSelector>
         </Grid>
+    </Grid>
 
 </phone:PhoneApplicationPage>
