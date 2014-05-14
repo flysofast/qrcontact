@@ -216,27 +216,7 @@ namespace QRCodeDemo
             }
         }
 
-        private static WriteableBitmap GenerateQRCode(string s, int margin)
-        {
-            BarcodeWriter _writer = new BarcodeWriter();
-
-            _writer.Renderer = new ZXing.Rendering.WriteableBitmapRenderer()
-            {
-                Foreground = System.Windows.Media.Color.FromArgb(255, 0, 0, 255) // blue
-            };
-
-            _writer.Format = BarcodeFormat.QR_CODE;
-
-
-
-            _writer.Options.Height = 400;
-            _writer.Options.Width = 400;
-            _writer.Options.Margin = margin;
-
-            var barcodeImage = _writer.Write(s); //tel: prefix for phone numbers
-
-            return barcodeImage;
-        }
+       
 
         string stUri = "isostore:/Shared/ShellContent/336x336.jpg";
         string stUri1 = "isostore:/Shared/ShellContent/691x336.jpg";
@@ -292,7 +272,7 @@ namespace QRCodeDemo
             else
             {
                 // once it is created flip tile
-                Uri tileUri = new Uri("/MainPage.xaml?tile=flip", UriKind.Relative);
+                Uri tileUri = new Uri("/PivotMainPage.xaml?tile=flip", UriKind.Relative);
                 ShellTileData tileData = this.CreateFlipTileData();
                 ShellTile.Create(tileUri, tileData, true);
             }

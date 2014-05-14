@@ -16,7 +16,7 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar>
             <shell:ApplicationBarIconButton x:Name="BtbarUpdate" IconUri="/Assets/AppBar/upload.png" IsEnabled="True" Text="Update" Click="ApplicationBarIconButton_Click_update" />
-            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/feature.settings.png" IsEnabled="True" Text="Cancel" Click="ApplicationBarIconButton_Click_cancel"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/feature.settings.png" IsEnabled="True" Text="Setting" Click="ApplicationBarIconButton_Click_cancel"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/refresh.png" IsEnabled="True" Text="Reset" Click="ApplicationBarIconButton_Click_reset"/>
             <shell:ApplicationBarIconButton x:Name="BtBarSave" IconUri="/Assets/AppBar/save.png" IsEnabled="True" Text="Save" Click="ApplicationBarIconButton_Click_save"/>
         </shell:ApplicationBar>
@@ -37,7 +37,7 @@
 
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10,0,14,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10,0,14,0" >
             <ScrollViewer Margin="10,0,-10,0">
                 <Grid>
                     <CheckBox x:Name="CbPhone" Content="Phone" HorizontalAlignment="Left" Margin="-2,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.971,0.253" Click="CbPhone_Click"/>
@@ -57,28 +57,23 @@
                     <Button x:Name="BtOtherQrCode" Content="New Qr" HorizontalAlignment="Left" Margin="252,559,0,0" VerticalAlignment="Top" Click="BtOtherQrCode_Click"/>
                     <CheckBox x:Name="CbWebsite" Content="Website" HorizontalAlignment="Left" Margin="-2,241,0,0" VerticalAlignment="Top" Click="CbWebsite_Click"/>
                     <TextBox x:Name="TbWebsite" HorizontalAlignment="Left" Height="72" Margin="128,247,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="298"/>
-                    <CheckBox x:Name="CbBirthDay" Content="Birth Date" HorizontalAlignment="Left" Margin="-2,311,0,0" VerticalAlignment="Top" Click="CbWebsite_Click"/>
+                    <CheckBox x:Name="CbBirthDay" Content="Birthday" HorizontalAlignment="Left" Margin="-2,311,0,0" VerticalAlignment="Top" Click="CbWebsite_Click"/>
                     <toolkit:DatePicker x:Name="Pickerdatetime" HorizontalAlignment="Left" Margin="167,319,0,0" VerticalAlignment="Top" Width="246"/>
 
                 </Grid>
             </ScrollViewer>
             <!--Popup image-->
-
             <Popup x:Name="popup_image"  >
-                <Grid  Visibility="Visible" Width="480" Height="800" >
-
-
-                    <StackPanel  >
-
+                <Grid x:Name="popup" Background="#99999999" Visibility="Visible" Width="480" Height="800" >
+                    <StackPanel>
                         <Image x:Name="Img_popup" Stretch="None" Tap="Img_popup_Tap"/>
-
                     </StackPanel>
-
                 </Grid>
             </Popup>
 
-        </Grid>
 
+        </Grid>
+        
     </Grid>
 
 </phone:PhoneApplicationPage>

@@ -36,6 +36,7 @@ namespace QRCodeDemo
         PhoneNumberChooserTask phoneNumberChooserTask;
         AddressChooserTask addressTask;
         EmailAddressChooserTask emailAddressChooserTask;
+        
         private string displayName = "", NAME = "";
 
         public Generate()
@@ -204,7 +205,7 @@ namespace QRCodeDemo
 
 
             WriteableBitmap wb = GenerateQRCode(ContactString, 1, foregroundcl, backgroundcl);
-            WriteableBitmap wb1 = GenerateQRCode(ContactString, 60, foregroundcl, backgroundcl);
+            WriteableBitmap wb1 = GenerateQRCode(ContactString, 28, foregroundcl, backgroundcl);
 
             using (IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
             {
@@ -221,7 +222,7 @@ namespace QRCodeDemo
 
                 wb.SaveJpeg(fileStream1, 336, 336, 0, 100);
                 wb.SaveJpeg(fileStream2, 691, 336, 0, 100);
-                wb1.SaveJpeg(fileStream3, 800, 480, 0, 100);
+                wb1.SaveJpeg(fileStream3, 400, 400, 0, 100);
                 fileStream1.Close();
                 fileStream2.Close();
                 fileStream3.Close();
@@ -278,25 +279,36 @@ namespace QRCodeDemo
         {
             if (e.TaskResult == TaskResult.OK)
             {
-                this.displayName = e.DisplayName;
-                string a = e.Address.Replace("\r\n", "|");
-                string[] b = a.Split('|');
-
-                foreach (var s in b)
+                if (displayName != e.DisplayName)
+                    TbAdd.Text = "";
+                
                 {
-                    if (s != "")
-                        this.TbAdd.Text += s + "|";
+                    string a = e.Address.Replace("\r\n", "|");
+                    string[] b = a.Split('|');
 
+                    foreach (var s in b)
+                    {
+                        if (s != "")
+                            this.TbAdd.Text += s + "|";
+
+                    }
                 }
+                this.displayName = e.DisplayName;
+
+                
             }
         }
         void emailAddressChooserTask_Completed(object sender, EmailResult e)
         {
             if (e.TaskResult == TaskResult.OK)
             {
+                if (displayName != e.DisplayName)
+                    TbMail.Text = "";
+                
                 TbMail.Text += e.Email + "|";
 
-
+              
+                this.displayName = e.DisplayName;
 
                 //Code to send a new email message using the retrieved email address.
                 //EmailComposeTask emailComposeTask = new EmailComposeTask();
@@ -369,7 +381,6 @@ namespace QRCodeDemo
             MessageBox.Show("Save successfuly !");
 
         }
-
         private void ApplicationBarIconButton_Click_cancel(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Setting.xaml", UriKind.Relative));
@@ -387,7 +398,6 @@ namespace QRCodeDemo
             CbMail.IsChecked = true;
             img_qr.Source = null;
         }
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Color foregroundcl = HexColor(IsolatedData.appSettings.QrcodeColor);

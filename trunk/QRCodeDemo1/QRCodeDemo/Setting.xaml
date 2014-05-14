@@ -43,7 +43,7 @@
                     <RadioButton x:Name="RbEn" Content="English" HorizontalAlignment="Left" Margin="18,56,0,0" VerticalAlignment="Top" FontSize="22"/>
                     <RadioButton x:Name="RbVn" Content="Vietnamese" HorizontalAlignment="Left" Margin="207,56,0,0" VerticalAlignment="Top" FontSize="22"/>
                     <Controls:ColorPicker x:Name="CpQrcode" HorizontalAlignment="Left" Margin="57,460,0,0" VerticalAlignment="Top" Height="218" Width="328" ColorChanged="CpQrcode_ColorChanged"/>
-                    <Controls:ColorPicker x:Name="CpBacground" HorizontalAlignment="Left" Margin="60,214,0,0" VerticalAlignment="Top" Height="191" Width="328" ColorChanged="CpBacground_ColorChanged" Color="#FFE9F7E8"/>
+                    <Controls:ColorPicker x:Name="CpBacground" HorizontalAlignment="Left" Margin="60,214,0,0" VerticalAlignment="Top" Height="191" Width="328" ColorChanged="CpBacground_ColorChanged" Color="#FFE9F7E8" RenderTransformOrigin="3,0"/>
                 </Grid>
             </ScrollViewer>
 
