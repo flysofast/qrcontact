@@ -16,9 +16,19 @@ namespace QRCodeDemo
         {
             InitializeComponent();
         }
-
-        private void BtChangePass_Click(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            UserInfo a = new UserInfo();
+            MessageBox.Show(a.username);
+            base.OnNavigatedTo(e);
         }
+      
+
+        private void BtChangePass_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+      
     }
 }
