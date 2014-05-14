@@ -16,25 +16,23 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
-        <phone:Pivot x:Name="pvMain" Title="MY APPLICATION" SelectionChanged="pvMain_SelectionChanged">
+        <phone:Pivot x:Name="pvMain" Foreground="#FFDA6027" Title="QR CONTACT" SelectionChanged="pvMain_SelectionChanged">
+            <phone:Pivot.Background>
+                <ImageBrush Stretch="Fill" ImageSource="/Images/Anhnen1.jpg"/>
+            </phone:Pivot.Background>
             <!--Pivot item one-->
             <phone:PivotItem x:Name="MyQRItem" Header="My QR" Margin="10,28,14,0">
                 <Grid>
-                    <Grid >
+                    <Grid>
                         <Image x:Name="img" HorizontalAlignment="Left" Height="360" Margin="19,157,0,0" VerticalAlignment="Top" Width="415" Tap="img_Tap"/>
-                        <Button x:Name="BtLockScreen" Content="LockScreen" HorizontalAlignment="Left" Height="81" Margin="19,10,0,0" VerticalAlignment="Top" Width="169" Click="BtLockScreen_Click"/>
-                        <Button x:Name="BtPin" Content="Pin to start" HorizontalAlignment="Left" Margin="235,15,0,0" VerticalAlignment="Top" Click="BtPin_Click"/>
+                        <Button x:Name="BtLockScreen" Content="LockScreen" HorizontalAlignment="Left" Height="81" Margin="19,10,0,0" VerticalAlignment="Top" Width="169" Click="BtLockScreen_Click" Background="#FFDA6027"/>
+                        <Button x:Name="BtPin" Content="Pin to start" HorizontalAlignment="Left" Margin="235,15,0,0" VerticalAlignment="Top" Click="BtPin_Click" Background="#FFDA6027"/>
                     </Grid>
                 </Grid>
             </phone:PivotItem>
 
             <!--Pivot item two-->
-            <phone:PivotItem Header="Settings">
-                <Grid>
-
-                </Grid>
-            </phone:PivotItem>
-
+            
             <phone:PivotItem x:Name="ScanItem" Header="Scan">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -63,7 +61,7 @@
                     </Canvas>
                     <!--Used for debugging >-->
                     <StackPanel Margin="10,22,10,304">
-                        <TextBlock x:Name="tbBarcodeData" FontWeight="ExtraBold" TextWrapping="Wrap" />
+                        <TextBlock Foreground="#FFDA6027" x:Name="tbBarcodeData" FontWeight="ExtraBold" TextWrapping="Wrap" />
                     </StackPanel>
                 </Grid>
             </phone:PivotItem>

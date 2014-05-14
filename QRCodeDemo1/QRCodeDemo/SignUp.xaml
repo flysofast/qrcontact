@@ -13,44 +13,52 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="/Images/Anhnen1.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        <StackPanel Grid.Row="0" Margin="12,29,0,578" Grid.RowSpan="2">
+            <TextBlock Text="QR CONTACT" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FFDA6027"/>
+            <TextBlock Text="Account" Margin="139,-7,40,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="#FFDA6027" Height="115"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="14,0,10,0">
-            <TextBlock HorizontalAlignment="Left" Margin="16,40,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top"/>
-            <TextBox x:Name="tbUsername"  HorizontalAlignment="Left" Height="72" Margin="111.761,14.601,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335.209" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="14,39,10,-10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="67*"/>
+                <ColumnDefinition Width="161*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Left" Margin="16,214,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Foreground="#FFDA6027"/>
+            <TextBox x:Name="tbUsername"  HorizontalAlignment="Left" Height="72" Margin="111.761,188.601,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="335.209" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Grid.ColumnSpan="2">
                 <TextBox.RenderTransform>
                     <CompositeTransform SkewY="-0.747" TranslateY="2.972"/>
                 </TextBox.RenderTransform>
             </TextBox>
-            <TextBlock HorizontalAlignment="Left" Margin="16,104,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" RenderTransformOrigin="0.561,0.296"/>
-            <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="72" Margin="112.194,75.228,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="334.776" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" KeyUp="tbPassword_KeyUp">
+            <TextBlock HorizontalAlignment="Left" Margin="16,278,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" RenderTransformOrigin="0.561,0.296" Foreground="#FFDA6027"/>
+            <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="72" Margin="112.194,249.228,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="334.776" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" KeyUp="tbPassword_KeyUp" Grid.ColumnSpan="2">
                 <TextBox.RenderTransform>
                     <CompositeTransform SkewY="-0.747" TranslateY="2.972"/>
                 </TextBox.RenderTransform>
             </TextBox>
-            <TextBlock x:Name="lbRePassword" HorizontalAlignment="Left" Margin="16,148,0,0" TextWrapping="Wrap" Text="Retype password" VerticalAlignment="Top" Width="89"/>
-            <TextBox x:Name="tbRepassword" HorizontalAlignment="Left" Height="72" Margin="112.268,136.412,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="334.732" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <TextBlock x:Name="lbRePassword" HorizontalAlignment="Left" Margin="16,322,0,0" TextWrapping="Wrap" Text="Retype password" VerticalAlignment="Top" Width="89" Foreground="#FFDA6027"/>
+            <TextBox x:Name="tbRepassword" HorizontalAlignment="Left" Height="72" Margin="112.268,310.412,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="334.732" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Grid.ColumnSpan="2">
                 <TextBox.RenderTransform>
                     <CompositeTransform SkewY="-0.747" TranslateY="2.972"/>
                 </TextBox.RenderTransform>
             </TextBox>
-            <Button x:Name="btLogIn" Content="Submit" HorizontalAlignment="Left" Margin="112,312,0,0" VerticalAlignment="Top" Click="btSubmit_Click" RenderTransformOrigin="0.535,0.486" Width="137"/>
-            <Button x:Name="BtSkip" Content="Cancel" HorizontalAlignment="Left" Margin="283,312,0,0" VerticalAlignment="Top" Click="BtSkip_Click" Width="163"/>
-            <RadioButton x:Name="rdSignIn" Content="Sign In" HorizontalAlignment="Left" Margin="112,206,0,0" VerticalAlignment="Top" Checked="rdSignIn_Checked" />
-            <RadioButton x:Name="rdSignUp" Content="Sign Up" HorizontalAlignment="Left" Margin="254,206,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="btLogIn" Content="Submit" HorizontalAlignment="Left" Margin="55,486,0,0" VerticalAlignment="Top" Click="btSubmit_Click" RenderTransformOrigin="0.535,0.486" Width="180" Background="#FFDA6027" Height="88" Grid.ColumnSpan="2"/>
+            <Button x:Name="BtSkip" Content="Cancel" HorizontalAlignment="Left" Margin="111.852,486,0,0" VerticalAlignment="Top" Click="BtSkip_Click" Width="180" Background="#FFDA6027" Height="88" Grid.Column="1"/>
+            <RadioButton x:Name="rdSignIn" Content="Sign In" HorizontalAlignment="Left" Margin="112,380,0,0" VerticalAlignment="Top" Checked="rdSignIn_Checked" Foreground="#FFDA6027" Background="#FFDA6027" BorderBrush="{x:Null}" Grid.ColumnSpan="2" />
+            <RadioButton x:Name="rdSignUp" Content="Sign Up" HorizontalAlignment="Left" Margin="119.852,380,0,0" VerticalAlignment="Top" Foreground="#FFDA6027" Background="#FFDA6027" BorderBrush="{x:Null}" Grid.Column="1"/>
 
         </Grid>
+        <Image HorizontalAlignment="Left" Height="100" Margin="35,58,0,0" VerticalAlignment="Top" Width="100" Source="/Images/User-Profile.png" Grid.RowSpan="2"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

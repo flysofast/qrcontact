@@ -14,14 +14,17 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
 
-    <Grid x:Name="LayoutRoot" Background="#FFE0E0E0">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="/Images/Anhnen1.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--header-->
-        <StackPanel Grid.Row="0" Background="#FFFF5D00" Orientation="Horizontal">
+        <StackPanel Grid.Row="0" Background="#FFDA6027" Orientation="Horizontal">
             <TextBlock Text="My friends list" Margin="120,16" VerticalAlignment="Center" FontFamily="Segoe WP SemiLight" FontSize="36"/>
         </StackPanel>
 
@@ -31,12 +34,14 @@
             <toolkit:LongListMultiSelector
                   x:Name="lstFriendList"
                   JumpListStyle="{StaticResource FriendsJumpListStyle}"
-                  Background="Transparent"
                   GroupHeaderTemplate="{StaticResource FriendsGroupHeaderTemplate}"
                   
                   LayoutMode="List"
                   IsGroupingEnabled="true"
                   HideEmptyGroups ="true">
+                <toolkit:LongListMultiSelector.Background>
+                    <ImageBrush Stretch="Fill" ImageSource="Anhnen1.jpg"/>
+                </toolkit:LongListMultiSelector.Background>
                 <toolkit:LongListMultiSelector.ItemTemplate>
                     <DataTemplate>
                         <Grid x:Name="grdContact" Tap="grdContact_Tap" ManipulationCompleted="grdContact_ManipulationCompleted" ManipulationDelta="grdContact_ManipulationDelta" >
@@ -47,7 +52,7 @@
                                     <TextBlock x:Name="tbPhoneNumber" FontWeight="Normal"  Text="{Binding contactInfo.phone}" Margin="10,0,0,0" FontFamily="Segoe WP Semibold" FontSize="18" Foreground="{StaticResource PhoneSemitransparentBrush}" />
                                     <!--<TextBlock FontWeight="Normal"  Text="{Binding contactInfo.address}" FontFamily="Segoe WP Semibold" FontSize="18" Foreground="{StaticResource PhoneSemitransparentBrush}" />-->
                                 </StackPanel>
-                                
+
                             </StackPanel>
                             <TextBlock  x:Name="CallSymbol" Text="&#x1f464;" FontSize="48" Margin="350,0,0,0" VerticalAlignment="Center" Opacity="1" Visibility="Collapsed"></TextBlock>
                         </Grid>
@@ -56,7 +61,7 @@
 
             </toolkit:LongListMultiSelector>
         </Grid>
-        
+
     </Grid>
 
 </phone:PhoneApplicationPage>
