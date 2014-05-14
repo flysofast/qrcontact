@@ -45,9 +45,9 @@
                     <Grid Grid.Row="2" x:Name="grdEmail">
 
                         <TextBlock Height="Auto"  x:Name="lbEmail" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="36" Text="Email" />
-                        <TextBlock  x:Name="tbEmail1" HorizontalAlignment="Left" Margin="10,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24" Tap="tbPhoneNumberEmail_Tap" />
-                        <TextBlock  x:Name="tbEmail2" HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24" Tap="tbPhoneNumberEmail_Tap"/>
-                        <TextBlock  x:Name="tbEmail3" HorizontalAlignment="Left" Margin="10,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24" Tap="tbPhoneNumberEmail_Tap"/>
+                        <TextBlock  x:Name="tbEmail1" HorizontalAlignment="Left" Margin="10,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24" />
+                        <TextBlock  x:Name="tbEmail2" HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24" />
+                        <TextBlock  x:Name="tbEmail3" HorizontalAlignment="Left" Margin="10,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="24" />
                     </Grid>
                     <Grid Grid.Row="3" x:Name="grdAddress">
                         <TextBlock Height="Auto" x:Name="lbAddress" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="203" FontSize="36" Text="Address" />
@@ -65,7 +65,7 @@
 
                 </Grid>
             </ScrollViewer>
-            <Button x:Name="BtChangePass" Content="Change Password" Margin="218,147,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="BtChangePass" Content="Change Password" Margin="218,147,0,0" VerticalAlignment="Top" Click="BtChangePass_Click_1"/>
         </Grid>
     </Grid>
 

@@ -404,7 +404,7 @@ namespace QRCodeDemo
             Color backgroundcl = HexColor(IsolatedData.appSettings.BackgroundQrCode);
 
             ApplicationBarIconButton btupdate = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
-
+            CbShare.IsChecked = IsolatedData.appSettings.Share;
             if (IsolatedData.isSignedIn)
             {
                 btupdate.IsEnabled = true;

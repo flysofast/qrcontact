@@ -36,7 +36,6 @@ namespace QRCodeDemo
 
         private void appBarButton_Save_Click(object sender, EventArgs e)
         {
-            đm chưa làm hàm update relationship share lên server đỏ
             throw new NotImplementedException();
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
