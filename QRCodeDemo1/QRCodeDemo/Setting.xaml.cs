@@ -54,13 +54,13 @@ namespace QRCodeDemo
             {
                 CpBacground.Color = HexColor(BackgroundCode);
                 CpQrcode.Color = HexColor(QrcodeColor);
-                CbAllowShare.IsChecked = share;
+                //CbAllowShare.IsChecked = share;
             }
             else
             {
                 CpBacground.Color = Color.FromArgb(255, 0, 0, 255);
                 CpQrcode.Color = Color.FromArgb(255,255,255,255);
-                CbAllowShare.IsChecked = true;
+               // CbAllowShare.IsChecked = true;
             }
             base.OnNavigatedTo(e);
         }
@@ -73,7 +73,7 @@ namespace QRCodeDemo
             AppSetting a = IsolatedData.appSettings;
             a.QrcodeColor =QrcodeColor;
             a.BackgroundQrCode = BackgroundCode;
-            a.Share =(bool)CbAllowShare.IsChecked;
+           // a.Share =(bool)CbAllowShare.IsChecked;
             IsolatedData.appSettings = a;
         }
         private void TbBackgrioundCorlor_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -122,22 +122,24 @@ namespace QRCodeDemo
             WriteAppSetting();
         }
 
-        private void CbAllowShare_Click(object sender, RoutedEventArgs e)
+        
+
+        private void btLogin_Click(object sender, RoutedEventArgs e)
         {
-           
-            if(IsolatedData.isSignedIn)
+
+            if (IsolatedData.isSignedIn)
             {
             }
             else
             {
-                CbAllowShare.IsChecked = false;
-               if (MessageBox.Show("Login or Sign Up to Share", "Note", MessageBoxButton.OKCancel)==MessageBoxResult.OK)
+               // CbAllowShare.IsChecked = false;
+                if (MessageBox.Show("Login or Sign Up to Share", "Note", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 {
                     NavigationService.Navigate(new Uri("/SignUp.xaml", UriKind.Relative));
                 }
-               
+
             }
-            
+
         }
     }
 }

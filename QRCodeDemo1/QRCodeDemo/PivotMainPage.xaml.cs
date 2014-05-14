@@ -172,7 +172,7 @@ namespace QRCodeDemo
                 else
                 {
                     BitmapImage tn = new BitmapImage();
-                    tn.SetSource(Application.GetResourceStream(new Uri(@"Assets/SquareTile71x71.png", UriKind.Relative)).Stream);
+                    tn.SetSource(Application.GetResourceStream(new Uri(@"Images/qrcode.jpeg", UriKind.Relative)).Stream);
                     img.Source = tn;
                 }
 
@@ -187,7 +187,7 @@ namespace QRCodeDemo
                 case 0:
                     ReadFromIsolatedStorage("/Shared/ShellContent/336x336.jpg");
                     break;
-                case 2:
+                case 1:
                     if (!cameraInitialized)
                     // Initialize the camera object
                     {
