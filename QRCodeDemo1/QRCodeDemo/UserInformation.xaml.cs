@@ -16,5 +16,9 @@ namespace QRCodeDemo
         {
             InitializeComponent();
         }
+
+        private void BtChangePass_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }
