@@ -29,6 +29,11 @@ namespace QRCodeDemo
 
         }
 
+        private void BtChangePass_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
       
     }
 }

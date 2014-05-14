@@ -149,7 +149,7 @@ namespace QRCodeDemo
                 else
                 {
                     BitmapImage tn = new BitmapImage();
-                    tn.SetSource(Application.GetResourceStream(new Uri(@"Assets/SquareTile71x71.png", UriKind.Relative)).Stream);
+                    tn.SetSource(Application.GetResourceStream(new Uri(@"Images/qrcode.jpeg", UriKind.Relative)).Stream);
                     img_qr.Source = tn;
                 }
 
@@ -174,7 +174,7 @@ namespace QRCodeDemo
                 else
                 {
                     BitmapImage tn = new BitmapImage();
-                    tn.SetSource(Application.GetResourceStream(new Uri(@"Assets/SquareTile71x71.png", UriKind.Relative)).Stream);
+                    tn.SetSource(Application.GetResourceStream(new Uri(@"Images/qrcode.jpeg", UriKind.Relative)).Stream);
                     Img_popup.Source = tn;
                 }
 
@@ -205,7 +205,7 @@ namespace QRCodeDemo
 
 
             WriteableBitmap wb = GenerateQRCode(ContactString, 1, foregroundcl, backgroundcl);
-            WriteableBitmap wb1 = GenerateQRCode(ContactString, 28, foregroundcl, backgroundcl);
+            WriteableBitmap wb1 = GenerateQRCode(ContactString, 30, foregroundcl, backgroundcl);
 
             using (IsolatedStorageFile myIsolatedStorage = IsolatedStorageFile.GetUserStoreForApplication())
             {
