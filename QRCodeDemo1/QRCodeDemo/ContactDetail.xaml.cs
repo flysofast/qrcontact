@@ -36,7 +36,6 @@ namespace QRCodeDemo
 
         private void appBarButton_Save_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
