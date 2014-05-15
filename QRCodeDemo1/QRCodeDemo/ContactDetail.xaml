@@ -91,7 +91,7 @@
                 </Grid>
             </ScrollViewer>
         </Grid>
-        <CheckBox x:Name="cbkShare" Content="Share my infomation" HorizontalAlignment="Left" Margin="239,163,0,0" Grid.Row="1" VerticalAlignment="Top" Width="231" FontSize="17" Background="#FFDA6027" Foreground="#FFDA6027"/>
+        <CheckBox x:Name="cbkShare" Content="Share my infomation" HorizontalAlignment="Left" Margin="239,163,0,0" Grid.Row="1" VerticalAlignment="Top" Width="231" FontSize="17" Background="#FFDA6027" Foreground="#FFDA6027" Checked="cbkShare_Checked" Unchecked="cbkShare_Unchecked"/>
 
     </Grid>
 
