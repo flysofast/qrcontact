@@ -36,12 +36,6 @@ namespace QRCodeDemo.WebService {
         
         int EndUpdate(System.IAsyncResult result);
         
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://husc.com/CheckUser", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.IAsyncResult BeginCheckUser(string phone, System.AsyncCallback callback, object asyncState);
-        
-        int EndCheckUser(System.IAsyncResult result);
-        
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://husc.com/UpdateRelatioship", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         System.IAsyncResult BeginUpdateRelatioship(int myID, int frID, bool myS, bool myU, System.AsyncCallback callback, object asyncState);
@@ -53,24 +47,6 @@ namespace QRCodeDemo.WebService {
         System.IAsyncResult BeginInsertNewRelationship(int myID, int frID, bool myU, bool myS, bool frU, bool frS, System.AsyncCallback callback, object asyncState);
         
         int EndInsertNewRelationship(System.IAsyncResult result);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://husc.com/AddFriendship", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.IAsyncResult BeginAddFriendship(int myid, string fr_phone, System.AsyncCallback callback, object asyncState);
-        
-        int EndAddFriendship(System.IAsyncResult result);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://husc.com/GetInfoFriend", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.IAsyncResult BeginGetInfoFriend(int myID, int frID, System.AsyncCallback callback, object asyncState);
-        
-        QRCodeDemo.WebService.MyContact EndGetInfoFriend(System.IAsyncResult result);
-        
-        [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://husc.com/CheckRelationship", ReplyAction="*")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.IAsyncResult BeginCheckRelationship(int myid, int frid, System.AsyncCallback callback, object asyncState);
-        
-        QRCodeDemo.WebService.QR_RELATIONSHIP EndCheckRelationship(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://husc.com/DeleteFriends", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -217,318 +193,6 @@ namespace QRCodeDemo.WebService {
         }
     }
     
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.33440")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://husc.com/")]
-    public partial class QR_CONTACT : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private int idField;
-        
-        private string nameField;
-        
-        private string phoneField;
-        
-        private string addressField;
-        
-        private string usernameField;
-        
-        private string passwordField;
-        
-        private System.Nullable<System.DateTime> birthdayField;
-        
-        private string emailField;
-        
-        private string websiteField;
-        
-        private System.Nullable<bool> shareField;
-        
-        private QR_RELATIONSHIP[] qR_RELATIONSHIPsField;
-        
-        private QR_RELATIONSHIP[] qR_RELATIONSHIPs1Field;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public int id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-                this.RaisePropertyChanged("id");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public string name {
-            get {
-                return this.nameField;
-            }
-            set {
-                this.nameField = value;
-                this.RaisePropertyChanged("name");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public string phone {
-            get {
-                return this.phoneField;
-            }
-            set {
-                this.phoneField = value;
-                this.RaisePropertyChanged("phone");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public string address {
-            get {
-                return this.addressField;
-            }
-            set {
-                this.addressField = value;
-                this.RaisePropertyChanged("address");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
-        public string username {
-            get {
-                return this.usernameField;
-            }
-            set {
-                this.usernameField = value;
-                this.RaisePropertyChanged("username");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
-        public string password {
-            get {
-                return this.passwordField;
-            }
-            set {
-                this.passwordField = value;
-                this.RaisePropertyChanged("password");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=6)]
-        public System.Nullable<System.DateTime> birthday {
-            get {
-                return this.birthdayField;
-            }
-            set {
-                this.birthdayField = value;
-                this.RaisePropertyChanged("birthday");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
-        public string email {
-            get {
-                return this.emailField;
-            }
-            set {
-                this.emailField = value;
-                this.RaisePropertyChanged("email");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=8)]
-        public string website {
-            get {
-                return this.websiteField;
-            }
-            set {
-                this.websiteField = value;
-                this.RaisePropertyChanged("website");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true, Order=9)]
-        public System.Nullable<bool> share {
-            get {
-                return this.shareField;
-            }
-            set {
-                this.shareField = value;
-                this.RaisePropertyChanged("share");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=10)]
-        public QR_RELATIONSHIP[] QR_RELATIONSHIPs {
-            get {
-                return this.qR_RELATIONSHIPsField;
-            }
-            set {
-                this.qR_RELATIONSHIPsField = value;
-                this.RaisePropertyChanged("QR_RELATIONSHIPs");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=11)]
-        public QR_RELATIONSHIP[] QR_RELATIONSHIPs1 {
-            get {
-                return this.qR_RELATIONSHIPs1Field;
-            }
-            set {
-                this.qR_RELATIONSHIPs1Field = value;
-                this.RaisePropertyChanged("QR_RELATIONSHIPs1");
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.33440")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://husc.com/")]
-    public partial class QR_RELATIONSHIP : object, System.ComponentModel.INotifyPropertyChanged {
-        
-        private int id1Field;
-        
-        private int id2Field;
-        
-        private bool s1Field;
-        
-        private bool s2Field;
-        
-        private bool u1Field;
-        
-        private bool u2Field;
-        
-        private QR_CONTACT qR_CONTACTField;
-        
-        private QR_CONTACT qR_CONTACT1Field;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public int id1 {
-            get {
-                return this.id1Field;
-            }
-            set {
-                this.id1Field = value;
-                this.RaisePropertyChanged("id1");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public int id2 {
-            get {
-                return this.id2Field;
-            }
-            set {
-                this.id2Field = value;
-                this.RaisePropertyChanged("id2");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public bool s1 {
-            get {
-                return this.s1Field;
-            }
-            set {
-                this.s1Field = value;
-                this.RaisePropertyChanged("s1");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public bool s2 {
-            get {
-                return this.s2Field;
-            }
-            set {
-                this.s2Field = value;
-                this.RaisePropertyChanged("s2");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
-        public bool u1 {
-            get {
-                return this.u1Field;
-            }
-            set {
-                this.u1Field = value;
-                this.RaisePropertyChanged("u1");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
-        public bool u2 {
-            get {
-                return this.u2Field;
-            }
-            set {
-                this.u2Field = value;
-                this.RaisePropertyChanged("u2");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
-        public QR_CONTACT QR_CONTACT {
-            get {
-                return this.qR_CONTACTField;
-            }
-            set {
-                this.qR_CONTACTField = value;
-                this.RaisePropertyChanged("QR_CONTACT");
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
-        public QR_CONTACT QR_CONTACT1 {
-            get {
-                return this.qR_CONTACT1Field;
-            }
-            set {
-                this.qR_CONTACT1Field = value;
-                this.RaisePropertyChanged("QR_CONTACT1");
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface WebServiceHuscSoapChannel : QRCodeDemo.WebService.WebServiceHuscSoap, System.ServiceModel.IClientChannel {
     }
@@ -592,25 +256,6 @@ namespace QRCodeDemo.WebService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class CheckUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public CheckUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public int Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((int)(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class UpdateRelatioshipCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
@@ -643,63 +288,6 @@ namespace QRCodeDemo.WebService {
             get {
                 base.RaiseExceptionIfNecessary();
                 return ((int)(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class AddFriendshipCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public AddFriendshipCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public int Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((int)(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GetInfoFriendCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public GetInfoFriendCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public QRCodeDemo.WebService.MyContact Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((QRCodeDemo.WebService.MyContact)(this.results[0]));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class CheckRelationshipCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        public CheckRelationshipCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        public QRCodeDemo.WebService.QR_RELATIONSHIP Result {
-            get {
-                base.RaiseExceptionIfNecessary();
-                return ((QRCodeDemo.WebService.QR_RELATIONSHIP)(this.results[0]));
             }
         }
     }
@@ -821,12 +409,6 @@ namespace QRCodeDemo.WebService {
         
         private System.Threading.SendOrPostCallback onUpdateCompletedDelegate;
         
-        private BeginOperationDelegate onBeginCheckUserDelegate;
-        
-        private EndOperationDelegate onEndCheckUserDelegate;
-        
-        private System.Threading.SendOrPostCallback onCheckUserCompletedDelegate;
-        
         private BeginOperationDelegate onBeginUpdateRelatioshipDelegate;
         
         private EndOperationDelegate onEndUpdateRelatioshipDelegate;
@@ -838,24 +420,6 @@ namespace QRCodeDemo.WebService {
         private EndOperationDelegate onEndInsertNewRelationshipDelegate;
         
         private System.Threading.SendOrPostCallback onInsertNewRelationshipCompletedDelegate;
-        
-        private BeginOperationDelegate onBeginAddFriendshipDelegate;
-        
-        private EndOperationDelegate onEndAddFriendshipDelegate;
-        
-        private System.Threading.SendOrPostCallback onAddFriendshipCompletedDelegate;
-        
-        private BeginOperationDelegate onBeginGetInfoFriendDelegate;
-        
-        private EndOperationDelegate onEndGetInfoFriendDelegate;
-        
-        private System.Threading.SendOrPostCallback onGetInfoFriendCompletedDelegate;
-        
-        private BeginOperationDelegate onBeginCheckRelationshipDelegate;
-        
-        private EndOperationDelegate onEndCheckRelationshipDelegate;
-        
-        private System.Threading.SendOrPostCallback onCheckRelationshipCompletedDelegate;
         
         private BeginOperationDelegate onBeginDeleteFriendsDelegate;
         
@@ -946,17 +510,9 @@ namespace QRCodeDemo.WebService {
         
         public event System.EventHandler<UpdateCompletedEventArgs> UpdateCompleted;
         
-        public event System.EventHandler<CheckUserCompletedEventArgs> CheckUserCompleted;
-        
         public event System.EventHandler<UpdateRelatioshipCompletedEventArgs> UpdateRelatioshipCompleted;
         
         public event System.EventHandler<InsertNewRelationshipCompletedEventArgs> InsertNewRelationshipCompleted;
-        
-        public event System.EventHandler<AddFriendshipCompletedEventArgs> AddFriendshipCompleted;
-        
-        public event System.EventHandler<GetInfoFriendCompletedEventArgs> GetInfoFriendCompleted;
-        
-        public event System.EventHandler<CheckRelationshipCompletedEventArgs> CheckRelationshipCompleted;
         
         public event System.EventHandler<DeleteFriendsCompletedEventArgs> DeleteFriendsCompleted;
         
@@ -1119,52 +675,6 @@ namespace QRCodeDemo.WebService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult QRCodeDemo.WebService.WebServiceHuscSoap.BeginCheckUser(string phone, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginCheckUser(phone, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        int QRCodeDemo.WebService.WebServiceHuscSoap.EndCheckUser(System.IAsyncResult result) {
-            return base.Channel.EndCheckUser(result);
-        }
-        
-        private System.IAsyncResult OnBeginCheckUser(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            string phone = ((string)(inValues[0]));
-            return ((QRCodeDemo.WebService.WebServiceHuscSoap)(this)).BeginCheckUser(phone, callback, asyncState);
-        }
-        
-        private object[] OnEndCheckUser(System.IAsyncResult result) {
-            int retVal = ((QRCodeDemo.WebService.WebServiceHuscSoap)(this)).EndCheckUser(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnCheckUserCompleted(object state) {
-            if ((this.CheckUserCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.CheckUserCompleted(this, new CheckUserCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void CheckUserAsync(string phone) {
-            this.CheckUserAsync(phone, null);
-        }
-        
-        public void CheckUserAsync(string phone, object userState) {
-            if ((this.onBeginCheckUserDelegate == null)) {
-                this.onBeginCheckUserDelegate = new BeginOperationDelegate(this.OnBeginCheckUser);
-            }
-            if ((this.onEndCheckUserDelegate == null)) {
-                this.onEndCheckUserDelegate = new EndOperationDelegate(this.OnEndCheckUser);
-            }
-            if ((this.onCheckUserCompletedDelegate == null)) {
-                this.onCheckUserCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnCheckUserCompleted);
-            }
-            base.InvokeAsync(this.onBeginCheckUserDelegate, new object[] {
-                        phone}, this.onEndCheckUserDelegate, this.onCheckUserCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.IAsyncResult QRCodeDemo.WebService.WebServiceHuscSoap.BeginUpdateRelatioship(int myID, int frID, bool myS, bool myU, System.AsyncCallback callback, object asyncState) {
             return base.Channel.BeginUpdateRelatioship(myID, frID, myS, myU, callback, asyncState);
         }
@@ -1270,150 +780,6 @@ namespace QRCodeDemo.WebService {
                         myS,
                         frU,
                         frS}, this.onEndInsertNewRelationshipDelegate, this.onInsertNewRelationshipCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult QRCodeDemo.WebService.WebServiceHuscSoap.BeginAddFriendship(int myid, string fr_phone, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginAddFriendship(myid, fr_phone, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        int QRCodeDemo.WebService.WebServiceHuscSoap.EndAddFriendship(System.IAsyncResult result) {
-            return base.Channel.EndAddFriendship(result);
-        }
-        
-        private System.IAsyncResult OnBeginAddFriendship(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int myid = ((int)(inValues[0]));
-            string fr_phone = ((string)(inValues[1]));
-            return ((QRCodeDemo.WebService.WebServiceHuscSoap)(this)).BeginAddFriendship(myid, fr_phone, callback, asyncState);
-        }
-        
-        private object[] OnEndAddFriendship(System.IAsyncResult result) {
-            int retVal = ((QRCodeDemo.WebService.WebServiceHuscSoap)(this)).EndAddFriendship(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnAddFriendshipCompleted(object state) {
-            if ((this.AddFriendshipCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.AddFriendshipCompleted(this, new AddFriendshipCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void AddFriendshipAsync(int myid, string fr_phone) {
-            this.AddFriendshipAsync(myid, fr_phone, null);
-        }
-        
-        public void AddFriendshipAsync(int myid, string fr_phone, object userState) {
-            if ((this.onBeginAddFriendshipDelegate == null)) {
-                this.onBeginAddFriendshipDelegate = new BeginOperationDelegate(this.OnBeginAddFriendship);
-            }
-            if ((this.onEndAddFriendshipDelegate == null)) {
-                this.onEndAddFriendshipDelegate = new EndOperationDelegate(this.OnEndAddFriendship);
-            }
-            if ((this.onAddFriendshipCompletedDelegate == null)) {
-                this.onAddFriendshipCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnAddFriendshipCompleted);
-            }
-            base.InvokeAsync(this.onBeginAddFriendshipDelegate, new object[] {
-                        myid,
-                        fr_phone}, this.onEndAddFriendshipDelegate, this.onAddFriendshipCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult QRCodeDemo.WebService.WebServiceHuscSoap.BeginGetInfoFriend(int myID, int frID, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginGetInfoFriend(myID, frID, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        QRCodeDemo.WebService.MyContact QRCodeDemo.WebService.WebServiceHuscSoap.EndGetInfoFriend(System.IAsyncResult result) {
-            return base.Channel.EndGetInfoFriend(result);
-        }
-        
-        private System.IAsyncResult OnBeginGetInfoFriend(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int myID = ((int)(inValues[0]));
-            int frID = ((int)(inValues[1]));
-            return ((QRCodeDemo.WebService.WebServiceHuscSoap)(this)).BeginGetInfoFriend(myID, frID, callback, asyncState);
-        }
-        
-        private object[] OnEndGetInfoFriend(System.IAsyncResult result) {
-            QRCodeDemo.WebService.MyContact retVal = ((QRCodeDemo.WebService.WebServiceHuscSoap)(this)).EndGetInfoFriend(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnGetInfoFriendCompleted(object state) {
-            if ((this.GetInfoFriendCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.GetInfoFriendCompleted(this, new GetInfoFriendCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void GetInfoFriendAsync(int myID, int frID) {
-            this.GetInfoFriendAsync(myID, frID, null);
-        }
-        
-        public void GetInfoFriendAsync(int myID, int frID, object userState) {
-            if ((this.onBeginGetInfoFriendDelegate == null)) {
-                this.onBeginGetInfoFriendDelegate = new BeginOperationDelegate(this.OnBeginGetInfoFriend);
-            }
-            if ((this.onEndGetInfoFriendDelegate == null)) {
-                this.onEndGetInfoFriendDelegate = new EndOperationDelegate(this.OnEndGetInfoFriend);
-            }
-            if ((this.onGetInfoFriendCompletedDelegate == null)) {
-                this.onGetInfoFriendCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetInfoFriendCompleted);
-            }
-            base.InvokeAsync(this.onBeginGetInfoFriendDelegate, new object[] {
-                        myID,
-                        frID}, this.onEndGetInfoFriendDelegate, this.onGetInfoFriendCompletedDelegate, userState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.IAsyncResult QRCodeDemo.WebService.WebServiceHuscSoap.BeginCheckRelationship(int myid, int frid, System.AsyncCallback callback, object asyncState) {
-            return base.Channel.BeginCheckRelationship(myid, frid, callback, asyncState);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        QRCodeDemo.WebService.QR_RELATIONSHIP QRCodeDemo.WebService.WebServiceHuscSoap.EndCheckRelationship(System.IAsyncResult result) {
-            return base.Channel.EndCheckRelationship(result);
-        }
-        
-        private System.IAsyncResult OnBeginCheckRelationship(object[] inValues, System.AsyncCallback callback, object asyncState) {
-            int myid = ((int)(inValues[0]));
-            int frid = ((int)(inValues[1]));
-            return ((QRCodeDemo.WebService.WebServiceHuscSoap)(this)).BeginCheckRelationship(myid, frid, callback, asyncState);
-        }
-        
-        private object[] OnEndCheckRelationship(System.IAsyncResult result) {
-            QRCodeDemo.WebService.QR_RELATIONSHIP retVal = ((QRCodeDemo.WebService.WebServiceHuscSoap)(this)).EndCheckRelationship(result);
-            return new object[] {
-                    retVal};
-        }
-        
-        private void OnCheckRelationshipCompleted(object state) {
-            if ((this.CheckRelationshipCompleted != null)) {
-                InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.CheckRelationshipCompleted(this, new CheckRelationshipCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-            }
-        }
-        
-        public void CheckRelationshipAsync(int myid, int frid) {
-            this.CheckRelationshipAsync(myid, frid, null);
-        }
-        
-        public void CheckRelationshipAsync(int myid, int frid, object userState) {
-            if ((this.onBeginCheckRelationshipDelegate == null)) {
-                this.onBeginCheckRelationshipDelegate = new BeginOperationDelegate(this.OnBeginCheckRelationship);
-            }
-            if ((this.onEndCheckRelationshipDelegate == null)) {
-                this.onEndCheckRelationshipDelegate = new EndOperationDelegate(this.OnEndCheckRelationship);
-            }
-            if ((this.onCheckRelationshipCompletedDelegate == null)) {
-                this.onCheckRelationshipCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnCheckRelationshipCompleted);
-            }
-            base.InvokeAsync(this.onBeginCheckRelationshipDelegate, new object[] {
-                        myid,
-                        frid}, this.onEndCheckRelationshipDelegate, this.onCheckRelationshipCompletedDelegate, userState);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1775,19 +1141,6 @@ namespace QRCodeDemo.WebService {
                 return _result;
             }
             
-            public System.IAsyncResult BeginCheckUser(string phone, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[1];
-                _args[0] = phone;
-                System.IAsyncResult _result = base.BeginInvoke("CheckUser", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public int EndCheckUser(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                int _result = ((int)(base.EndInvoke("CheckUser", _args, result)));
-                return _result;
-            }
-            
             public System.IAsyncResult BeginUpdateRelatioship(int myID, int frID, bool myS, bool myU, System.AsyncCallback callback, object asyncState) {
                 object[] _args = new object[4];
                 _args[0] = myID;
@@ -1819,48 +1172,6 @@ namespace QRCodeDemo.WebService {
             public int EndInsertNewRelationship(System.IAsyncResult result) {
                 object[] _args = new object[0];
                 int _result = ((int)(base.EndInvoke("InsertNewRelationship", _args, result)));
-                return _result;
-            }
-            
-            public System.IAsyncResult BeginAddFriendship(int myid, string fr_phone, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[2];
-                _args[0] = myid;
-                _args[1] = fr_phone;
-                System.IAsyncResult _result = base.BeginInvoke("AddFriendship", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public int EndAddFriendship(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                int _result = ((int)(base.EndInvoke("AddFriendship", _args, result)));
-                return _result;
-            }
-            
-            public System.IAsyncResult BeginGetInfoFriend(int myID, int frID, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[2];
-                _args[0] = myID;
-                _args[1] = frID;
-                System.IAsyncResult _result = base.BeginInvoke("GetInfoFriend", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public QRCodeDemo.WebService.MyContact EndGetInfoFriend(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                QRCodeDemo.WebService.MyContact _result = ((QRCodeDemo.WebService.MyContact)(base.EndInvoke("GetInfoFriend", _args, result)));
-                return _result;
-            }
-            
-            public System.IAsyncResult BeginCheckRelationship(int myid, int frid, System.AsyncCallback callback, object asyncState) {
-                object[] _args = new object[2];
-                _args[0] = myid;
-                _args[1] = frid;
-                System.IAsyncResult _result = base.BeginInvoke("CheckRelationship", _args, callback, asyncState);
-                return _result;
-            }
-            
-            public QRCodeDemo.WebService.QR_RELATIONSHIP EndCheckRelationship(System.IAsyncResult result) {
-                object[] _args = new object[0];
-                QRCodeDemo.WebService.QR_RELATIONSHIP _result = ((QRCodeDemo.WebService.QR_RELATIONSHIP)(base.EndInvoke("CheckRelationship", _args, result)));
                 return _result;
             }
             

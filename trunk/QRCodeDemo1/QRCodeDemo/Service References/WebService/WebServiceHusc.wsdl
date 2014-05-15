@@ -59,20 +59,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="CheckUser">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="phone" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="CheckUserResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="CheckUserResult" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="UpdateRelatioship">
         <s:complexType>
           <s:sequence>
@@ -109,84 +95,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="AddFriendship">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="myid" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="fr_phone" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="AddFriendshipResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="AddFriendshipResult" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetInfoFriend">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="myID" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="frID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetInfoFriendResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetInfoFriendResult" type="tns:MyContact" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="CheckRelationship">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="myid" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="frid" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="CheckRelationshipResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="CheckRelationshipResult" type="tns:QR_RELATIONSHIP" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="QR_RELATIONSHIP">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="id1" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="id2" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="s1" type="s:boolean" />
-          <s:element minOccurs="1" maxOccurs="1" name="s2" type="s:boolean" />
-          <s:element minOccurs="1" maxOccurs="1" name="u1" type="s:boolean" />
-          <s:element minOccurs="1" maxOccurs="1" name="u2" type="s:boolean" />
-          <s:element minOccurs="0" maxOccurs="1" name="QR_CONTACT" type="tns:QR_CONTACT" />
-          <s:element minOccurs="0" maxOccurs="1" name="QR_CONTACT1" type="tns:QR_CONTACT" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="QR_CONTACT">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="phone" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="address" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="birthday" nillable="true" type="s:dateTime" />
-          <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="website" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="share" nillable="true" type="s:boolean" />
-          <s:element minOccurs="0" maxOccurs="1" name="QR_RELATIONSHIPs" type="tns:ArrayOfQR_RELATIONSHIP" />
-          <s:element minOccurs="0" maxOccurs="1" name="QR_RELATIONSHIPs1" type="tns:ArrayOfQR_RELATIONSHIP" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfQR_RELATIONSHIP">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="QR_RELATIONSHIP" nillable="true" type="tns:QR_RELATIONSHIP" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="DeleteFriends">
         <s:complexType>
           <s:sequence>
@@ -273,8 +181,6 @@
         </s:complexType>
       </s:element>
       <s:element name="int" type="s:int" />
-      <s:element name="MyContact" nillable="true" type="tns:MyContact" />
-      <s:element name="QR_RELATIONSHIP" nillable="true" type="tns:QR_RELATIONSHIP" />
       <s:element name="boolean" type="s:boolean" />
       <s:element name="ArrayOfInt" nillable="true" type="tns:ArrayOfInt" />
       <s:element name="ArrayOfMyContact" nillable="true" type="tns:ArrayOfMyContact" />
@@ -298,12 +204,6 @@
   <wsdl:message name="UpdateSoapOut">
     <wsdl:part name="parameters" element="tns:UpdateResponse" />
   </wsdl:message>
-  <wsdl:message name="CheckUserSoapIn">
-    <wsdl:part name="parameters" element="tns:CheckUser" />
-  </wsdl:message>
-  <wsdl:message name="CheckUserSoapOut">
-    <wsdl:part name="parameters" element="tns:CheckUserResponse" />
-  </wsdl:message>
   <wsdl:message name="UpdateRelatioshipSoapIn">
     <wsdl:part name="parameters" element="tns:UpdateRelatioship" />
   </wsdl:message>
@@ -315,24 +215,6 @@
   </wsdl:message>
   <wsdl:message name="InsertNewRelationshipSoapOut">
     <wsdl:part name="parameters" element="tns:InsertNewRelationshipResponse" />
-  </wsdl:message>
-  <wsdl:message name="AddFriendshipSoapIn">
-    <wsdl:part name="parameters" element="tns:AddFriendship" />
-  </wsdl:message>
-  <wsdl:message name="AddFriendshipSoapOut">
-    <wsdl:part name="parameters" element="tns:AddFriendshipResponse" />
-  </wsdl:message>
-  <wsdl:message name="GetInfoFriendSoapIn">
-    <wsdl:part name="parameters" element="tns:GetInfoFriend" />
-  </wsdl:message>
-  <wsdl:message name="GetInfoFriendSoapOut">
-    <wsdl:part name="parameters" element="tns:GetInfoFriendResponse" />
-  </wsdl:message>
-  <wsdl:message name="CheckRelationshipSoapIn">
-    <wsdl:part name="parameters" element="tns:CheckRelationship" />
-  </wsdl:message>
-  <wsdl:message name="CheckRelationshipSoapOut">
-    <wsdl:part name="parameters" element="tns:CheckRelationshipResponse" />
   </wsdl:message>
   <wsdl:message name="DeleteFriendsSoapIn">
     <wsdl:part name="parameters" element="tns:DeleteFriends" />
@@ -378,12 +260,6 @@
   <wsdl:message name="LoginHttpGetOut">
     <wsdl:part name="Body" element="tns:int" />
   </wsdl:message>
-  <wsdl:message name="CheckUserHttpGetIn">
-    <wsdl:part name="phone" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="CheckUserHttpGetOut">
-    <wsdl:part name="Body" element="tns:int" />
-  </wsdl:message>
   <wsdl:message name="UpdateRelatioshipHttpGetIn">
     <wsdl:part name="myID" type="s:string" />
     <wsdl:part name="frID" type="s:string" />
@@ -403,27 +279,6 @@
   </wsdl:message>
   <wsdl:message name="InsertNewRelationshipHttpGetOut">
     <wsdl:part name="Body" element="tns:int" />
-  </wsdl:message>
-  <wsdl:message name="AddFriendshipHttpGetIn">
-    <wsdl:part name="myid" type="s:string" />
-    <wsdl:part name="fr_phone" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="AddFriendshipHttpGetOut">
-    <wsdl:part name="Body" element="tns:int" />
-  </wsdl:message>
-  <wsdl:message name="GetInfoFriendHttpGetIn">
-    <wsdl:part name="myID" type="s:string" />
-    <wsdl:part name="frID" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="GetInfoFriendHttpGetOut">
-    <wsdl:part name="Body" element="tns:MyContact" />
-  </wsdl:message>
-  <wsdl:message name="CheckRelationshipHttpGetIn">
-    <wsdl:part name="myid" type="s:string" />
-    <wsdl:part name="frid" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="CheckRelationshipHttpGetOut">
-    <wsdl:part name="Body" element="tns:QR_RELATIONSHIP" />
   </wsdl:message>
   <wsdl:message name="DeleteFriendsHttpGetIn">
     <wsdl:part name="myid" type="s:string" />
@@ -467,12 +322,6 @@
   <wsdl:message name="LoginHttpPostOut">
     <wsdl:part name="Body" element="tns:int" />
   </wsdl:message>
-  <wsdl:message name="CheckUserHttpPostIn">
-    <wsdl:part name="phone" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="CheckUserHttpPostOut">
-    <wsdl:part name="Body" element="tns:int" />
-  </wsdl:message>
   <wsdl:message name="UpdateRelatioshipHttpPostIn">
     <wsdl:part name="myID" type="s:string" />
     <wsdl:part name="frID" type="s:string" />
@@ -492,27 +341,6 @@
   </wsdl:message>
   <wsdl:message name="InsertNewRelationshipHttpPostOut">
     <wsdl:part name="Body" element="tns:int" />
-  </wsdl:message>
-  <wsdl:message name="AddFriendshipHttpPostIn">
-    <wsdl:part name="myid" type="s:string" />
-    <wsdl:part name="fr_phone" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="AddFriendshipHttpPostOut">
-    <wsdl:part name="Body" element="tns:int" />
-  </wsdl:message>
-  <wsdl:message name="GetInfoFriendHttpPostIn">
-    <wsdl:part name="myID" type="s:string" />
-    <wsdl:part name="frID" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="GetInfoFriendHttpPostOut">
-    <wsdl:part name="Body" element="tns:MyContact" />
-  </wsdl:message>
-  <wsdl:message name="CheckRelationshipHttpPostIn">
-    <wsdl:part name="myid" type="s:string" />
-    <wsdl:part name="frid" type="s:string" />
-  </wsdl:message>
-  <wsdl:message name="CheckRelationshipHttpPostOut">
-    <wsdl:part name="Body" element="tns:QR_RELATIONSHIP" />
   </wsdl:message>
   <wsdl:message name="DeleteFriendsHttpPostIn">
     <wsdl:part name="myid" type="s:string" />
@@ -555,10 +383,6 @@
       <wsdl:input message="tns:UpdateSoapIn" />
       <wsdl:output message="tns:UpdateSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="CheckUser">
-      <wsdl:input message="tns:CheckUserSoapIn" />
-      <wsdl:output message="tns:CheckUserSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="UpdateRelatioship">
       <wsdl:input message="tns:UpdateRelatioshipSoapIn" />
       <wsdl:output message="tns:UpdateRelatioshipSoapOut" />
@@ -566,18 +390,6 @@
     <wsdl:operation name="InsertNewRelationship">
       <wsdl:input message="tns:InsertNewRelationshipSoapIn" />
       <wsdl:output message="tns:InsertNewRelationshipSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="AddFriendship">
-      <wsdl:input message="tns:AddFriendshipSoapIn" />
-      <wsdl:output message="tns:AddFriendshipSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GetInfoFriend">
-      <wsdl:input message="tns:GetInfoFriendSoapIn" />
-      <wsdl:output message="tns:GetInfoFriendSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="CheckRelationship">
-      <wsdl:input message="tns:CheckRelationshipSoapIn" />
-      <wsdl:output message="tns:CheckRelationshipSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="DeleteFriends">
       <wsdl:input message="tns:DeleteFriendsSoapIn" />
@@ -609,10 +421,6 @@
       <wsdl:input message="tns:LoginHttpGetIn" />
       <wsdl:output message="tns:LoginHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="CheckUser">
-      <wsdl:input message="tns:CheckUserHttpGetIn" />
-      <wsdl:output message="tns:CheckUserHttpGetOut" />
-    </wsdl:operation>
     <wsdl:operation name="UpdateRelatioship">
       <wsdl:input message="tns:UpdateRelatioshipHttpGetIn" />
       <wsdl:output message="tns:UpdateRelatioshipHttpGetOut" />
@@ -620,18 +428,6 @@
     <wsdl:operation name="InsertNewRelationship">
       <wsdl:input message="tns:InsertNewRelationshipHttpGetIn" />
       <wsdl:output message="tns:InsertNewRelationshipHttpGetOut" />
-    </wsdl:operation>
-    <wsdl:operation name="AddFriendship">
-      <wsdl:input message="tns:AddFriendshipHttpGetIn" />
-      <wsdl:output message="tns:AddFriendshipHttpGetOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GetInfoFriend">
-      <wsdl:input message="tns:GetInfoFriendHttpGetIn" />
-      <wsdl:output message="tns:GetInfoFriendHttpGetOut" />
-    </wsdl:operation>
-    <wsdl:operation name="CheckRelationship">
-      <wsdl:input message="tns:CheckRelationshipHttpGetIn" />
-      <wsdl:output message="tns:CheckRelationshipHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="DeleteFriends">
       <wsdl:input message="tns:DeleteFriendsHttpGetIn" />
@@ -659,10 +455,6 @@
       <wsdl:input message="tns:LoginHttpPostIn" />
       <wsdl:output message="tns:LoginHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="CheckUser">
-      <wsdl:input message="tns:CheckUserHttpPostIn" />
-      <wsdl:output message="tns:CheckUserHttpPostOut" />
-    </wsdl:operation>
     <wsdl:operation name="UpdateRelatioship">
       <wsdl:input message="tns:UpdateRelatioshipHttpPostIn" />
       <wsdl:output message="tns:UpdateRelatioshipHttpPostOut" />
@@ -670,18 +462,6 @@
     <wsdl:operation name="InsertNewRelationship">
       <wsdl:input message="tns:InsertNewRelationshipHttpPostIn" />
       <wsdl:output message="tns:InsertNewRelationshipHttpPostOut" />
-    </wsdl:operation>
-    <wsdl:operation name="AddFriendship">
-      <wsdl:input message="tns:AddFriendshipHttpPostIn" />
-      <wsdl:output message="tns:AddFriendshipHttpPostOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GetInfoFriend">
-      <wsdl:input message="tns:GetInfoFriendHttpPostIn" />
-      <wsdl:output message="tns:GetInfoFriendHttpPostOut" />
-    </wsdl:operation>
-    <wsdl:operation name="CheckRelationship">
-      <wsdl:input message="tns:CheckRelationshipHttpPostIn" />
-      <wsdl:output message="tns:CheckRelationshipHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="DeleteFriends">
       <wsdl:input message="tns:DeleteFriendsHttpPostIn" />
@@ -729,15 +509,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CheckUser">
-      <soap:operation soapAction="http://husc.com/CheckUser" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="UpdateRelatioship">
       <soap:operation soapAction="http://husc.com/UpdateRelatioship" style="document" />
       <wsdl:input>
@@ -749,33 +520,6 @@
     </wsdl:operation>
     <wsdl:operation name="InsertNewRelationship">
       <soap:operation soapAction="http://husc.com/InsertNewRelationship" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AddFriendship">
-      <soap:operation soapAction="http://husc.com/AddFriendship" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetInfoFriend">
-      <soap:operation soapAction="http://husc.com/GetInfoFriend" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CheckRelationship">
-      <soap:operation soapAction="http://husc.com/CheckRelationship" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -858,15 +602,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CheckUser">
-      <soap12:operation soapAction="http://husc.com/CheckUser" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="UpdateRelatioship">
       <soap12:operation soapAction="http://husc.com/UpdateRelatioship" style="document" />
       <wsdl:input>
@@ -878,33 +613,6 @@
     </wsdl:operation>
     <wsdl:operation name="InsertNewRelationship">
       <soap12:operation soapAction="http://husc.com/InsertNewRelationship" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AddFriendship">
-      <soap12:operation soapAction="http://husc.com/AddFriendship" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetInfoFriend">
-      <soap12:operation soapAction="http://husc.com/GetInfoFriend" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CheckRelationship">
-      <soap12:operation soapAction="http://husc.com/CheckRelationship" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -978,15 +686,6 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CheckUser">
-      <http:operation location="/CheckUser" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="UpdateRelatioship">
       <http:operation location="/UpdateRelatioship" />
       <wsdl:input>
@@ -998,33 +697,6 @@
     </wsdl:operation>
     <wsdl:operation name="InsertNewRelationship">
       <http:operation location="/InsertNewRelationship" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AddFriendship">
-      <http:operation location="/AddFriendship" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetInfoFriend">
-      <http:operation location="/GetInfoFriend" />
-      <wsdl:input>
-        <http:urlEncoded />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CheckRelationship">
-      <http:operation location="/CheckRelationship" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -1089,15 +761,6 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="CheckUser">
-      <http:operation location="/CheckUser" />
-      <wsdl:input>
-        <mime:content type="application/x-www-form-urlencoded" />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="UpdateRelatioship">
       <http:operation location="/UpdateRelatioship" />
       <wsdl:input>
@@ -1109,33 +772,6 @@
     </wsdl:operation>
     <wsdl:operation name="InsertNewRelationship">
       <http:operation location="/InsertNewRelationship" />
-      <wsdl:input>
-        <mime:content type="application/x-www-form-urlencoded" />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="AddFriendship">
-      <http:operation location="/AddFriendship" />
-      <wsdl:input>
-        <mime:content type="application/x-www-form-urlencoded" />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetInfoFriend">
-      <http:operation location="/GetInfoFriend" />
-      <wsdl:input>
-        <mime:content type="application/x-www-form-urlencoded" />
-      </wsdl:input>
-      <wsdl:output>
-        <mime:mimeXml part="Body" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="CheckRelationship">
-      <http:operation location="/CheckRelationship" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

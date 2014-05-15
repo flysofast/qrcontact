@@ -200,7 +200,7 @@ namespace QRCodeDemo
                 IsolatedData.userInfo.contactData.website = TbWebsite.Text + "|||";
             if (CbName.IsChecked == false && CbPhone.IsChecked == false && CbAdd.IsChecked == false && CbMail.IsChecked == false && CbBirthDay.IsChecked == false && CbWebsite.IsChecked == false)
                 MessageBox.Show("Check infor to generate !");
-
+            IsolatedData.appSettings.Share =(bool) CbShare.IsChecked;
             string ContactString = JsonConvert.SerializeObject(IsolatedData.userInfo.contactData);
 
 
