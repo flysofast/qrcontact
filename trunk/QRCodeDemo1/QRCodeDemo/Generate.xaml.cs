@@ -374,6 +374,13 @@ namespace QRCodeDemo
         }
         private void ApplicationBarIconButton_Click_update(object sender, EventArgs e)
         {
+            var progress = new ProgressIndicator
+            {
+                IsVisible = true,
+                IsIndeterminate = true,
+                Text = "Connecting to server..."
+            };
+            SystemTray.SetProgressIndicator(this, progress);
             if (NetworkInterface.GetIsNetworkAvailable())
             {
                 string name = TbName.Text;
@@ -407,7 +414,9 @@ namespace QRCodeDemo
             }
             else
                 MessageBox.Show("No internet connection is available");
-            { }
+
+            progress.IsIndeterminate = false;
+            progress.IsVisible = false;
 
 
         }
