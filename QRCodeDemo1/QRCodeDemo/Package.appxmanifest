@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
 
-  <Identity Name="c8184a6c-c20f-407e-8e54-f5c40f6a2d7f"
-            Publisher="CN=Loc"
+  <Identity Name="a1cde2e2-430f-4a05-b1e2-1d155c5cc785"
+            Publisher="CN=IT"
             Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="9fda8e21-0d79-44bd-99e6-32d894502cb2" PhonePublisherId="55bb349f-76a2-4f08-807b-395c2fafaab1"/>
 
   <Properties>
     <DisplayName>QRCodeDemo</DisplayName>
-    <PublisherDisplayName>Loc</PublisherDisplayName>
+    <PublisherDisplayName>IT</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -25,7 +25,7 @@
   <Applications>
     <Application Id="x9fda8e21y0d79y44bdy99e6y32d894502cb2x"
         Executable="AGHost.exe"
-        EntryPoint="ContactList.xaml">
+        EntryPoint="PivotMainPage.xaml">
       <m3:VisualElements
           DisplayName="QRCodeDemo"
           Square150x150Logo="Assets\SquareTile150x150.png"
@@ -34,7 +34,7 @@
           ForegroundText="light"
           BackgroundColor="#464646">
         <m3:DefaultTile Square71x71Logo="Assets\SquareTile71x71.png"/>
-        <m3:SplashScreen Image="Assets\Splashscreen.png" />
+        <m3:SplashScreen Image="SplashScreenImage.jpg" />
         <m3:ApplicationView MinWidth="width320"/> <!--Used in XAML Designer. DO NOT REMOVE-->
       </m3:VisualElements>
       <Extensions>

@@ -25,6 +25,7 @@ namespace QRCodeDemo
             contactData = new MyContact();
             username = "";
             password = "";
+            contactData.id = 0;
         }
 
     }

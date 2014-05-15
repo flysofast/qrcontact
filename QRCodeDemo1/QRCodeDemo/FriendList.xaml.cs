@@ -271,6 +271,7 @@ namespace QRCodeDemo
             }
 
             FriendsInfoList.SaveFriendList();
+            SortingListAZ();
 
         }
         private async void appBarButton_Delete_Click(object sender, EventArgs e)
