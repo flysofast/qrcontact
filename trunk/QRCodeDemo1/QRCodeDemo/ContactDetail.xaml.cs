@@ -144,6 +144,12 @@ namespace QRCodeDemo
 
         }
 
+        private void cbkShare_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ApplicationBar.IsVisible = !ApplicationBar.IsVisible;
+        }
+
+
 
 
     }
