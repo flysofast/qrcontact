@@ -23,9 +23,11 @@ namespace QRCodeDemo
             _friendList = IsolatedData.friendList;
             if (sepNumbers)
             {
+
                 foreach (var fr in _friendList)
                 {
-                    fr.contactInfo.phone = fr.contactInfo.phone.Replace('|', '\n');
+                    if (!string.IsNullOrEmpty(fr.contactInfo.phone))
+                        fr.contactInfo.phone = fr.contactInfo.phone.Replace('|', '\n');
                 }
             }
         }
@@ -69,7 +71,7 @@ namespace QRCodeDemo
             _friendList.Add(ct);
         }
 
-       
+
 
         public void SaveFriendList()
         {
